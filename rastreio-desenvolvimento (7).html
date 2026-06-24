@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rastreio de Desenvolvimento , A Rotina Ideal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --areia: #F2EDE6;
+    --areia-escura: #E8DFD3;
+    --marrom: #3D2B1F;
+    --marrom-medio: #6B4C38;
+    --dourado: #B8965A;
+    --dourado-claro: #D4AF78;
+    --off-white: #FAF8F5;
+    --cinza-claro: #C9BFB5;
+    --verde-suave: #7A9E87;
+    --azul-suave: #7A8FA6;
+    --roxo-suave: #9A86A4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--areia);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: var(--marrom);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--marrom);
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--dourado-claro);
+    text-transform: uppercase;
+  }
+
+  .header-tag {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--cinza-claro);
+    text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--marrom);
+    padding: 56px 32px 64px;
+    text-align: center;
+    border-bottom: 1px solid var(--marrom-medio);
+  }
+
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--dourado);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 5vw, 52px);
+    color: var(--off-white);
+    line-height: 1.15;
+    margin-bottom: 20px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--dourado-claro);
+  }
+
+  .hero-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--cinza-claro);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .aviso-bar {
+    background: var(--marrom-medio);
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--dourado-claro);
+  }
+
+  /* PROGRESS */
+  .progress-area {
+    padding: 24px 24px 0;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--marrom-medio);
+  }
+
+  .progress-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--dourado);
+  }
+
+  .progress-bar {
+    height: 2px;
+    background: var(--areia-escura);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--dourado);
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* CARD DA PERGUNTA */
+  .question-area {
+    padding: 24px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .question-card {
+    background: var(--off-white);
+    border: 1px solid var(--areia-escura);
+    padding: 40px 40px 36px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .question-card.exiting {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  .question-domain {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .domain-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--dourado);
+    display: inline-block;
+  }
+
+  .question-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(20px, 3vw, 26px);
+    line-height: 1.4;
+    color: var(--marrom);
+    margin-bottom: 12px;
+  }
+
+  .question-context {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--marrom-medio);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    font-style: italic;
+  }
+
+  /* OPTIONS */
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option-btn {
+    background: transparent;
+    border: 1px solid var(--areia-escura);
+    padding: 16px 20px;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--marrom);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .option-btn:hover {
+    background: var(--areia);
+    border-color: var(--dourado);
+    color: var(--marrom);
+  }
+
+  .option-btn.selected {
+    background: var(--marrom);
+    border-color: var(--marrom);
+    color: var(--off-white);
+  }
+
+  .option-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--dourado);
+    min-width: 20px;
+    margin-top: 1px;
+  }
+
+  .option-btn.selected .option-letter {
+    color: var(--dourado-claro);
+  }
+
+  /* NAV BOTOES */
+  .nav-area {
+    padding: 0 24px 16px;
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .btn-back {
+    background: transparent;
+    border: 1px solid var(--cinza-claro);
+    padding: 12px 24px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--marrom-medio);
+    transition: all 0.2s;
+  }
+
+  .btn-back:hover { border-color: var(--marrom-medio); color: var(--marrom); }
+  .btn-back:disabled { opacity: 0.3; cursor: default; }
+
+  .btn-next {
+    background: var(--marrom);
+    border: 1px solid var(--marrom);
+    padding: 14px 36px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    transition: all 0.2s;
+  }
+
+  .btn-next:hover { background: var(--dourado); border-color: var(--dourado); }
+  .btn-next:disabled { opacity: 0.35; cursor: default; }
+
+  /* RESULTADO */
+  .result-area {
+    padding: 32px 24px 48px;
+    max-width: 680px;
+    margin: 0 auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  .result-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .result-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 12px;
+  }
+
+  .result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--marrom);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .result-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--dourado);
+  }
+
+  /* PERFIL BARRAS */
+  .profile-section {
+    background: var(--off-white);
+    border: 1px solid var(--areia-escura);
+    padding: 32px;
+    margin-bottom: 20px;
+  }
+
+  .profile-title {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--marrom-medio);
+    margin-bottom: 24px;
+  }
+
+  .profile-item {
+    margin-bottom: 20px;
+  }
+
+  .profile-item:last-child { margin-bottom: 0; }
+
+  .profile-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .profile-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--marrom);
+  }
+
+  .profile-pct {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--dourado);
+  }
+
+  .profile-bar {
+    height: 3px;
+    background: var(--areia-escura);
+    position: relative;
+  }
+
+  .profile-bar-fill {
+    height: 100%;
+    transition: width 1.2s ease;
+  }
+
+  .bar-tea { background: var(--azul-suave); }
+  .bar-tdah { background: var(--verde-suave); }
+  .bar-ah { background: var(--dourado); }
+
+  .profile-note {
+    font-size: 12px;
+    color: var(--marrom-medio);
+    margin-top: 5px;
+    line-height: 1.5;
+  }
+
+  /* CARDS DE RESULTADO */
+  .result-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .result-card {
+    background: var(--off-white);
+    border: 1px solid var(--areia-escura);
+    border-left: 3px solid var(--dourado);
+    padding: 24px 28px;
+  }
+
+  .result-card.card-tea { border-left-color: var(--azul-suave); }
+  .result-card.card-tdah { border-left-color: var(--verde-suave); }
+  .result-card.card-ah { border-left-color: var(--dourado); }
+
+  .result-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--marrom);
+  }
+
+  .result-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--marrom-medio);
+  }
+
+  .sinais-list {
+    list-style: none;
+    margin-top: 10px;
+  }
+
+  .sinais-list li {
+    font-size: 13px;
+    color: var(--marrom-medio);
+    line-height: 1.6;
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .sinais-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 5px;
+    height: 1px;
+    background: var(--dourado);
+  }
+
+  /* AVISO FINAL */
+  .aviso-final {
+    background: var(--marrom);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+
+  .aviso-final p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--cinza-claro);
+    text-align: center;
+  }
+
+  .aviso-final strong {
+    color: var(--dourado-claro);
+    font-weight: 400;
+  }
+
+  /* BTN REFAZER */
+  .btn-refazer {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--marrom);
+    padding: 16px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--marrom);
+    transition: all 0.2s;
+  }
+
+  .btn-refazer:hover { background: var(--marrom); color: var(--off-white); }
+
+  /* FONTE */
+  .fontes-section {
+    padding: 0 24px 32px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .fontes-title {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cinza-claro);
+    margin-bottom: 10px;
+  }
+
+  .fontes-text {
+    font-size: 11px;
+    color: var(--cinza-claro);
+    line-height: 1.7;
+  }
+
+  /* INICIO */
+  .inicio-area {
+    padding: 32px 24px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .inicio-card {
+    background: var(--off-white);
+    border: 1px solid var(--areia-escura);
+    padding: 40px;
+  }
+
+  .inicio-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 26px;
+    color: var(--marrom);
+    margin-bottom: 20px;
+  }
+
+  .field-group {
+    margin-bottom: 24px;
+  }
+
+  .field-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--marrom-medio);
+    margin-bottom: 8px;
+  }
+
+  .field-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--areia-escura);
+    padding: 14px 16px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--marrom);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .field-input:focus { border-color: var(--dourado); }
+
+  .age-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .age-option {
+    background: transparent;
+    border: 1px solid var(--areia-escura);
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--marrom);
+    transition: all 0.2s;
+    line-height: 1.4;
+  }
+
+  .age-option:hover { border-color: var(--dourado); }
+
+  .age-option.selected {
+    background: var(--marrom);
+    border-color: var(--marrom);
+    color: var(--off-white);
+  }
+
+  .age-option .age-range {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .age-option .age-label {
+    font-size: 11px;
+    opacity: 0.7;
+  }
+
+  .btn-iniciar {
+    width: 100%;
+    background: var(--marrom);
+    border: 1px solid var(--marrom);
+    padding: 18px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .btn-iniciar:hover { background: var(--dourado); border-color: var(--dourado); }
+  .btn-iniciar:disabled { opacity: 0.35; cursor: default; }
+
+  .inicio-info {
+    font-size: 12px;
+    color: var(--cinza-claro);
+    line-height: 1.6;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  /* HIDDEN */
+  .hidden { display: none !important; }
+
+  /* SONO CARD */
+  .sono-highlight {
+    background: var(--areia);
+    border: 1px solid var(--areia-escura);
+    border-left: 3px solid var(--marrom);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+
+  .sono-highlight h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: var(--marrom);
+    margin-bottom: 8px;
+  }
+
+  .sono-highlight p {
+    font-size: 13px;
+    color: var(--marrom-medio);
+    line-height: 1.6;
+  }
+
+  @média (max-width: 520px) {
+    .question-card { padding: 28px 24px; }
+    .inicio-card { padding: 28px 24px; }
+    .age-grid { grid-template-columns: 1fr 1fr; }
+    .header { padding: 16px 20px; }
+    .hero { padding: 40px 20px 48px; }
+  }
+
+  /* CTA ROTINA IDEAL */
+  .cta-rotina {
+    background: var(--marrom);
+    padding: 40px 36px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .cta-rotina .cta-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 16px;
+  }
+
+  .cta-rotina h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(22px, 3.5vw, 30px);
+    color: var(--off-white);
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .cta-rotina h3 em {
+    font-style: italic;
+    color: var(--dourado-claro);
+  }
+
+  .cta-rotina p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--cinza-claro);
+    max-width: 460px;
+    margin: 0 auto 28px;
+  }
+
+  .btn-cta {
+    display: inline-block;
+    background: var(--dourado);
+    border: 1px solid var(--dourado);
+    padding: 16px 40px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--marrom);
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-cta:hover {
+    background: var(--dourado-claro);
+    border-color: var(--dourado-claro);
+  }
+
+  .cta-detalhe {
+    font-size: 11px;
+    color: var(--cinza-claro);
+    margin-top: 14px;
+    opacity: 0.7;
+  }
+
+  .btn-fechar-termo {
+    width: 100%;
+    background: var(--marrom);
+    border: none;
+    padding: 14px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    transition: background 0.2s;
+  }
+
+  .btn-fechar-termo:hover { background: var(--dourado); }
+
+  /* CHECKBOX */
+  .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--areia);
+    border: 1px solid var(--areia-escura);
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-top: 2px;
+    accent-color: var(--marrom);
+    cursor: pointer;
+  }
+
+  .checkbox-label {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--marrom-medio);
+    cursor: pointer;
+  }
+
+  .checkbox-label a {
+    color: var(--dourado);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  .checkbox-label a:hover {
+    color: var(--marrom);
+  }
+
+
+  /* TELA DO TERMO */
+  .termo-area {
+    padding: 24px 24px 48px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .termo-back {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--marrom-medio);
+  }
+
+  .termo-back:hover { color: var(--marrom); }
+
+  .termo-back-arrow {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .termo-card {
+    background: var(--off-white);
+    border: 1px solid var(--areia-escura);
+    padding: 36px 32px;
+  }
+
+  .termo-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 24px;
+    color: var(--marrom);
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--areia-escura);
+  }
+
+  .termo-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: var(--marrom);
+    margin: 28px 0 8px;
+  }
+
+  .termo-card h3:first-of-type { margin-top: 0; }
+
+  .termo-card p, .termo-card li {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--marrom-medio);
+  }
+
+  .termo-card ul {
+    padding-left: 16px;
+    margin: 8px 0;
+  }
+
+  .termo-card ul li { margin-bottom: 4px; }
+
+  .termo-data {
+    font-size: 11px;
+    color: var(--cinza-claro);
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--areia-escura);
+  }
+
+  .btn-voltar-termo {
+    width: 100%;
+    background: var(--marrom);
+    border: none;
+    padding: 16px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    transition: background 0.2s;
+    margin-top: 24px;
+  }
+
+  .btn-voltar-termo:hover { background: var(--dourado); }
+
+  @media (max-width: 520px) {
+    .termo-card { padding: 24px 20px; }
+  }
+
+  /* CARD TIPICO */
+  .tipico-card {
+    background: var(--off-white);
+    border: 1px solid var(--areia-escura);
+    border-left: 3px solid var(--verde-suave);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+
+  .tipico-card .tipico-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .tipico-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 20px;
+    color: var(--marrom);
+    margin-bottom: 10px;
+  }
+
+  .tipico-card p {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--marrom-medio);
+  }
+
+  .nivel-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .nivel-baixo { background: #e8f4ee; color: #3a7a55; }
+  .nivel-medio { background: #fef3e2; color: #9a6a1a; }
+  .nivel-alto  { background: #fdeaea; color: #9a2a2a; }
+
+  .orientacao-card {
+    background: var(--areia);
+    border: 1px solid var(--areia-escura);
+    padding: 24px 28px;
+    margin-top: 16px;
+    margin-bottom: 20px;
+  }
+
+  .orientacao-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: var(--marrom);
+    margin-bottom: 10px;
+  }
+
+  .orientacao-card p {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--marrom-medio);
+  }
+
+  .orientacao-card ul {
+    margin: 8px 0 0 16px;
+  }
+
+  .orientacao-card ul li {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--marrom-medio);
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Ferramenta de rastreio</div>
+  <h1 class="hero-title">Como <em>seu bebê</em> se comunica com o mundo?</h1>
+  <p class="hero-sub">Um rastreio personalizado por faixa etária para identificar características de desenvolvimento atípico, altas habilidades e padrões de sono.</p>
+</div>
+
+<div class="aviso-bar">
+  Este rastreio é informativo. Não substitui avaliação profissional.
+</div>
+
+<!-- TELA DE INICIO -->
+<div id="screen-inicio" class="inicio-area">
+  <div class="inicio-card">
+    <h2>Vamos começar pelo seu bebê</h2>
+
+    <div class="field-group">
+      <label class="field-label" for="nome-mae">Seu nome</label>
+      <input type="text" id="nome-mae" class="field-input" placeholder="Como você se chama?">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="email-mae">Seu e-mail</label>
+      <input type="email" id="email-mae" class="field-input" placeholder="seu@email.com">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="nome-bebe">Nome do bebê</label>
+      <input type="text" id="nome-bebe" class="field-input" placeholder="Como se chama o seu filho?">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Faixa etária do bebê</label>
+      <div class="age-grid">
+        <button class="age-option" data-faixa="6-11" onclick="selecionarFaixa(this)">
+          <span class="age-range">6 a 11</span>
+          <span class="age-label">meses</span>
+        </button>
+        <button class="age-option" data-faixa="12-17" onclick="selecionarFaixa(this)">
+          <span class="age-range">12 a 17</span>
+          <span class="age-label">meses</span>
+        </button>
+        <button class="age-option" data-faixa="18-23" onclick="selecionarFaixa(this)">
+          <span class="age-range">18 a 23</span>
+          <span class="age-label">meses</span>
+        </button>
+        <button class="age-option" data-faixa="24-35" onclick="selecionarFaixa(this)">
+          <span class="age-range">2 anos</span>
+          <span class="age-label">24 a 35 meses</span>
+        </button>
+      </div>
+    </div>
+
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="aceite-termo" onchange="checarIniciar()">
+      <label class="checkbox-label" for="aceite-termo">
+        Li e aceito os <a onclick="abrirTermo(event)">Termos de Uso e Política de Privacidade</a>, incluindo a coleta e uso dos dados informados para pesquisa e comunicações da A Rotina Ideal.
+      </label>
+    </div>
+
+    <button class="btn-iniciar" id="btn-iniciar" onclick="iniciar()" disabled>
+      Iniciar Rastreio
+    </button>
+
+    <p class="inicio-info">
+      Aproximadamente 12 a 18 perguntas. Adaptadas para a idade do seu filho.
+    </p>
+  </div>
+</div>
+
+<!-- TELA DE PERGUNTAS -->
+<div id="screen-perguntas" class="hidden">
+  <div class="progress-area">
+    <div class="progress-header">
+      <span class="progress-label">Progresso</span>
+      <span class="progress-count" id="prog-count">1 de 15</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="prog-fill"></div>
+    </div>
+  </div>
+
+  <div class="question-area">
+    <div class="question-card" id="question-card">
+      <div class="question-domain" id="q-domain">
+        <span class="domain-dot"></span>
+        <span id="q-domain-text">Sono</span>
+      </div>
+      <p class="question-text" id="q-text"></p>
+      <p class="question-context" id="q-context"></p>
+      <div class="options-grid" id="q-options"></div>
+    </div>
+  </div>
+
+  <div class="nav-area">
+    <button class="btn-back" id="btn-back" onclick="voltarPergunta()" disabled>Voltar</button>
+    <button class="btn-next" id="btn-next" onclick="avancarPergunta()" disabled>Continuar</button>
+  </div>
+</div>
+
+<!-- TELA DE RESULTADO -->
+<div id="screen-resultado" class="hidden">
+  <div class="result-area">
+    <div class="result-header">
+      <div class="result-eyebrow">Rastreio concluido</div>
+      <h2 class="result-title" id="res-title">Perfil de desenvolvimento</h2>
+      <div class="result-name" id="res-name"></div>
+    </div>
+
+    <div id="perfil-container"></div>
+
+    <div class="result-cards" id="result-cards"></div>
+
+    <div id="cta-rotina-container"></div>
+
+    <div class="aviso-final">
+      <p>
+        <strong>Importante:</strong> Este rastreio é baseado em instrumentos validados na literatura científica e tem caráter exclusivamente orientativo. Ele <strong>não fornece diagnóstico</strong>. Resultados elevados em qualquer indicador indicam a <strong>necessidade de buscar avaliação com neuropediatra, neurologista ou psicólogo especializado</strong> em desenvolvimento infantil.
+      </p>
+    </div>
+
+    <button class="btn-refazer" onclick="reiniciar()">Refazer o Rastreio</button>
+  </div>
+
+  <div class="fontes-section">
+    <div class="fontes-title">Embasamento científico</div>
+    <p class="fontes-text">
+      As perguntas deste instrumento são fundamentadas nos seguintes referências: M-CHAT-R/F (Robins et al. 2009) para rastreio de TEA; critérios diagnósticos do DSM-5 (APA, 2013); SNAP-IV adaptado por faixa etária para TDAH (Swanson, 1992); Teoria das Superexcitabilidades de Dabrowski (Piechowski, 1991) e modelo dos Tres Aneis de Renzulli (1986) para Altas Habilidades; diretrizes da Sociedade Brasileira de Pediatria (SBP) para marcos do desenvolvimento; e literatura especializada em neurodiversidade e sono infantil (Anders & Keener, 1985; Mindell & Owens, 2015).
+    </p>
+  </div>
+</div>
+
+<script>
+// =============================================
+// BANCO DE PERGUNTAS POR FAIXA ETARIA
+// =============================================
+
+const BANCO = {
+
+  // FAIXA: 6-11 MESES
+  "6-11": [
+    {
+      id: "s1", dominio: "Sono", tags: [],
+      texto: "Como costuma ser o sono do seu bebê à noite?",
+      contexto: "Pense nos últimos 7 dias.",
+      opcoes: [
+        { texto: "Dorme em blocos de 3h ou mais, acorda 1 a 2 vezes", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Acorda muitas vezes, dificuldade para readormecer", valor: { tea:1, tdah:1, ah:0 } },
+        { texto: "Demora muito para adormecer, mas depois dorme bem", valor: { tea:0, tdah:1, ah:1 } },
+        { texto: "Sono muito irregular, sem padrão claro", valor: { tea:1, tdah:1, ah:0 } }
+      ]
+    },
+    {
+      id: "s2", dominio: "Sono", tags: [],
+      texto: "Seu bebê parece ter o sono mais sensível do que outros bebês da mesma idade?",
+      contexto: "Qualquer barulho o acorda? Mudanças de ambiente alteram o sono?",
+      opcoes: [
+        { texto: "Não, dorme bem em diferentes condições", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Sim, acorda com barulhos pequenos", valor: { tea:1, tdah:1, ah:1 } },
+        { texto: "Sim, extremamente sensível a qualquer estímulo", valor: { tea:2, tdah:1, ah:1 } },
+        { texto: "Varia muito de dia para dia", valor: { tea:0, tdah:1, ah:0 } }
+      ]
+    },
+    {
+      id: "soc1", dominio: "Social", tags: [],
+      texto: "Quando você chama o nome do seu bebê, ele costuma olhar para você?",
+      contexto: "Considere situações em que ele não está em sono profundo nem em foco intenso em algo.",
+      opcoes: [
+        { texto: "Quase sempre responde ao próprio nome", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Às vezes responde, mas não sempre", valor: { tea:1, tdah:1, ah:0 } },
+        { texto: "Raramente ou nunca responde ao nome", valor: { tea:3, tdah:0, ah:0 } },
+        { texto: "Depende muito do humor dele", valor: { tea:0, tdah:1, ah:0 } }
+      ]
+    },
+    {
+      id: "soc2", dominio: "Social", tags: [],
+      texto: "Seu bebê sorri de volta quando você sorri para ele?",
+      contexto: "O sorriso social aparece por volta dos 2 meses , aos 6 meses deve ser consistente.",
+      opcoes: [
+        { texto: "Sim, frequentemente e de forma espontânea", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Às vezes, mas não é consistente", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Raramente ou nunca sorri de volta", valor: { tea:3, tdah:0, ah:0 } },
+        { texto: "Sorri muito, mas mais para si mesmo do que para mim", valor: { tea:1, tdah:0, ah:1 } }
+      ]
+    },
+    {
+      id: "sen1", dominio: "Sensorial", tags: [],
+      texto: "Como seu bebê reage a sons, texturas ou luzes novas?",
+      opcoes: [
+        { texto: "Reage de forma tranquila, se acostuma rápidamente", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Demonstra interesse muito intenso, fica hiperfocado", valor: { tea:0, tdah:0, ah:1 } },
+        { texto: "Fica angustiado, chora muito com estímulos novos", valor: { tea:2, tdah:1, ah:0 } },
+        { texto: "Parece não perceber ou ter reação muito reduzida", valor: { tea:2, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "cog1", dominio: "Cognitivo", tags: [],
+      texto: "Seu bebê demonstra curiosidade intensa por objetos ao redor?",
+      contexto: "Estende os braços para pegar, explora com os olhos, tenta alcançar coisas além do alcance.",
+      opcoes: [
+        { texto: "Sim, é muito curioso e explora bastante", valor: { tea:0, tdah:0, ah:1 } },
+        { texto: "Curiosidade normal para a idade", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Pouca curiosidade, parece desinteressado", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Curioso mas muda de foco muito rápidamente", valor: { tea:0, tdah:1, ah:0 } }
+      ]
+    },
+    {
+      id: "s3", dominio: "Sono", tags: [],
+      texto: "Quanto tempo seu bebê fica acordado entre uma sesta e outra?",
+      opcoes: [
+        { texto: "1h30 a 2h30 (dentro do esperado para a idade)", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Menos de 1h30, parece sempre com sono", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Mais de 3h, janela de sono muito longa", valor: { tea:1, tdah:1, ah:1 } },
+        { texto: "Não tem padrão claro de janela", valor: { tea:1, tdah:1, ah:0 } }
+      ]
+    },
+    // TEA branch
+    {
+      id: "tea1", dominio: "TEA", tags: ["tea-branch"],
+      texto: "Seu bebê olha para você e depois para um objeto, como se quisesse compartilhar o que está vendo?",
+      contexto: "Isso se chama atenção compartilhada , emerge entre 9 e 12 meses.",
+      opcoes: [
+        { texto: "Sim, faz isso regularmente", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Às vezes, não é consistente", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Raramente ou não faz isso", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "tea2", dominio: "TEA", tags: ["tea-branch"],
+      texto: "Seu bebê imita sons ou expressões faciais que você faz?",
+      contexto: "Imitação é um marco social fundamental , esperada a partir dos 6 meses.",
+      opcoes: [
+        { texto: "Sim, imita com frequência", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Imita pouco ou raramente", valor: { tea:2, tdah:0, ah:0 } },
+        { texto: "Não percebo nenhuma imitação", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    // TDAH branch
+    {
+      id: "tdah1", dominio: "Atenção", tags: ["tdah-branch"],
+      texto: "Seu bebê consegue se manter interessado em um brinquedo por 1 a 2 minutos?",
+      opcoes: [
+        { texto: "Sim, consegue explorar um objeto por alguns minutos", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Troca de foco em menos de 30 segundos", valor: { tea:0, tdah:2, ah:0 } },
+        { texto: "Varia muito conforme o estímulo", valor: { tea:0, tdah:1, ah:1 } }
+      ]
+    },
+    // AH branch
+    {
+      id: "ah1", dominio: "Altas Habilidades", tags: ["ah-branch"],
+      texto: "Seu bebê parece aprender associações novas com poucas repetições?",
+      contexto: "Como reconhecer rostos, antecipar rotinas, entender causa e efeito mais cedo do que o esperado.",
+      opcoes: [
+        { texto: "Sim, me surpreende com frequência", valor: { tea:0, tdah:0, ah:2 } },
+        { texto: "Dentro do que esperaria para a idade", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Parece mais lento para entender associações", valor: { tea:0, tdah:0, ah:-1 } }
+      ]
+    }
+  ],
+
+  // FAIXA: 12-17 MESES
+  "12-17": [
+    {
+      id: "s1", dominio: "Sono", tags: [],
+      texto: "Como está o sono do seu filho atualmente?",
+      contexto: "Nessa faixa muitas crianças fazem a transição para 1 sesta.",
+      opcoes: [
+        { texto: "Sono noturno razoavelmente consolidado", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Acorda muito à noite, difícil de readormecer", valor: { tea:1, tdah:1, ah:0 } },
+        { texto: "Demora para dormir, muita resistência", valor: { tea:0, tdah:2, ah:1 } },
+        { texto: "Sono muito irregular, sem padrão", valor: { tea:1, tdah:1, ah:0 } }
+      ]
+    },
+    {
+      id: "s2", dominio: "Sono", tags: [],
+      texto: "Seu filho tem dificuldade para adormecer sem presença física intensa (colo, peito, movimento)?",
+      opcoes: [
+        { texto: "Consegue adormecer com pouca intervenção", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Precisa de muito contato para cair no sono", valor: { tea:0, tdah:1, ah:0 } },
+        { texto: "Só adormece em condições muito específicas e rígidas", valor: { tea:2, tdah:0, ah:0 } },
+        { texto: "Varia muito, sem padrão claro", valor: { tea:0, tdah:1, ah:0 } }
+      ]
+    },
+    {
+      id: "soc1", dominio: "Social", tags: [],
+      texto: "Seu filho responde ao próprio nome quando chamado?",
+      contexto: "Marco importante , ausência consistente é red flag para TEA nessa faixa.",
+      opcoes: [
+        { texto: "Sim, responde quase sempre", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Às vezes, mas não de forma consistente", valor: { tea:1, tdah:1, ah:0 } },
+        { texto: "Raramente ou nunca responde ao nome", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "soc2", dominio: "Social", tags: [],
+      texto: "Seu filho usa gestos como apontar, dar tchau ou bater palmas?",
+      contexto: "Gestos proto-imperativos (apontar para pedir) e proto-declarativos (mostrar) devem estar presentes.",
+      opcoes: [
+        { texto: "Sim, usa vários gestos intencionais", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Usa um ou dois gestos, mas pouco", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Não usa gestos intencionais", valor: { tea:3, tdah:0, ah:0 } },
+        { texto: "Usava e parou de usar", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "ling1", dominio: "Linguagem", tags: [],
+      texto: "Seu filho produz balbucio variado ou alguma palavra com significado?",
+      contexto: "Esperam-se as primeiras palavras com significado por volta dos 12-13 meses.",
+      opcoes: [
+        { texto: "Sim, já tem 3 ou mais palavras com significado", valor: { tea:0, tdah:0, ah:1 } },
+        { texto: "Uma ou duas palavras, bastante balbucio", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Apenas balbucio sem palavras claras", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Pouco balbucio e sem palavras", valor: { tea:2, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "sen1", dominio: "Sensorial", tags: [],
+      texto: "Seu filho tem reações muito intensas a sons altos, texturas ou ambientes movimentados?",
+      opcoes: [
+        { texto: "Reage normalmente, se adapta bem", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Alguma sensibilidade, mas manejável", valor: { tea:0, tdah:0, ah:1 } },
+        { texto: "Reações intensas que geram choro ou pânico", valor: { tea:2, tdah:1, ah:0 } },
+        { texto: "Busca ativamente sensações fortes (bate, gira, morde tudo)", valor: { tea:1, tdah:2, ah:0 } }
+      ]
+    },
+    {
+      id: "cog1", dominio: "Cognitivo", tags: [],
+      texto: "Seu filho demonstra memória para rotinas e antecipa o que vem a seguir?",
+      contexto: "Como ir para o quarto e já saber que é hora do banho, ou estender os braços ao ver a mamadeira.",
+      opcoes: [
+        { texto: "Sim, antecipa rotinas com clareza", valor: { tea:0, tdah:0, ah:1 } },
+        { texto: "Às vezes, depende da rotina", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Pouca demonstração de antecipação", valor: { tea:1, tdah:0, ah:0 } }
+      ]
+    },
+    // TEA branch
+    {
+      id: "tea1", dominio: "TEA", tags: ["tea-branch"],
+      texto: "Seu filho olha nos seus olhos durante a brincadeira ou amamentação?",
+      contexto: "Contato visual intencional e social deve estar presente e ser espontâneo nessa faixa.",
+      opcoes: [
+        { texto: "Sim, contato visual frequente e espontâneo", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Contato visual presente mas reduzido", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Raramente olha nos meus olhos", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "tea2", dominio: "TEA", tags: ["tea-branch"],
+      texto: "Seu filho imita ações simples do cotidiano?",
+      contexto: "Como bater palmas, fazer 'não' com a cabeça, passar a mão no cabelo.",
+      opcoes: [
+        { texto: "Sim, imita ações com fácilidade", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Imita pouco ou só após muita repetição", valor: { tea:2, tdah:0, ah:0 } },
+        { texto: "Não percebo imitação de ações", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    // TDAH branch
+    {
+      id: "tdah1", dominio: "Atenção", tags: ["tdah-branch"],
+      texto: "Seu filho consegue ficar em uma atividade por pelo menos 2 a 3 minutos?",
+      opcoes: [
+        { texto: "Sim, explora brinquedos com alguma persistência", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Muda de atividade em menos de 1 minuto sempre", valor: { tea:0, tdah:2, ah:0 } },
+        { texto: "Depende muito do estímulo", valor: { tea:0, tdah:1, ah:1 } }
+      ]
+    },
+    // AH branch
+    {
+      id: "ah1", dominio: "Altas Habilidades", tags: ["ah-branch"],
+      texto: "Seu filho tem vocabulário ou compreensão acima do esperado para a idade?",
+      contexto: "Entende instruções complexas, já fala mais de 5 palavras com clareza antes dos 15 meses.",
+      opcoes: [
+        { texto: "Sim, claramente acima do esperado", valor: { tea:0, tdah:0, ah:3 } },
+        { texto: "Um pouco à frente do esperado", valor: { tea:0, tdah:0, ah:1 } },
+        { texto: "Dentro do esperado", valor: { tea:0, tdah:0, ah:0 } }
+      ]
+    }
+  ],
+
+  // FAIXA: 18-23 MESES
+  "18-23": [
+    {
+      id: "s1", dominio: "Sono", tags: [],
+      texto: "Com que frequência seu filho tem resistência para dormir à noite?",
+      opcoes: [
+        { texto: "Raramente, aceita bem a rotina de sono", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Algumas vezes por semana", valor: { tea:0, tdah:1, ah:1 } },
+        { texto: "Quase toda noite é uma batalha", valor: { tea:1, tdah:2, ah:1 } },
+        { texto: "Tem rituais muito rígidos que não podem mudar nada", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "s2", dominio: "Sono", tags: [],
+      texto: "Seu filho tem pesadelos frequentes ou acorda visivelmente assustado?",
+      opcoes: [
+        { texto: "Raramente ou nunca", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Algumas vezes por semana", valor: { tea:1, tdah:1, ah:0 } },
+        { texto: "Quase toda noite", valor: { tea:2, tdah:1, ah:0 } },
+        { texto: "Não tem pesadelos, mas resiste muito para deitar", valor: { tea:0, tdah:2, ah:1 } }
+      ]
+    },
+    {
+      id: "ling1", dominio: "Linguagem", tags: [],
+      texto: "Quantas palavras com significado seu filho usa atualmente?",
+      contexto: "Esperam-se ao menos 10 palavras aos 18 meses e 50 palavras aos 24 meses.",
+      opcoes: [
+        { texto: "Mais de 20 palavras claras", valor: { tea:0, tdah:0, ah:2 } },
+        { texto: "Entre 10 e 20 palavras", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Menos de 10 palavras", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Nenhuma palavra com significado claro", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "soc1", dominio: "Social", tags: [],
+      texto: "Quando algo emociona seu filho, ele olha para você para compartilhar?",
+      contexto: "Atenção compartilhada , olhar para o objeto, depois para você, como dizendo 'olha isso!'",
+      opcoes: [
+        { texto: "Sim, frequentemente", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Às vezes", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Raramente ou nunca faz isso", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "soc2", dominio: "Social", tags: [],
+      texto: "Seu filho demonstra interesse em outras crianças?",
+      opcoes: [
+        { texto: "Sim, observa e tenta interagir", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Observa de longe mas não se aproxima", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Indiferente à presença de outras crianças", valor: { tea:2, tdah:0, ah:0 } },
+        { texto: "Evita ou fica angustiado com outras crianças", valor: { tea:2, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "sen1", dominio: "Sensorial", tags: [],
+      texto: "Seu filho tem hipersensibilidade a alimentos por textura, cheiro ou temperatura?",
+      contexto: "Recusa seletiva extrema, vômito ou pânico com determinadas consistências.",
+      opcoes: [
+        { texto: "Não, aceita variedade de alimentos bem", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Tem preferências mas é manejável", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Recusa extrema que limita muito a alimentação", valor: { tea:3, tdah:0, ah:0 } },
+        { texto: "Coloca tudo na boca, busca sensação oral intensa", valor: { tea:0, tdah:1, ah:0 } }
+      ]
+    },
+    {
+      id: "emoc1", dominio: "Emocional", tags: [],
+      texto: "Como seu filho reage a frustrações ou mudanças de plano?",
+      opcoes: [
+        { texto: "Chora mas se acalma em pouco tempo", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Crises intensas e demoradas, difícil de acalmar", valor: { tea:2, tdah:2, ah:1 } },
+        { texto: "Reage com muita intensidade a qualquer frustração", valor: { tea:0, tdah:1, ah:2 } },
+        { texto: "Pouca reação emocional, parece indiferente", valor: { tea:2, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "cog1", dominio: "Cognitivo", tags: [],
+      texto: "Seu filho demonstra interesse incomum por objetos específicos ou categorias?",
+      contexto: "Fascinação por rodas, luzes, animais, números , acima do esperado para a faixa.",
+      opcoes: [
+        { texto: "Sim, interesses muito intensos para a idade", valor: { tea:1, tdah:0, ah:2 } },
+        { texto: "Interesse normal e variado", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Pouco interesse em explorar objetos", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Agitado, não fica em nada por mais de 1 minuto", valor: { tea:0, tdah:2, ah:0 } }
+      ]
+    },
+    // TEA branch
+    {
+      id: "tea1", dominio: "TEA", tags: ["tea-branch"],
+      texto: "Seu filho brinca de faz de conta?",
+      contexto: "Dar de comer ao boneco, usar colher como microfone, tratar uma caixa como carrinho.",
+      opcoes: [
+        { texto: "Sim, brinca de faz de conta com naturalidade", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Brincadeira mais funcional, menos imaginativa", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Não faz esse tipo de brincadeira", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "tea2", dominio: "TEA", tags: ["tea-branch"],
+      texto: "Seu filho tem rituais ou rotinas rígidas que precisam ser mantidas?",
+      contexto: "Como querer sempre o mesmo percurso, a mesma ordem nas coisas, o mesmo lugar na mesa e ficar muito angustiado se algo muda.",
+      opcoes: [
+        { texto: "Não percebo esse tipo de rigidez", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Tem preferências mas aceita mudanças", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Sim, tem rituais claros e fica angustiado quando algo muda", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "tea3", dominio: "TEA", tags: ["tea-branch"],
+      texto: "Seu filho apresenta movimentos repetitivos do corpo?",
+      contexto: "Como balançar o corpo para frente e para trás, agitar as mãos (flapping), girar em torno de si, ou outros movimentos que se repetem sem função aparente. Importante: movimentos repetitivos isolados podem aparecer no desenvolvimento típico; o que importa é a frequência e intensidade.",
+      opcoes: [
+        { texto: "Não percebo movimentos repetitivos assim", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Às vezes, em momentos de muita animação ou estresse", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Sim, com frequência e em diferentes situações", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    // TDAH branch
+    {
+      id: "tdah1", dominio: "Atenção", tags: ["tdah-branch"],
+      texto: "Seu filho consegue ouvir uma história curta (2 a 3 minutos) sem se levantar?",
+      opcoes: [
+        { texto: "Sim, fica concentrado nesse tempo", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Às vezes, depende do livro e do momento", valor: { tea:0, tdah:1, ah:0 } },
+        { texto: "Não, se levanta rápidamente sempre", valor: { tea:0, tdah:2, ah:0 } }
+      ]
+    },
+    // AH branch
+    {
+      id: "ah1", dominio: "Altas Habilidades", tags: ["ah-branch"],
+      texto: "Seu filho já demonstra interesse espontâneo em letras, números ou reconhece logomarcas?",
+      opcoes: [
+        { texto: "Sim, reconhece e nomeia antes dos 2 anos", valor: { tea:0, tdah:0, ah:3 } },
+        { texto: "Demonstra interesse mas ainda não reconhece", valor: { tea:0, tdah:0, ah:1 } },
+        { texto: "Não demonstra interesse nesse tipo de conteúdo", valor: { tea:0, tdah:0, ah:0 } }
+      ]
+    }
+  ],
+
+  // FAIXA: 24-35 MESES (2 anos)
+  "24-35": [
+    {
+      id: "s1", dominio: "Sono", tags: [],
+      texto: "Qual é o maior desafio de sono do seu filho atualmente?",
+      opcoes: [
+        { texto: "Sono relativamente tranquilo, sem grandes desafios", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Resistência para dormir, demora muito para apagar", valor: { tea:0, tdah:1, ah:1 } },
+        { texto: "Rituais rígidos, qualquer mudança gera crise", valor: { tea:3, tdah:0, ah:0 } },
+        { texto: "Pesadelos frequentes ou terror noturno", valor: { tea:1, tdah:0, ah:1 } }
+      ]
+    },
+    {
+      id: "s2", dominio: "Sono", tags: [],
+      texto: "Seu filho demora para adormecer porque parece que 'o cérebro não para'?",
+      contexto: "Fica fazendo perguntas, contando histórias, com medo de perder algo.",
+      opcoes: [
+        { texto: "Não, adormece bem quando é a hora", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Sim, mente muito ativa na hora de dormir", valor: { tea:0, tdah:1, ah:3 } },
+        { texto: "Sim, muita ansiedade e pensamentos ruminantes", valor: { tea:1, tdah:1, ah:1 } },
+        { texto: "Sim, entra em hiperfoco em assunto e não consegue parar", valor: { tea:1, tdah:0, ah:2 } }
+      ]
+    },
+    {
+      id: "ling1", dominio: "Linguagem", tags: [],
+      texto: "Seu filho faz frases de 2 ou mais palavras?",
+      contexto: "Esperam-se ao menos 50 palavras e combinações de 2 palavras aos 24 meses.",
+      opcoes: [
+        { texto: "Faz frases de 3 ou mais palavras com frequência", valor: { tea:0, tdah:0, ah:2 } },
+        { texto: "Faz combinações de 2 palavras", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Usa palavras isoladas apenas", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Pouca fala, comunica principalmente por gestos", valor: { tea:2, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "soc1", dominio: "Social", tags: [],
+      texto: "Seu filho demonstra interesse em brincar com outras crianças?",
+      opcoes: [
+        { texto: "Sim, busca interação e tenta brincar junto", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Prefere brincar perto mas não junto (brincadeira paralela)", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Indiferente ou evita outras crianças", valor: { tea:2, tdah:0, ah:0 } },
+        { texto: "Quer interagir mas não sabe como e se frustra", valor: { tea:2, tdah:1, ah:0 } }
+      ]
+    },
+    {
+      id: "emoc1", dominio: "Emocional", tags: [],
+      texto: "Como é a intensidade emocional do seu filho no geral?",
+      contexto: "A superexcitabilidade emocional é uma característica frequente em AH/SD descrita por Dabrowski.",
+      opcoes: [
+        { texto: "Emoções proporcionais e reguláveis", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Emoções muito intensas, chora ou ri de forma exagerada", valor: { tea:0, tdah:0, ah:2 } },
+        { texto: "Crises frequentes é muito difíceis de regular", valor: { tea:2, tdah:2, ah:1 } },
+        { texto: "Pouca expressão emocional, parece indiferente", valor: { tea:2, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "cog1", dominio: "Cognitivo", tags: [],
+      texto: "Seu filho faz perguntas sobre o mundo com frequência incomum para a idade?",
+      contexto: "'Por que o céu é azul?', 'De onde vem o vento?' , curiosidade conceitual precoce.",
+      opcoes: [
+        { texto: "Sim, perguntas muito sofisticadas para 2 anos", valor: { tea:0, tdah:0, ah:3 } },
+        { texto: "Pergunta dentro do esperado para a idade", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Pouca curiosidade verbal", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Muita pergunta mas não espera a resposta, já muda de assunto", valor: { tea:0, tdah:2, ah:1 } }
+      ]
+    },
+    {
+      id: "sen1", dominio: "Sensorial", tags: [],
+      texto: "Seu filho tem dificuldade intensa com transições (mudar de atividade, sair do parquinho)?",
+      opcoes: [
+        { texto: "Transições são manejáveis com aviso prévio", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Dificuldade moderada, precisa de preparação", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Crises intensas a qualquer transição", valor: { tea:2, tdah:2, ah:0 } },
+        { texto: "Depende da atividade que está deixando", valor: { tea:0, tdah:1, ah:1 } }
+      ]
+    },
+    // TEA branch
+    {
+      id: "tea1", dominio: "TEA", tags: ["tea-branch"],
+      texto: "Seu filho apresenta movimentos repetitivos do corpo?",
+      contexto: "Como balançar o corpo, agitar as mãos (flapping), girar em torno de si, ou bater partes do corpo repetidamente. Movimentos ocasionais em momentos de empolgação podem ser normais, o que chama atenção é quando são frequentes, intensos e aparecem em diferentes situações.",
+      opcoes: [
+        { texto: "Não percebo movimentos repetitivos assim", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Às vezes, principalmente quando muito animado ou estressado", valor: { tea:1, tdah:0, ah:0 } },
+        { texto: "Sim, com frequência e em diferentes contextos", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "tea1b", dominio: "TEA", tags: ["tea-branch"],
+      texto: "Seu filho tem rituais rígidos que não podem ser alterados?",
+      contexto: "Alinhar objetos de forma precisa, exigir sempre o mesmo percurso, reagir com crise intensa a qualquer variação.",
+      opcoes: [
+        { texto: "Não percebo rituais assim", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Tem preferências mas aceita mudanças", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Sim, rituais rígidos e crises quando algo muda", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    {
+      id: "tea2", dominio: "TEA", tags: ["tea-branch"],
+      texto: "Seu filho tem fascinação muito intensa e restrita por um tema ou tipo de objeto?",
+      contexto: "Carrinhos, dinossauros, ventiladores, números , muito além do interesse típico da faixa.",
+      opcoes: [
+        { texto: "Interesses variados e equilibrados", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Tem 1 ou 2 temas dominantes, fala só sobre isso", valor: { tea:2, tdah:0, ah:1 } },
+        { texto: "Interesse exclusivo é muito restrito", valor: { tea:3, tdah:0, ah:0 } }
+      ]
+    },
+    // TDAH branch
+    {
+      id: "tdah1", dominio: "Atenção", tags: ["tdah-branch"],
+      texto: "Seu filho corre, sobe em tudo e não para em nenhum ambiente?",
+      opcoes: [
+        { texto: "Energia normal para a faixa etária", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Muito ativo mas consegue se adaptar a alguns ambientes", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Nível de atividade constante e difícil de controlar em qualquer ambiente", valor: { tea:0, tdah:3, ah:0 } }
+      ]
+    },
+    // AH branch
+    {
+      id: "ah1", dominio: "Altas Habilidades", tags: ["ah-branch"],
+      texto: "Seu filho demonstra memória extraordinária para histórias, fatos ou sequências?",
+      contexto: "Como reproduzir diálogos de livros, lembrar rotas de passeios passados, memorizar músicas inteiras.",
+      opcoes: [
+        { texto: "Sim, memória que surpreende para a idade", valor: { tea:0, tdah:0, ah:3 } },
+        { texto: "Memória boa mas dentro do esperado", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Dificuldade para lembrar sequências e rotinas", valor: { tea:0, tdah:1, ah:0 } }
+      ]
+    },
+    {
+      id: "ah2", dominio: "Altas Habilidades", tags: ["ah-branch"],
+      texto: "Seu filho já demonstra interesse espontâneo em letras, números ou já lê palavras?",
+      opcoes: [
+        { texto: "Sim, lê ou reconhece palavras antes dos 3 anos", valor: { tea:0, tdah:0, ah:3 } },
+        { texto: "Reconhece letras e números com interesse", valor: { tea:0, tdah:0, ah:2 } },
+        { texto: "Ainda não demonstra interesse nesse tipo de conteúdo", valor: { tea:0, tdah:0, ah:0 } }
+      ]
+    }
+  ]
+};
+
+
+// =============================================
+// ESTADO DA APLICACAO
+// =============================================
+
+let estado = {
+  faixa: null,
+  nomeMae: '',
+  emailMae: '',
+  nomeBebe: '',
+  perguntas: [],
+  respostas: {},
+  indiceAtual: 0,
+  scores: { tea: 0, tdah: 0, ah: 0 }
+};
+
+// =============================================
+// LOGICA ADAPTATIVA
+// =============================================
+
+function buildPerguntas(faixa, respostas) {
+  const banco = BANCO[faixa];
+  if (!banco) return [];
+
+  // Primeiro, perguntas sem branch
+  const core = banco.filter(q => !q.tags.includes('tea-branch') && !q.tags.includes('tdah-branch') && !q.tags.includes('ah-branch'));
+
+  // Calcular scores parciais das respostas ja dadas (core)
+  let teaScore = 0, tdahScore = 0, ahScore = 0;
+  core.forEach(q => {
+    const resp = respostas[q.id];
+    if (resp !== undefined) {
+      const opcao = q.opcoes[resp];
+      if (opcao) {
+        teaScore += opcao.valor.tea || 0;
+        tdahScore += opcao.valor.tdah || 0;
+        ahScore += opcao.valor.ah || 0;
+      }
+    }
+  });
+
+  let final = [...core];
+
+  // TEA branch: se score tea >= 3
+  if (teaScore >= 3) {
+    const teaBranch = banco.filter(q => q.tags.includes('tea-branch'));
+    final = final.concat(teaBranch);
+  }
+
+  // TDAH branch: se score tdah >= 3
+  if (tdahScore >= 3) {
+    const tdahBranch = banco.filter(q => q.tags.includes('tdah-branch'));
+    final = final.concat(tdahBranch);
+  }
+
+  // AH branch: se score ah >= 2
+  if (ahScore >= 2) {
+    const ahBranch = banco.filter(q => q.tags.includes('ah-branch'));
+    final = final.concat(ahBranch);
+  }
+
+  return final;
+}
+
+function recalcularScores() {
+  let tea = 0, tdah = 0, ah = 0;
+  estado.perguntas.forEach(q => {
+    const respIdx = estado.respostas[q.id];
+    if (respIdx !== undefined) {
+      const opcao = q.opcoes[respIdx];
+      if (opcao) {
+        tea += opcao.valor.tea || 0;
+        tdah += opcao.valor.tdah || 0;
+        ah += opcao.valor.ah || 0;
+      }
+    }
+  });
+  estado.scores = { tea, tdah, ah };
+}
+
+// =============================================
+// CONTROLES DE UI
+// =============================================
+
+function selecionarFaixa(el) {
+  document.querySelectorAll('.age-option').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  estado.faixa = el.dataset.faixa;
+  checarIniciar();
+}
+
+function checarIniciar() {
+  const mae = document.getElementById('nome-mae').value.trim();
+  const email = document.getElementById('email-mae').value.trim();
+  const bebe = document.getElementById('nome-bebe').value.trim();
+  const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const aceite = document.getElementById('aceite-termo').checked;
+  document.getElementById('btn-iniciar').disabled = !(estado.faixa && mae && bebe && emailValido && aceite);
+}
+
+function abrirTermo(e) {
+  if (e) e.stopPropagation();
+  document.getElementById('screen-inicio').classList.add('hidden');
+  document.getElementById('screen-termo').classList.remove('hidden');
+  window.scrollTo(0, 0);
+  setTimeout(notificarAltura, 50);
+}
+
+function fecharTermo() {
+  document.getElementById('screen-termo').classList.add('hidden');
+  document.getElementById('screen-inicio').classList.remove('hidden');
+  window.scrollTo(0, 0);
+  setTimeout(notificarAltura, 50);
+}
+
+document.getElementById('nome-mae').addEventListener('input', checarIniciar);
+document.getElementById('email-mae').addEventListener('input', checarIniciar);
+document.getElementById('nome-bebe').addEventListener('input', checarIniciar);
+
+function iniciar() {
+  estado.nomeMae = document.getElementById('nome-mae').value.trim();
+  estado.emailMae = document.getElementById('email-mae').value.trim();
+  estado.nomeBebe = document.getElementById('nome-bebe').value.trim();
+  estado.respostas = {};
+  estado.indiceAtual = 0;
+
+  // Build perguntas iniciais (sem branches ainda)
+  estado.perguntas = buildPerguntas(estado.faixa, {});
+
+  document.getElementById('screen-inicio').classList.add('hidden');
+  document.getElementById('screen-perguntas').classList.remove('hidden');
+
+  renderizarPergunta();
+}
+
+function renderizarPergunta() {
+  const q = estado.perguntas[estado.indiceAtual];
+  const total = estado.perguntas.length;
+
+  // Recalcular e possivelmente adicionar branches
+  recalcularScores();
+  const newPerguntas = buildPerguntas(estado.faixa, estado.respostas);
+  // Merge sem duplicar
+  const idsExistentes = new Set(estado.perguntas.map(p => p.id));
+  newPerguntas.forEach(np => {
+    if (!idsExistentes.has(np.id)) {
+      estado.perguntas.push(np);
+    }
+  });
+
+  // Progress
+  const progFill = document.getElementById('prog-fill');
+  const progCount = document.getElementById('prog-count');
+  progFill.style.width = ((estado.indiceAtual / estado.perguntas.length) * 100) + '%';
+  progCount.textContent = (estado.indiceAtual + 1) + ' de ' + estado.perguntas.length;
+
+  // Pergunta
+  document.getElementById('q-domain-text').textContent = q.dominio;
+  document.getElementById('q-text').textContent = q.texto;
+  document.getElementById('q-context').textContent = q.contexto || '';
+  document.getElementById('q-context').style.display = q.contexto ? 'block' : 'none';
+
+  // Opcoes
+  const optDiv = document.getElementById('q-options');
+  optDiv.innerHTML = '';
+  const letras = ['A', 'B', 'C', 'D'];
+  q.opcoes.forEach((op, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    if (estado.respostas[q.id] === i) btn.classList.add('selected');
+    btn.innerHTML = `<span class="option-letter">${letras[i]}</span><span>${op.texto}</span>`;
+    btn.onclick = () => selecionarOpcao(i, q.id);
+    optDiv.appendChild(btn);
+  });
+
+  document.getElementById('btn-back').disabled = estado.indiceAtual === 0;
+  document.getElementById('btn-next').disabled = estado.respostas[q.id] === undefined;
+}
+
+function selecionarOpcao(idx, qid) {
+  estado.respostas[qid] = idx;
+  document.querySelectorAll('.option-btn').forEach((btn, i) => {
+    btn.classList.toggle('selected', i === idx);
+  });
+  document.getElementById('btn-next').disabled = false;
+}
+
+function avancarPergunta() {
+  const card = document.getElementById('question-card');
+  card.classList.add('exiting');
+  setTimeout(() => {
+    card.classList.remove('exiting');
+    if (estado.indiceAtual < estado.perguntas.length - 1) {
+      estado.indiceAtual++;
+      renderizarPergunta();
+    } else {
+      mostrarResultado();
+    }
+  }, 280);
+}
+
+function voltarPergunta() {
+  if (estado.indiceAtual > 0) {
+    const card = document.getElementById('question-card');
+    card.classList.add('exiting');
+    setTimeout(() => {
+      card.classList.remove('exiting');
+      estado.indiceAtual--;
+      renderizarPergunta();
+    }, 280);
+  }
+}
+
+// =============================================
+// RESULTADO
+// =============================================
+
+// =============================================
+// CONFIGURAÇÃO DO WEBHOOK
+// Cole aqui a URL gerada pelo Make
+// =============================================
+const WEBHOOK_URL = 'https://hook.us2.make.com/11rcnis544y0txb1lqmartolc86yqkgp';
+
+// =============================================
+// ENVIO DE DADOS
+// =============================================
+
+async function enviarParaMake(pctTea, pctTdah, pctAh) {
+  if (!WEBHOOK_URL || WEBHOOK_URL === 'COLE_AQUI_A_URL_DO_MAKE') return;
+
+  // Monta objeto com dados gerais
+  const payload = {
+    data_hora: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
+    nome_mae: estado.nomeMae,
+    email_mae: estado.emailMae,
+    nome_bebe: estado.nomeBebe,
+    aceite_termos: 'Sim',
+    data_aceite: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
+    faixa_etaria: estado.faixa,
+    score_tea_pct: pctTea,
+    score_tdah_pct: pctTdah,
+    score_ah_pct: pctAh,
+    interpretacao_tea: interpretarTEA(pctTea),
+    interpretacao_tdah: interpretarTDAH(pctTdah),
+    interpretacao_ah: interpretarAH(pctAh),
+  };
+
+  // Adiciona cada pergunta respondida como coluna separada
+  estado.perguntas.forEach((q, i) => {
+    const respIdx = estado.respostas[q.id];
+    const numero = String(i + 1).padStart(2, '0');
+    payload[`p${numero}_dominio`] = q.dominio;
+    payload[`p${numero}_pergunta`] = q.texto;
+    payload[`p${numero}_resposta`] = respIdx !== undefined ? q.opcoes[respIdx].texto : '';
+    payload[`p${numero}_score_tea`] = respIdx !== undefined ? (q.opcoes[respIdx].valor.tea || 0) : '';
+    payload[`p${numero}_score_tdah`] = respIdx !== undefined ? (q.opcoes[respIdx].valor.tdah || 0) : '';
+    payload[`p${numero}_score_ah`] = respIdx !== undefined ? (q.opcoes[respIdx].valor.ah || 0) : '';
+  });
+
+  const data = JSON.stringify(payload);
+
+  // Tenta beacon primeiro (funciona melhor em iFrame)
+  try {
+    const blob = new Blob([data], { type: 'application/json' });
+    if (navigator.sendBeacon && navigator.sendBeacon(WEBHOOK_URL, blob)) {
+      return; // beacon funcionou
+    }
+  } catch(e) {}
+
+  // Fallback: fetch sem CORS
+  try {
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      body: data,
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' }
+    });
+  } catch(e) {}
+
+  // Segundo fallback: XMLHttpRequest
+  try {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', WEBHOOK_URL, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+  } catch(e) {
+    console.warn('Webhook não enviado:', e);
+  }
+}
+
+function classificarPerfil(pctTea, pctTdah, pctAh) {
+  // Limiares baseados em M-CHAT-R (Robins et al., 2009) e literatura TDAH/AH
+  // Baixo: nenhum indicador relevante → perfil típico
+  // Médio: pelo menos um indicador entre 30-54%
+  // Alto: pelo menos um indicador >= 55%
+  const maxScore = Math.max(pctTea, pctTdah, pctAh);
+  if (maxScore < 30) return 'tipico';
+  if (maxScore < 55) return 'medio';
+  return 'alto';
+}
+
+function mostrarResultado() {
+  recalcularScores();
+
+  const { tea, tdah, ah } = estado.scores;
+
+  const MAX_TEA = 14, MAX_TDAH = 10, MAX_AH = 14;
+  const pctTea = Math.min(Math.round((tea / MAX_TEA) * 100), 100);
+  const pctTdah = Math.min(Math.round((tdah / MAX_TDAH) * 100), 100);
+  const pctAh = Math.min(Math.round((ah / MAX_AH) * 100), 100);
+  const perfil = classificarPerfil(pctTea, pctTdah, pctAh);
+
+  // Envia dados para o Make em segundo plano
+  enviarParaMake(pctTea, pctTdah, pctAh);
+
+  document.getElementById('screen-perguntas').classList.add('hidden');
+  document.getElementById('screen-resultado').classList.remove('hidden');
+
+  document.getElementById('res-title').textContent = 'Perfil de ' + estado.nomeBebe;
+  document.getElementById('res-name').textContent = 'Para ' + estado.nomeMae;
+
+  // Renderiza perfil conforme classificação
+  const perfilContainer = document.getElementById('perfil-container');
+  const cardsDiv = document.getElementById('result-cards');
+  cardsDiv.innerHTML = '';
+  perfilContainer.innerHTML = '';
+
+  if (perfil === 'tipico') {
+    // Perfil típico , mostra só card positivo, sem barras de neurodivergência
+    perfilContainer.innerHTML = `
+      <div class="tipico-card">
+        <div class="nivel-badge nivel-baixo">Baixa probabilidade de neurodivergência</div>
+        <h3>Desenvolvimento dentro do esperado</h3>
+        <p>Com base nas respostas, ${estado.nomeBebe} apresenta um perfil de desenvolvimento neurotípico para a faixa etária ou seja, sem indicadores significativos de TEA, TDAH ou Altas Habilidades neste momento.</p>
+        <p style="margin-top:10px">Isso não significa que seu filho não tenha suas particularidades, toda criança tem seu ritmo e sua forma de ser. Continue acompanhando o desenvolvimento com seu pediatra nas consultas de rotina.</p>
+      </div>
+    `;
+    cardsDiv.appendChild(cardSono(estado.faixa, pctTea, pctTdah, pctAh));
+
+  } else {
+    // Perfil médio ou alto , mostra barras e cards detalhados
+    const nivelLabel = perfil === 'alto' ? 'Alta probabilidade de neurodivergência' : 'Probabilidade moderada de neurodivergência';
+    const nivelClasse = perfil === 'alto' ? 'nivel-alto' : 'nivel-medio';
+
+    // Monta seção de barras dinamicamente
+    let barrasHTML = `
+      <div class="profile-section">
+        <div class="nivel-badge ${nivelClasse}" style="margin-bottom:20px">${nivelLabel}</div>
+        <div class="profile-title">Indicadores observados</div>
+    `;
+
+    if (pctTea >= 30) {
+      barrasHTML += `
+        <div class="profile-item">
+          <div class="profile-label">
+            <span class="profile-name">Características de TEA</span>
+            <span class="profile-pct">${pctTea}%</span>
+          </div>
+          <div class="profile-bar"><div class="profile-bar-fill bar-tea" style="width:0%" id="bar-tea"></div></div>
+          <p class="profile-note">${interpretarTEA(pctTea)}</p>
+        </div>
+      `;
+    }
+
+    if (pctTdah >= 30) {
+      barrasHTML += `
+        <div class="profile-item">
+          <div class="profile-label">
+            <span class="profile-name">Características de TDAH</span>
+            <span class="profile-pct">${pctTdah}%</span>
+          </div>
+          <div class="profile-bar"><div class="profile-bar-fill bar-tdah" style="width:0%" id="bar-tdah"></div></div>
+          <p class="profile-note">${interpretarTDAH(pctTdah)}</p>
+        </div>
+      `;
+    }
+
+    if (pctAh >= 25) {
+      barrasHTML += `
+        <div class="profile-item">
+          <div class="profile-label">
+            <span class="profile-name">Altas Habilidades / Superdotação</span>
+            <span class="profile-pct">${pctAh}%</span>
+          </div>
+          <div class="profile-bar"><div class="profile-bar-fill bar-ah" style="width:0%" id="bar-ah"></div></div>
+          <p class="profile-note">${interpretarAH(pctAh)}</p>
+        </div>
+      `;
+    }
+
+    barrasHTML += '</div>';
+    perfilContainer.innerHTML = barrasHTML;
+
+    // Anima barras
+    setTimeout(() => {
+      const bTea = document.getElementById('bar-tea');
+      const bTdah = document.getElementById('bar-tdah');
+      const bAh = document.getElementById('bar-ah');
+      if (bTea) bTea.style.width = pctTea + '%';
+      if (bTdah) bTdah.style.width = pctTdah + '%';
+      if (bAh) bAh.style.width = pctAh + '%';
+    }, 300);
+
+    // Cards detalhados
+    if (pctTea >= 30) cardsDiv.appendChild(cardTEA(pctTea, estado.faixa));
+    if (pctTdah >= 30) cardsDiv.appendChild(cardTDAH(pctTdah, estado.faixa));
+    if (pctAh >= 25) cardsDiv.appendChild(cardAH(pctAh));
+
+    // Card de orientação profissional
+    const orientCard = document.createElement('div');
+    orientCard.className = 'orientacao-card';
+    orientCard.innerHTML = `
+      <h4>Próximos passos recomendados</h4>
+      <p>Este rastreio identificou indicadores que merecem atenção. Lembre-se: um rastreio não é um diagnóstico. Para entender melhor o perfil de ${estado.nomeBebe}:</p>
+      <ul>
+        <li>Converse com o seu <strong>pediatra</strong> sobre os comportamentos que você observa</li>
+        <li>Solicite uma <strong>avaliação neuropsicológica</strong> se o pediatra indicar</li>
+        <li>Procure um <strong>neuropediatra ou neurologista infantil</strong> para avaliação especializada</li>
+        <li>Quanto mais cedo a investigação, maiores as possibilidades de suporte adequado</li>
+      </ul>
+    `;
+    cardsDiv.appendChild(orientCard);
+    cardsDiv.appendChild(cardSono(estado.faixa, pctTea, pctTdah, pctAh));
+  }
+
+  // CTA Rotina Ideal
+  renderizarCTA(pctTea, pctTdah, pctAh);
+}
+
+function interpretarTEA(pct) {
+  if (pct < 25) return "Baixa presença de indicadores. Perfil dentro do típico.";
+  if (pct < 50) return "Alguns indicadores presentes. Observação continuada recomendada.";
+  if (pct < 75) return "Indicadores moderados a elevados. Avaliação profissional recomendada.";
+  return "Indicadores elevados. Busque avaliação com neuropediatra brevemente.";
+}
+
+function interpretarTDAH(pct) {
+  if (pct < 25) return "Baixa presença de indicadores. Nivel de atenção/atividade esperado.";
+  if (pct < 50) return "Alguns indicadores presentes. Observe padrões de atenção e impulsividade.";
+  if (pct < 75) return "Indicadores moderados. Avaliação com especialista pode trazer orientação.";
+  return "Indicadores elevados. Avaliação especializada recomendada.";
+}
+
+function interpretarAH(pct) {
+  if (pct < 25) return "Poucas características identificadas até o momento.";
+  if (pct < 50) return "Algumas características presentes. Estimulação cognitiva e afetiva é bem-vinda.";
+  if (pct < 75) return "Perfil com características relevantes de AH/SD. Stimulacao adequada é fundamental.";
+  return "Perfil expressivo de altas habilidades. Avaliação com psicólogo especializado é indicada.";
+}
+
+function cardTEA(pct, faixa) {
+  const div = document.createElement('div');
+  div.className = 'result-card card-tea';
+
+  const sinais = {
+    "6-11": ["Pouca ou nenhuma resposta ao próprio nome", "Ausência de sorriso social consistente", "Sem imitação de expressoes ou sons", "Hipersensibilidade sensorial intensa", "Ausência de atenção compartilhada"],
+    "12-17": ["Sem apontar gestual aos 12 meses", "Ausência de contato visual intencional", "Sem imitação de acoes simples do cotidiano", "Não responde ao próprio nome de forma consistente", "Perda de habilidades ja adquiridas"],
+    "18-23": ["Menos de 10 palavras aos 18 meses", "Ausência de brincadeira de faz de conta", "Comportamentos repetitivos rígidos", "Sem atenção compartilhada", "Recusa alimentar extrema por textura"],
+    "24-35": ["Interesses muito restritos e exclusivos", "Rituais rígidos que causam crise se alterados", "Dificuldade intensa com transições", "Fala com pouca funcao comunicativa", "Hipersensibilidade sensorial no dia a dia"]
+  };
+
+  const listItems = (sinais[faixa] || []).map(s => `<li>${s}</li>`).join('');
+
+  div.innerHTML = `
+    <h3>Características associadas ao TEA</h3>
+    <p>Algumas respostas indicam características que podem estar relacionadas ao Transtorno do Espectro Autista. Isso não é um diagnóstico , apenas um indicativo para buscar avaliação profissional.</p>
+    <p style="margin-top:10px;font-size:13px;color:var(--marrom-medio)">Sinais observados nessa faixa etária:</p>
+    <ul class="sinais-list">${listItems}</ul>
+    <p style="margin-top:12px;font-size:12px;color:var(--dourado)">Referência: M-CHAT-R/F (Robins et al. 2009); DSM-5 (APA, 2013)</p>
+  `;
+  return div;
+}
+
+function cardTDAH(pct, faixa) {
+  const div = document.createElement('div');
+  div.className = 'result-card card-tdah';
+
+  const sinais = {
+    "6-11": ["Sono muito irregular sem padrão", "Dificuldade para manter foco em brinquedos por 1 minuto", "Hipersensibilidade sensorial ao ambiente"],
+    "12-17": ["Agitação motora intensa e constante", "Troca de atividade em menos de 30 segundos", "Dificuldade de concentração mesmo em atividades de interesse"],
+    "18-23": ["Impulsividade em relação ao ambiente e às pessoas", "Dificuldade para sentar em atividades tranquilas", "Crises de frustração frequentes e intensas"],
+    "24-35": ["Nivel de atividade muito elevado em qualquer ambiente", "Dificuldade extrema com transições", "Pouca persistência em tarefas", "Mente acelerada que impede o sono"]
+  };
+
+  const listItems = (sinais[faixa] || []).map(s => `<li>${s}</li>`).join('');
+
+  div.innerHTML = `
+    <h3>Características associadas ao TDAH</h3>
+    <p>Algumas respostas indicam padrões que podem estar relacionados ao TDAH. Importante lembrar que até os 3 anos a agitação é esperada, o TDAH é diagnosticado após os 5 anos.</p>
+    <ul class="sinais-list" style="margin-top:10px">${listItems}</ul>
+    <p style="margin-top:12px;font-size:12px;color:var(--verde-suave)">Referência: SNAP-IV (Swanson, 1992); DSM-5 (APA, 2013)</p>
+  `;
+  return div;
+}
+
+function cardAH(pct) {
+  const div = document.createElement('div');
+  div.className = 'result-card card-ah';
+  div.innerHTML = `
+    <h3>Características de Altas Habilidades / Superdotação</h3>
+    <p>As respostas indicam características associadas a altas habilidades ou superdotação. Crianças com altas habilidades frequentemente apresentam o que Dabrowski chamou de <em>superexcitabilidades</em> , intensidade emocional, curiosidade extrema, resistência ao sono e sensibilidade sensorial elevada.</p>
+    <ul class="sinais-list" style="margin-top:10px">
+      <li>Curiosidade e questionamentos muito acima da média</li>
+      <li>Aprendizado rápido com poucas repetições</li>
+      <li>Vocabulário ou habilidades acadêmicas precoces</li>
+      <li>Intensidade emocional elevada</li>
+      <li>Preferência por crianças mais velhas ou adultos</li>
+      <li>Hiperfoco em áreas de interesse</li>
+      <li>Senso de justiça e ética precoce</li>
+    </ul>
+    <p style="margin-top:12px;font-size:12px;color:var(--dourado)">Referência: Renzulli (1986); Dabrowski/Piechowski (1991); Webb et al. (2016)</p>
+  `;
+  return div;
+}
+
+function cardSono(faixa, pctTea, pctTdah, pctAh) {
+  const div = document.createElement('div');
+  div.className = 'result-card';
+  div.style.borderLeftColor = 'var(--marrom)';
+
+  let texto = '';
+  if (pctTea >= 40 || pctTdah >= 35 || pctAh >= 30) {
+    texto = `Crianças neurodivergentes frequentemente apresentam desafios de sono que vão além de questões comportamentais. A resistência ao sono, o sono fragmentado e a sensibilidade sensorial noturna são biologicamente fundamentados e respondem melhor a abordagens que respeitam o estado do sistema nervoso da criança. A Rotina Ideal trabalha com métodos graduais que consideram o perfil sensorial e emocional do bebê como variável clínica central.`;
+  } else {
+    texto = `O sono do ${estado.nomeBebe} parece estar dentro de um padrão esperado para a faixa etária. Manter rotinas previsíveis e um ambiente de sono adequado ao perfil sensorial da criança continua sendo essencial para a qualidade do descanso.`;
+  }
+
+  div.innerHTML = `
+    <h3>Sobre o sono de ${estado.nomeBebe}</h3>
+    <p>${texto}</p>
+  `;
+  return div;
+}
+
+
+// =============================================
+// CTA ROTINA IDEAL
+// =============================================
+
+function renderizarCTA(pctTea, pctTdah, pctAh) {
+  const container = document.getElementById('cta-rotina-container');
+  const temSinais = pctTea >= 40 || pctTdah >= 35 || pctAh >= 30;
+  const nome = estado.nomeMae.split(' ')[0];
+
+  let titulo, texto;
+
+  if (temSinais) {
+    titulo = `O sono de bebês neurodivergentes pede <em>uma abordagem diferente</em>`;
+    texto = `Bebês com características atípicas ou altas habilidades têm um sistema nervoso que processa o mundo de forma mais intensa. Isso afeta diretamente o sono, os ciclos, a sensibilidade ao ambiente, a dificuldade de desligar. Uma rotina pensada para bebês típicos raramente funciona para eles. Ter alguém ao seu lado que entende essas particularidades faz toda a diferença, para o bebê e para você, ${nome}.`;
+  } else {
+    titulo = `Uma boa rotina de sono é o <em>maior presente</em> que você pode dar ao seu filho`;
+    texto = `Mesmo com um perfil de desenvolvimento típico, o sono da primeira infância é um dos maiores desafios da maternidade. Uma rotina bem construída, respeitosa e adaptada à fase do seu bebê transforma não só as noites , transforma o humor, o desenvolvimento é a sua qualidade de vida, ${nome}.`;
+  }
+
+  container.innerHTML = `
+    <div class="cta-rotina">
+      <div class="cta-eyebrow">A Rotina Ideal</div>
+      <h3>${titulo}</h3>
+      <p>${texto}</p>
+      <a class="btn-cta" href="https://www.pamelapissutti.com/a-rotina-ideal" target="_blank" rel="noopener">
+        Conhecer a Metodologia
+      </a>
+      <p class="cta-detalhe">Mentoria de sono infantil por Pâmela Pissutti</p>
+    </div>
+  `;
+}
+
+function reiniciar() {
+  estado = { faixa: null, nomeMae: '', emailMae: '', nomeBebe: '', perguntas: [], respostas: {}, indiceAtual: 0, scores: { tea:0, tdah:0, ah:0 } };
+  document.getElementById('nome-mae').value = '';
+  document.getElementById('email-mae').value = '';
+  document.getElementById('aceite-termo').checked = false;
+  document.getElementById('nome-bebe').value = '';
+  document.querySelectorAll('.age-option').forEach(b => b.classList.remove('selected'));
+  document.getElementById('btn-iniciar').disabled = true;
+
+  document.getElementById('screen-resultado').classList.add('hidden');
+  document.getElementById('screen-inicio').classList.remove('hidden');
+}
+</script>
+
+
+
+<!-- TELA DO TERMO -->
+<div id="screen-termo" class="hidden">
+  <div class="termo-area">
+    <button class="termo-back" onclick="fecharTermo()">
+      <span class="termo-back-arrow">←</span>
+      <span>Voltar</span>
+    </button>
+
+    <div class="termo-card">
+      <h2>Termos de Uso e Política de Privacidade</h2>
+
+      <h3>1. Quem somos</h3>
+      <p>Este rastreio é disponibilizado por <strong>Pâmela Pissutti Desenvolvimento Materno Ltda</strong>, responsável pela metodologia A Rotina Ideal. Para dúvidas sobre privacidade, entre em contato pelo e-mail <strong>pamelapissutti@gmail.com</strong>.</p>
+
+      <h3>2. Quais dados coletamos</h3>
+      <p>Ao preencher este rastreio, coletamos as seguintes informações:</p>
+      <ul>
+        <li>Seu nome e endereço de e-mail</li>
+        <li>Nome e faixa etária do seu filho</li>
+        <li>Respostas às perguntas do rastreio</li>
+        <li>Resultado gerado (indicadores de TEA, TDAH e Altas Habilidades)</li>
+        <li>Data e hora do preenchimento</li>
+      </ul>
+
+      <h3>3. Para que usamos seus dados</h3>
+      <p>Suas informações poderão ser utilizadas para:</p>
+      <ul>
+        <li><strong>Pesquisa científica</strong> sobre desenvolvimento infantil, sono e neurodiversidade</li>
+        <li><strong>Envio de e-mails informativos</strong> e educacionais relacionados ao sono e desenvolvimento infantil</li>
+        <li><strong>Comunicações comerciais e promoções</strong> da A Rotina Ideal</li>
+        <li><strong>Melhoria contínua</strong> desta ferramenta de rastreio</li>
+        <li><strong>Publicação de resultados agregados e anonimizados</strong> em estudos ou relatórios, sem identificação individual</li>
+        <li><strong>Compartilhamento de dados anonimizados</strong> com instituições de pesquisa ou empresas do setor de saúde e desenvolvimento infantil, exclusivamente para fins científicos, mediante acordo de uso restrito e confidencialidade</li>
+      </ul>
+      <p>Em nenhuma hipótese seus dados identificáveis serão vendidos ou compartilhados de forma que permitam sua identificação pessoal sem seu consentimento adicional.</p>
+
+      <h3>4. Base legal</h3>
+      <p>O tratamento dos seus dados é baseado no seu <strong>consentimento livre e informado</strong>, conforme exigido pela Lei Geral de Proteção de Dados (LGPD , Lei nº 13.709/2018), pelo Regulamento Geral de Proteção de Dados europeu (GDPR) e pelo California Consumer Privacy Act (CCPA).</p>
+
+      <h3>5. Onde seus dados são armazenados</h3>
+      <p>As respostas são armazenadas em planilhas no <strong>Google Sheets</strong>, via plataforma de automação Make (Integromat). O Google atua como processador de dados e está em conformidade com o GDPR. Os dados ficam armazenados pelo prazo necessário para as finalidades descritas acima, ou até que você solicite a exclusão.</p>
+
+      <h3>6. Seus direitos</h3>
+      <p>Você tem direito a, a qualquer momento:</p>
+      <ul>
+        <li>Acessar os dados que temos sobre você</li>
+        <li>Corrigir dados incorretos ou desatualizados</li>
+        <li>Solicitar a exclusão dos seus dados</li>
+        <li>Revogar este consentimento, sem prejuízo dos tratamentos já realizados</li>
+        <li>Solicitar a portabilidade dos seus dados (GDPR)</li>
+        <li>Não ser discriminada por exercer qualquer desses direitos (CCPA)</li>
+      </ul>
+      <p>Para exercer seus direitos, envie um e-mail para <strong>pamelapissutti@gmail.com</strong> com o assunto "Privacidade de Dados".</p>
+
+      <h3>7. Este rastreio não é um diagnóstico</h3>
+      <p>As informações coletadas têm caráter exclusivamente orientativo e de pesquisa. Os resultados não constituem diagnóstico clínico e não serão utilizados para fins médicos individuais. Para qualquer suspeita de desenvolvimento atípico, consulte um profissional de saúde qualificado.</p>
+
+      <h3>8. Titular dos dados</h3>
+      <p>Este rastreio é preenchido por um responsável legal (mãe ou pai) sobre um menor de idade. Ao preencher, você declara ter 18 anos ou mais e ser responsável legal pela criança sobre quem as informações se referem.</p>
+
+      <h3>9. Alterações neste termo</h3>
+      <p>Podemos atualizar este documento periodicamente. Em caso de alterações relevantes, notificaremos pelo e-mail cadastrado. O uso continuado da ferramenta após as alterações implica aceite dos novos termos.</p>
+
+      <p class="termo-data">Última atualização: junho de 2025 , A Rotina Ideal / Pâmela Pissutti Desenvolvimento Materno Ltda</p>
+
+      <button class="btn-voltar-termo" onclick="fecharTermo()">← Voltar ao Rastreio</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Comunica altura real ao Wix para o iFrame se ajustar automaticamente
+function notificarAltura() {
+  const altura = document.body.scrollHeight;
+  window.parent.postMessage({ type: 'setHeight', height: altura }, '*');
+}
+
+// Observa mudanças no DOM (troca de tela, resultado, etc)
+const observer = new MutationObserver(notificarAltura);
+observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+
+// Também notifica no resize e no load
+window.addEventListener('load', notificarAltura);
+window.addEventListener('resize', notificarAltura);
+notificarAltura();
+</script>
+
+</body>
+</html>
