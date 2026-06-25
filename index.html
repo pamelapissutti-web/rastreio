@@ -1889,27 +1889,48 @@ async function enviarParaMake(pctTea, pctTdah, pctAh) {
     payload[`p${numero}_score_ah`] = respIdx !== undefined ? (q.opcoes[respIdx].valor.ah || 0) : '';
   });
 
-  const data = JSON.stringify(payload);
-
-  // Tenta beacon primeiro — mais confiável em ambientes restritos
+  // Envia via imagem (GET) — funciona em qualquer ambiente sem bloqueio de CORS
   try {
-    const blob = new Blob([data], { type: 'application/json' });
-    if (navigator.sendBeacon && navigator.sendBeacon(WEBHOOK_URL, blob)) {
-      return;
-    }
-  } catch(e) {}
-
-  // Fallback: fetch no-cors
-  try {
-    fetch(WEBHOOK_URL, {
-      method: 'POST',
-      body: data,
-      mode: 'no-cors',
-      keepalive: true
+    // Monta os dados mais importantes como query string
+    const params = new URLSearchParams({
+      nome_mae: payload.nome_mae || '',
+      email_mae: payload.email_mae || '',
+      nome_bebe: payload.nome_bebe || '',
+      faixa_etaria: payload.faixa_etaria || '',
+      score_tea: payload.score_tea_pct || '',
+      score_tdah: payload.score_tdah_pct || '',
+      score_ah: payload.score_ah_pct || '',
+      data_hora: payload.data_hora || '',
+      aceite: payload.aceite_termos || '',
+      int_tea: payload.interpretacao_tea || '',
+      int_tdah: payload.interpretacao_tdah || '',
+      int_ah: payload.interpretacao_ah || ''
     });
+
+    // Adiciona respostas das perguntas
+    for (let i = 1; i <= 18; i++) {
+      const n = String(i).padStart(2, '0');
+      if (payload['p' + n + '_resposta']) {
+        params.append('p' + n, payload['p' + n + '_resposta']);
+      }
+    }
+
+    // GET request via imagem — nunca bloqueado por CORS
+    const img = new Image();
+    img.src = WEBHOOK_URL + '?' + params.toString();
   } catch(e) {
     console.warn('Webhook não enviado:', e);
   }
+
+  // Fallback adicional: fetch no-cors
+  try {
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      mode: 'no-cors',
+      keepalive: true
+    });
+  } catch(e) {}
 }
 
 function classificarPerfil(pctTea, pctTdah, pctAh) {
