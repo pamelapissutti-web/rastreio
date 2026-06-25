@@ -1889,33 +1889,13 @@ async function enviarParaMake(pctTea, pctTdah, pctAh) {
     payload[`p${numero}_score_ah`] = respIdx !== undefined ? (q.opcoes[respIdx].valor.ah || 0) : '';
   });
 
-  const data = JSON.stringify(payload);
-
-  // Tenta beacon primeiro (funciona melhor em iFrame)
   try {
-    const blob = new Blob([data], { type: 'application/json' });
-    if (navigator.sendBeacon && navigator.sendBeacon(WEBHOOK_URL, blob)) {
-      return; // beacon funcionou
-    }
-  } catch(e) {}
-
-  // Fallback: fetch sem CORS
-  try {
-    fetch(WEBHOOK_URL, {
-      method: 'POST',
-      body: data,
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' }
-    });
-  } catch(e) {}
-
-  // Segundo fallback: XMLHttpRequest
-  try {
+    // Usa XMLHttpRequest para compatibilidade com iFrame do Wix
     const xhr = new XMLHttpRequest();
     xhr.open('POST', WEBHOOK_URL, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(data);
-  } catch(e) {
+    xhr.send(JSON.stringify(payload));
+  } catch (e) {
     console.warn('Webhook não enviado:', e);
   }
 }
@@ -2267,16 +2247,26 @@ function reiniciar() {
       </ul>
       <p>Para exercer seus direitos, envie um e-mail para <strong>pamelapissutti@gmail.com</strong> com o assunto "Privacidade de Dados".</p>
 
-      <h3>7. Este rastreio não é um diagnóstico</h3>
+      <h3>7. Produto pago e condições de acesso</h3>
+      <p>O Rastreio de Neurodesenvolvimento Infantil é um produto digital comercializado pelo valor de <strong>R$19,90 (dezenove reais e noventa centavos)</strong>, pagamento único e não recorrente.</p>
+      <p style="margin-top:10px">Após a confirmação do pagamento, a compradora terá acesso ao rastreio por meio da área de membros do site <strong>pamelapissutti.com</strong>, mediante login com as credenciais cadastradas no momento da compra. O acesso ficará disponível pelo prazo de <strong>30 (trinta) dias corridos</strong> a partir da data do pagamento confirmado.</p>
+      <p style="margin-top:10px">O preenchimento do rastreio pode ser realizado quantas vezes desejar dentro deste período de 30 dias. Após o vencimento do prazo, o acesso será encerrado automaticamente.</p>
+
+      <h3>8. Direito de arrependimento (CDC, Art. 49)</h3>
+      <p>Em conformidade com o Art. 49 do Código de Defesa do Consumidor (Lei nº 8.078/1990), a consumidora tem direito de desistir da compra no prazo de <strong>7 (sete) dias corridos</strong> a partir da data da contratação, sem necessidade de justificativa.</p>
+      <p style="margin-top:10px">Para exercer o direito de arrependimento, basta enviar um e-mail para <strong>pamelapissutti@gmail.com</strong> com o assunto <em>"Cancelamento Rastreio"</em> dentro do prazo legal. O valor pago será reembolsado integralmente em até 7 dias úteis, pelo mesmo meio de pagamento utilizado na compra.</p>
+      <p style="margin-top:10px"><strong>Importante:</strong> caso a compradora já tenha acessado e utilizado o rastreio integralmente antes de solicitar o cancelamento, o reembolso fica a critério da fornecedora, nos termos do Art. 49, parágrafo único, do CDC, uma vez que o serviço digital já foi plenamente fruído.</p>
+
+      <h3>9. Este rastreio não é um diagnóstico</h3>
       <p>As informações coletadas têm caráter exclusivamente orientativo e de pesquisa. Os resultados não constituem diagnóstico clínico e não serão utilizados para fins médicos individuais. Para qualquer suspeita de desenvolvimento atípico, consulte um profissional de saúde qualificado.</p>
 
-      <h3>8. Titular dos dados</h3>
+      <h3>10. Titular dos dados</h3>
       <p>Este rastreio é preenchido por um responsável legal (mãe ou pai) sobre um menor de idade. Ao preencher, você declara ter 18 anos ou mais e ser responsável legal pela criança sobre quem as informações se referem.</p>
 
-      <h3>9. Alterações neste termo</h3>
+      <h3>11. Alterações neste termo</h3>
       <p>Podemos atualizar este documento periodicamente. Em caso de alterações relevantes, notificaremos pelo e-mail cadastrado. O uso continuado da ferramenta após as alterações implica aceite dos novos termos.</p>
 
-      <p class="termo-data">Última atualização: junho de 2025 , A Rotina Ideal / Pâmela Pissutti Desenvolvimento Materno Ltda</p>
+      <p class="termo-data">Última atualização: junho de 2025 — A Rotina Ideal / Pâmela Pissutti Desenvolvimento Materno Ltda</p>
 
       <button class="btn-voltar-termo" onclick="fecharTermo()">← Voltar ao Rastreio</button>
     </div>
