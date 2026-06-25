@@ -1889,13 +1889,25 @@ async function enviarParaMake(pctTea, pctTdah, pctAh) {
     payload[`p${numero}_score_ah`] = respIdx !== undefined ? (q.opcoes[respIdx].valor.ah || 0) : '';
   });
 
+  const data = JSON.stringify(payload);
+
+  // Tenta beacon primeiro — mais confiável em ambientes restritos
   try {
-    // Usa XMLHttpRequest para compatibilidade com iFrame do Wix
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', WEBHOOK_URL, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(payload));
-  } catch (e) {
+    const blob = new Blob([data], { type: 'application/json' });
+    if (navigator.sendBeacon && navigator.sendBeacon(WEBHOOK_URL, blob)) {
+      return;
+    }
+  } catch(e) {}
+
+  // Fallback: fetch no-cors
+  try {
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      body: data,
+      mode: 'no-cors',
+      keepalive: true
+    });
+  } catch(e) {
     console.warn('Webhook não enviado:', e);
   }
 }
