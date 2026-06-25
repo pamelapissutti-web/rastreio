@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rastreio de Desenvolvimento , A Rotina Ideal</title>
+<title>Rastreio de Desenvolvimento — A Rotina Ideal</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -31,7 +31,6 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
   }
 
   /* HEADER */
@@ -309,8 +308,6 @@
     padding: 32px 24px 48px;
     max-width: 680px;
     margin: 0 auto;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
   }
 
   .result-header {
@@ -1150,7 +1147,7 @@ const BANCO = {
     {
       id: "soc2", dominio: "Social", tags: [],
       texto: "Seu bebê sorri de volta quando você sorri para ele?",
-      contexto: "O sorriso social aparece por volta dos 2 meses , aos 6 meses deve ser consistente.",
+      contexto: "O sorriso social aparece por volta dos 2 meses — aos 6 meses deve ser consistente.",
       opcoes: [
         { texto: "Sim, frequentemente e de forma espontânea", valor: { tea:0, tdah:0, ah:0 } },
         { texto: "Às vezes, mas não é consistente", valor: { tea:1, tdah:0, ah:0 } },
@@ -1193,7 +1190,7 @@ const BANCO = {
     {
       id: "tea1", dominio: "TEA", tags: ["tea-branch"],
       texto: "Seu bebê olha para você e depois para um objeto, como se quisesse compartilhar o que está vendo?",
-      contexto: "Isso se chama atenção compartilhada , emerge entre 9 e 12 meses.",
+      contexto: "Isso se chama atenção compartilhada — emerge entre 9 e 12 meses.",
       opcoes: [
         { texto: "Sim, faz isso regularmente", valor: { tea:0, tdah:0, ah:0 } },
         { texto: "Às vezes, não é consistente", valor: { tea:1, tdah:0, ah:0 } },
@@ -1203,7 +1200,7 @@ const BANCO = {
     {
       id: "tea2", dominio: "TEA", tags: ["tea-branch"],
       texto: "Seu bebê imita sons ou expressões faciais que você faz?",
-      contexto: "Imitação é um marco social fundamental , esperada a partir dos 6 meses.",
+      contexto: "Imitação é um marco social fundamental — esperada a partir dos 6 meses.",
       opcoes: [
         { texto: "Sim, imita com frequência", valor: { tea:0, tdah:0, ah:0 } },
         { texto: "Imita pouco ou raramente", valor: { tea:2, tdah:0, ah:0 } },
@@ -1259,7 +1256,7 @@ const BANCO = {
     {
       id: "soc1", dominio: "Social", tags: [],
       texto: "Seu filho responde ao próprio nome quando chamado?",
-      contexto: "Marco importante , ausência consistente é red flag para TEA nessa faixa.",
+      contexto: "Marco importante — ausência consistente é red flag para TEA nessa faixa.",
       opcoes: [
         { texto: "Sim, responde quase sempre", valor: { tea:0, tdah:0, ah:0 } },
         { texto: "Às vezes, mas não de forma consistente", valor: { tea:1, tdah:1, ah:0 } },
@@ -1388,7 +1385,7 @@ const BANCO = {
     {
       id: "soc1", dominio: "Social", tags: [],
       texto: "Quando algo emociona seu filho, ele olha para você para compartilhar?",
-      contexto: "Atenção compartilhada , olhar para o objeto, depois para você, como dizendo 'olha isso!'",
+      contexto: "Atenção compartilhada — olhar para o objeto, depois para você, como dizendo 'olha isso!'",
       opcoes: [
         { texto: "Sim, frequentemente", valor: { tea:0, tdah:0, ah:0 } },
         { texto: "Às vezes", valor: { tea:1, tdah:0, ah:0 } },
@@ -1413,7 +1410,7 @@ const BANCO = {
         { texto: "Não, aceita variedade de alimentos bem", valor: { tea:0, tdah:0, ah:0 } },
         { texto: "Tem preferências mas é manejável", valor: { tea:0, tdah:0, ah:0 } },
         { texto: "Recusa extrema que limita muito a alimentação", valor: { tea:3, tdah:0, ah:0 } },
-        { texto: "Coloca tudo na boca, busca sensação oral intensa", valor: { tea:0, tdah:1, ah:0 } }
+        { texto: "Coloca tudo na boca, busca sensação oral intensa", valor: { tea:1, tdah:1, ah:0 } }
       ]
     },
     {
@@ -1429,7 +1426,7 @@ const BANCO = {
     {
       id: "cog1", dominio: "Cognitivo", tags: [],
       texto: "Seu filho demonstra interesse incomum por objetos específicos ou categorias?",
-      contexto: "Fascinação por rodas, luzes, animais, números , acima do esperado para a faixa.",
+      contexto: "Fascinação por rodas, luzes, animais, números — acima do esperado para a faixa.",
       opcoes: [
         { texto: "Sim, interesses muito intensos para a idade", valor: { tea:1, tdah:0, ah:2 } },
         { texto: "Interesse normal e variado", valor: { tea:0, tdah:0, ah:0 } },
@@ -1450,22 +1447,12 @@ const BANCO = {
     },
     {
       id: "tea2", dominio: "TEA", tags: ["tea-branch"],
-      texto: "Seu filho tem rituais ou rotinas rígidas que precisam ser mantidas?",
-      contexto: "Como querer sempre o mesmo percurso, a mesma ordem nas coisas, o mesmo lugar na mesa e ficar muito angustiado se algo muda.",
+      texto: "Seu filho tem comportamentos repetitivos que precisam ser mantidos?",
+      contexto: "Alinhar objetos, querer o mesmo percurso, reagir com crise a qualquer mudança.",
       opcoes: [
-        { texto: "Não percebo esse tipo de rigidez", valor: { tea:0, tdah:0, ah:0 } },
-        { texto: "Tem preferências mas aceita mudanças", valor: { tea:0, tdah:0, ah:0 } },
-        { texto: "Sim, tem rituais claros e fica angustiado quando algo muda", valor: { tea:3, tdah:0, ah:0 } }
-      ]
-    },
-    {
-      id: "tea3", dominio: "TEA", tags: ["tea-branch"],
-      texto: "Seu filho apresenta movimentos repetitivos do corpo?",
-      contexto: "Como balançar o corpo para frente e para trás, agitar as mãos (flapping), girar em torno de si, ou outros movimentos que se repetem sem função aparente. Importante: movimentos repetitivos isolados podem aparecer no desenvolvimento típico; o que importa é a frequência e intensidade.",
-      opcoes: [
-        { texto: "Não percebo movimentos repetitivos assim", valor: { tea:0, tdah:0, ah:0 } },
-        { texto: "Às vezes, em momentos de muita animação ou estresse", valor: { tea:1, tdah:0, ah:0 } },
-        { texto: "Sim, com frequência e em diferentes situações", valor: { tea:3, tdah:0, ah:0 } }
+        { texto: "Não percebo comportamentos assim", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Tem preferências mas é flexível", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Tem rituais claros e fica angustiado se algo muda", valor: { tea:3, tdah:0, ah:0 } }
       ]
     },
     // TDAH branch
@@ -1498,7 +1485,7 @@ const BANCO = {
       opcoes: [
         { texto: "Sono relativamente tranquilo, sem grandes desafios", valor: { tea:0, tdah:0, ah:0 } },
         { texto: "Resistência para dormir, demora muito para apagar", valor: { tea:0, tdah:1, ah:1 } },
-        { texto: "Rituais rígidos, qualquer mudança gera crise", valor: { tea:3, tdah:0, ah:0 } },
+        { texto: "Rituais rígidos — qualquer mudança gera crise", valor: { tea:3, tdah:0, ah:0 } },
         { texto: "Pesadelos frequentes ou terror noturno", valor: { tea:1, tdah:0, ah:1 } }
       ]
     },
@@ -1548,7 +1535,7 @@ const BANCO = {
     {
       id: "cog1", dominio: "Cognitivo", tags: [],
       texto: "Seu filho faz perguntas sobre o mundo com frequência incomum para a idade?",
-      contexto: "'Por que o céu é azul?', 'De onde vem o vento?' , curiosidade conceitual precoce.",
+      contexto: "'Por que o céu é azul?', 'De onde vem o vento?' — curiosidade conceitual precoce.",
       opcoes: [
         { texto: "Sim, perguntas muito sofisticadas para 2 anos", valor: { tea:0, tdah:0, ah:3 } },
         { texto: "Pergunta dentro do esperado para a idade", valor: { tea:0, tdah:0, ah:0 } },
@@ -1569,28 +1556,18 @@ const BANCO = {
     // TEA branch
     {
       id: "tea1", dominio: "TEA", tags: ["tea-branch"],
-      texto: "Seu filho apresenta movimentos repetitivos do corpo?",
-      contexto: "Como balançar o corpo, agitar as mãos (flapping), girar em torno de si, ou bater partes do corpo repetidamente. Movimentos ocasionais em momentos de empolgação podem ser normais, o que chama atenção é quando são frequentes, intensos e aparecem em diferentes situações.",
+      texto: "Seu filho tem comportamentos repetitivos ou rituais que não podem mudar?",
+      contexto: "Alinhar objetos de forma precisa, exigir o mesmo percurso, reagir com crise a qualquer variação.",
       opcoes: [
-        { texto: "Não percebo movimentos repetitivos assim", valor: { tea:0, tdah:0, ah:0 } },
-        { texto: "Às vezes, principalmente quando muito animado ou estressado", valor: { tea:1, tdah:0, ah:0 } },
-        { texto: "Sim, com frequência e em diferentes contextos", valor: { tea:3, tdah:0, ah:0 } }
-      ]
-    },
-    {
-      id: "tea1b", dominio: "TEA", tags: ["tea-branch"],
-      texto: "Seu filho tem rituais rígidos que não podem ser alterados?",
-      contexto: "Alinhar objetos de forma precisa, exigir sempre o mesmo percurso, reagir com crise intensa a qualquer variação.",
-      opcoes: [
-        { texto: "Não percebo rituais assim", valor: { tea:0, tdah:0, ah:0 } },
-        { texto: "Tem preferências mas aceita mudanças", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Não percebo comportamentos assim", valor: { tea:0, tdah:0, ah:0 } },
+        { texto: "Tem preferências mas é flexível", valor: { tea:0, tdah:0, ah:0 } },
         { texto: "Sim, rituais rígidos e crises quando algo muda", valor: { tea:3, tdah:0, ah:0 } }
       ]
     },
     {
       id: "tea2", dominio: "TEA", tags: ["tea-branch"],
       texto: "Seu filho tem fascinação muito intensa e restrita por um tema ou tipo de objeto?",
-      contexto: "Carrinhos, dinossauros, ventiladores, números , muito além do interesse típico da faixa.",
+      contexto: "Carrinhos, dinossauros, ventiladores, números — muito além do interesse típico da faixa.",
       opcoes: [
         { texto: "Interesses variados e equilibrados", valor: { tea:0, tdah:0, ah:0 } },
         { texto: "Tem 1 ou 2 temas dominantes, fala só sobre isso", valor: { tea:2, tdah:0, ah:1 } },
@@ -1889,48 +1866,15 @@ async function enviarParaMake(pctTea, pctTdah, pctAh) {
     payload[`p${numero}_score_ah`] = respIdx !== undefined ? (q.opcoes[respIdx].valor.ah || 0) : '';
   });
 
-  // Envia via imagem (GET) — funciona em qualquer ambiente sem bloqueio de CORS
   try {
-    // Monta os dados mais importantes como query string
-    const params = new URLSearchParams({
-      nome_mae: payload.nome_mae || '',
-      email_mae: payload.email_mae || '',
-      nome_bebe: payload.nome_bebe || '',
-      faixa_etaria: payload.faixa_etaria || '',
-      score_tea: payload.score_tea_pct || '',
-      score_tdah: payload.score_tdah_pct || '',
-      score_ah: payload.score_ah_pct || '',
-      data_hora: payload.data_hora || '',
-      aceite: payload.aceite_termos || '',
-      int_tea: payload.interpretacao_tea || '',
-      int_tdah: payload.interpretacao_tdah || '',
-      int_ah: payload.interpretacao_ah || ''
-    });
-
-    // Adiciona respostas das perguntas
-    for (let i = 1; i <= 18; i++) {
-      const n = String(i).padStart(2, '0');
-      if (payload['p' + n + '_resposta']) {
-        params.append('p' + n, payload['p' + n + '_resposta']);
-      }
-    }
-
-    // GET request via imagem — nunca bloqueado por CORS
-    const img = new Image();
-    img.src = WEBHOOK_URL + '?' + params.toString();
-  } catch(e) {
+    // Usa XMLHttpRequest para compatibilidade com iFrame do Wix
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', WEBHOOK_URL, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(payload));
+  } catch (e) {
     console.warn('Webhook não enviado:', e);
   }
-
-  // Fallback adicional: fetch no-cors
-  try {
-    fetch(WEBHOOK_URL, {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      mode: 'no-cors',
-      keepalive: true
-    });
-  } catch(e) {}
 }
 
 function classificarPerfil(pctTea, pctTdah, pctAh) {
@@ -1971,19 +1915,19 @@ function mostrarResultado() {
   perfilContainer.innerHTML = '';
 
   if (perfil === 'tipico') {
-    // Perfil típico , mostra só card positivo, sem barras de neurodivergência
+    // Perfil típico — mostra só card positivo, sem barras de neurodivergência
     perfilContainer.innerHTML = `
       <div class="tipico-card">
         <div class="nivel-badge nivel-baixo">Baixa probabilidade de neurodivergência</div>
         <h3>Desenvolvimento dentro do esperado</h3>
-        <p>Com base nas respostas, ${estado.nomeBebe} apresenta um perfil de desenvolvimento neurotípico para a faixa etária ou seja, sem indicadores significativos de TEA, TDAH ou Altas Habilidades neste momento.</p>
-        <p style="margin-top:10px">Isso não significa que seu filho não tenha suas particularidades, toda criança tem seu ritmo e sua forma de ser. Continue acompanhando o desenvolvimento com seu pediatra nas consultas de rotina.</p>
+        <p>Com base nas respostas, ${estado.nomeBebe} apresenta um perfil de desenvolvimento neurotípico para a faixa etária — ou seja, sem indicadores significativos de TEA, TDAH ou Altas Habilidades neste momento.</p>
+        <p style="margin-top:10px">Isso não significa que seu filho não tenha suas particularidades — toda criança tem seu ritmo e sua forma de ser. Continue acompanhando o desenvolvimento com seu pediatra nas consultas de rotina.</p>
       </div>
     `;
     cardsDiv.appendChild(cardSono(estado.faixa, pctTea, pctTdah, pctAh));
 
   } else {
-    // Perfil médio ou alto , mostra barras e cards detalhados
+    // Perfil médio ou alto — mostra barras e cards detalhados
     const nivelLabel = perfil === 'alto' ? 'Alta probabilidade de neurodivergência' : 'Probabilidade moderada de neurodivergência';
     const nivelClasse = perfil === 'alto' ? 'nivel-alto' : 'nivel-medio';
 
@@ -2108,7 +2052,7 @@ function cardTEA(pct, faixa) {
 
   div.innerHTML = `
     <h3>Características associadas ao TEA</h3>
-    <p>Algumas respostas indicam características que podem estar relacionadas ao Transtorno do Espectro Autista. Isso não é um diagnóstico , apenas um indicativo para buscar avaliação profissional.</p>
+    <p>Algumas respostas indicam características que podem estar relacionadas ao Transtorno do Espectro Autista. Isso não é um diagnóstico — apenas um indicativo para buscar avaliação profissional.</p>
     <p style="margin-top:10px;font-size:13px;color:var(--marrom-medio)">Sinais observados nessa faixa etária:</p>
     <ul class="sinais-list">${listItems}</ul>
     <p style="margin-top:12px;font-size:12px;color:var(--dourado)">Referência: M-CHAT-R/F (Robins et al. 2009); DSM-5 (APA, 2013)</p>
@@ -2131,7 +2075,7 @@ function cardTDAH(pct, faixa) {
 
   div.innerHTML = `
     <h3>Características associadas ao TDAH</h3>
-    <p>Algumas respostas indicam padrões que podem estar relacionados ao TDAH. Importante lembrar que até os 3 anos a agitação é esperada, o TDAH é diagnosticado após os 5 anos.</p>
+    <p>Algumas respostas indicam padrões que podem estar relacionados ao TDAH. Importante lembrar que até os 3 anos a agitação é esperada — o TDAH é diagnosticado após os 5 anos.</p>
     <ul class="sinais-list" style="margin-top:10px">${listItems}</ul>
     <p style="margin-top:12px;font-size:12px;color:var(--verde-suave)">Referência: SNAP-IV (Swanson, 1992); DSM-5 (APA, 2013)</p>
   `;
@@ -2142,8 +2086,8 @@ function cardAH(pct) {
   const div = document.createElement('div');
   div.className = 'result-card card-ah';
   div.innerHTML = `
-    <h3>Características de Altas Habilidades / Superdotação</h3>
-    <p>As respostas indicam características associadas a altas habilidades ou superdotação. Crianças com altas habilidades frequentemente apresentam o que Dabrowski chamou de <em>superexcitabilidades</em> , intensidade emocional, curiosidade extrema, resistência ao sono e sensibilidade sensorial elevada.</p>
+    <h3>Características de Altas Habilidades / Superdotacao</h3>
+    <p>As respostas indicam características associadas a altas habilidades ou superdotacao. Crianças AH/SD frequentemente apresentam o que Dabrowski chamou de <em>superexcitabilidades</em> — intensidade emocional, curiosidade extrema, resistência ao sono e sensibilidade sensorial elevada.</p>
     <ul class="sinais-list" style="margin-top:10px">
       <li>Curiosidade e questionamentos muito acima da média</li>
       <li>Aprendizado rápido com poucas repetições</li>
@@ -2165,7 +2109,7 @@ function cardSono(faixa, pctTea, pctTdah, pctAh) {
 
   let texto = '';
   if (pctTea >= 40 || pctTdah >= 35 || pctAh >= 30) {
-    texto = `Crianças neurodivergentes frequentemente apresentam desafios de sono que vão além de questões comportamentais. A resistência ao sono, o sono fragmentado e a sensibilidade sensorial noturna são biologicamente fundamentados e respondem melhor a abordagens que respeitam o estado do sistema nervoso da criança. A Rotina Ideal trabalha com métodos graduais que consideram o perfil sensorial e emocional do bebê como variável clínica central.`;
+    texto = `Crianças com perfil neurodivergente ou AH/SD frequentemente apresentam desafios de sono que vão além de questões comportamentais. A resistência ao sono, o sono fragmentado é a sensibilidade sensorial noturna são biologicamente fundamentados e respondem melhor a abordagens que respeitam o estado do sistema nervoso da criança. A Rotina Ideal trabalha com metodos graduais que consideram o perfil sensorial e emocional do bebe como variavel clinica central.`;
   } else {
     texto = `O sono do ${estado.nomeBebe} parece estar dentro de um padrão esperado para a faixa etária. Manter rotinas previsíveis e um ambiente de sono adequado ao perfil sensorial da criança continua sendo essencial para a qualidade do descanso.`;
   }
@@ -2191,10 +2135,10 @@ function renderizarCTA(pctTea, pctTdah, pctAh) {
 
   if (temSinais) {
     titulo = `O sono de bebês neurodivergentes pede <em>uma abordagem diferente</em>`;
-    texto = `Bebês com características atípicas ou altas habilidades têm um sistema nervoso que processa o mundo de forma mais intensa. Isso afeta diretamente o sono, os ciclos, a sensibilidade ao ambiente, a dificuldade de desligar. Uma rotina pensada para bebês típicos raramente funciona para eles. Ter alguém ao seu lado que entende essas particularidades faz toda a diferença, para o bebê e para você, ${nome}.`;
+    texto = `Bebês com características atípicas ou altas habilidades têm um sistema nervoso que processa o mundo de forma mais intensa. Isso afeta diretamente o sono — os ciclos, a sensibilidade ao ambiente, a dificuldade de desligar. Uma rotina pensada para bebês típicos raramente funciona para eles. Ter alguém ao seu lado que entende essas particularidades faz toda a diferença — para o bebê e para você, ${nome}.`;
   } else {
     titulo = `Uma boa rotina de sono é o <em>maior presente</em> que você pode dar ao seu filho`;
-    texto = `Mesmo com um perfil de desenvolvimento típico, o sono da primeira infância é um dos maiores desafios da maternidade. Uma rotina bem construída, respeitosa e adaptada à fase do seu bebê transforma não só as noites , transforma o humor, o desenvolvimento é a sua qualidade de vida, ${nome}.`;
+    texto = `Mesmo com um perfil de desenvolvimento típico, o sono da primeira infância é um dos maiores desafios da maternidade. Uma rotina bem construída, respeitosa e adaptada à fase do seu bebê transforma não só as noites — transforma o humor, o desenvolvimento é a sua qualidade de vida, ${nome}.`;
   }
 
   container.innerHTML = `
@@ -2263,7 +2207,7 @@ function reiniciar() {
       <p>Em nenhuma hipótese seus dados identificáveis serão vendidos ou compartilhados de forma que permitam sua identificação pessoal sem seu consentimento adicional.</p>
 
       <h3>4. Base legal</h3>
-      <p>O tratamento dos seus dados é baseado no seu <strong>consentimento livre e informado</strong>, conforme exigido pela Lei Geral de Proteção de Dados (LGPD , Lei nº 13.709/2018), pelo Regulamento Geral de Proteção de Dados europeu (GDPR) e pelo California Consumer Privacy Act (CCPA).</p>
+      <p>O tratamento dos seus dados é baseado no seu <strong>consentimento livre e informado</strong>, conforme exigido pela Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018), pelo Regulamento Geral de Proteção de Dados europeu (GDPR) e pelo California Consumer Privacy Act (CCPA).</p>
 
       <h3>5. Onde seus dados são armazenados</h3>
       <p>As respostas são armazenadas em planilhas no <strong>Google Sheets</strong>, via plataforma de automação Make (Integromat). O Google atua como processador de dados e está em conformidade com o GDPR. Os dados ficam armazenados pelo prazo necessário para as finalidades descritas acima, ou até que você solicite a exclusão.</p>
@@ -2280,23 +2224,13 @@ function reiniciar() {
       </ul>
       <p>Para exercer seus direitos, envie um e-mail para <strong>pamelapissutti@gmail.com</strong> com o assunto "Privacidade de Dados".</p>
 
-      <h3>7. Produto pago e condições de acesso</h3>
-      <p>O Rastreio de Neurodesenvolvimento Infantil é um produto digital comercializado pelo valor de <strong>R$19,90 (dezenove reais e noventa centavos)</strong>, pagamento único e não recorrente.</p>
-      <p style="margin-top:10px">Após a confirmação do pagamento, a compradora terá acesso ao rastreio por meio da área de membros do site <strong>pamelapissutti.com</strong>, mediante login com as credenciais cadastradas no momento da compra. O acesso ficará disponível pelo prazo de <strong>30 (trinta) dias corridos</strong> a partir da data do pagamento confirmado.</p>
-      <p style="margin-top:10px">O preenchimento do rastreio pode ser realizado quantas vezes desejar dentro deste período de 30 dias. Após o vencimento do prazo, o acesso será encerrado automaticamente.</p>
-
-      <h3>8. Direito de arrependimento (CDC, Art. 49)</h3>
-      <p>Em conformidade com o Art. 49 do Código de Defesa do Consumidor (Lei nº 8.078/1990), a consumidora tem direito de desistir da compra no prazo de <strong>7 (sete) dias corridos</strong> a partir da data da contratação, sem necessidade de justificativa.</p>
-      <p style="margin-top:10px">Para exercer o direito de arrependimento, basta enviar um e-mail para <strong>pamelapissutti@gmail.com</strong> com o assunto <em>"Cancelamento Rastreio"</em> dentro do prazo legal. O valor pago será reembolsado integralmente em até 7 dias úteis, pelo mesmo meio de pagamento utilizado na compra.</p>
-      <p style="margin-top:10px"><strong>Importante:</strong> caso a compradora já tenha acessado e utilizado o rastreio integralmente antes de solicitar o cancelamento, o reembolso fica a critério da fornecedora, nos termos do Art. 49, parágrafo único, do CDC, uma vez que o serviço digital já foi plenamente fruído.</p>
-
-      <h3>9. Este rastreio não é um diagnóstico</h3>
+      <h3>7. Este rastreio não é um diagnóstico</h3>
       <p>As informações coletadas têm caráter exclusivamente orientativo e de pesquisa. Os resultados não constituem diagnóstico clínico e não serão utilizados para fins médicos individuais. Para qualquer suspeita de desenvolvimento atípico, consulte um profissional de saúde qualificado.</p>
 
-      <h3>10. Titular dos dados</h3>
+      <h3>8. Titular dos dados</h3>
       <p>Este rastreio é preenchido por um responsável legal (mãe ou pai) sobre um menor de idade. Ao preencher, você declara ter 18 anos ou mais e ser responsável legal pela criança sobre quem as informações se referem.</p>
 
-      <h3>11. Alterações neste termo</h3>
+      <h3>9. Alterações neste termo</h3>
       <p>Podemos atualizar este documento periodicamente. Em caso de alterações relevantes, notificaremos pelo e-mail cadastrado. O uso continuado da ferramenta após as alterações implica aceite dos novos termos.</p>
 
       <p class="termo-data">Última atualização: junho de 2025 — A Rotina Ideal / Pâmela Pissutti Desenvolvimento Materno Ltda</p>
