@@ -1867,14 +1867,17 @@ async function enviarParaMake(pctTea, pctTdah, pctAh) {
   });
 
   try {
-    // Usa XMLHttpRequest para compatibilidade com iFrame do Wix
+    // POST sem Content-Type para evitar preflight CORS
     const xhr = new XMLHttpRequest();
     xhr.open('POST', WEBHOOK_URL, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(payload));
-  } catch (e) {
-    console.warn('Webhook não enviado:', e);
-  }
+  } catch (e) {}
+
+  // Fallback via beacon
+  try {
+    const blob = new Blob([JSON.stringify(payload)]);
+    navigator.sendBeacon && navigator.sendBeacon(WEBHOOK_URL, blob);
+  } catch(e) {}
 }
 
 function classificarPerfil(pctTea, pctTdah, pctAh) {
