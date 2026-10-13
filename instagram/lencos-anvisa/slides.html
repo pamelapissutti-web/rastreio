@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Carrossel — Lenços umedecidos proibidos pela Anvisa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* Mesma paleta do site A Rotina Ideal (index.html) + um terracota para o alerta */
+  :root {
+    --areia: #F2EDE6;
+    --areia-escura: #E8DFD3;
+    --marrom: #3D2B1F;
+    --marrom-medio: #6B4C38;
+    --dourado: #B8965A;
+    --dourado-claro: #D4AF78;
+    --off-white: #FAF8F5;
+    --cinza-claro: #C9BFB5;
+    --alerta: #A8432F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #222;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  /* SLIDE BASE — 1080x1350 (4:5, formato retrato do Instagram) */
+  .slide {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    padding: 110px 104px 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 40px;
+    border: 1px solid rgba(184, 150, 90, 0.35);
+    pointer-events: none;
+  }
+
+  .escuro { background: var(--marrom); color: var(--off-white); }
+  .claro  { background: var(--areia); color: var(--marrom); }
+  .branco { background: var(--off-white); color: var(--marrom); }
+
+  .eyebrow {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--dourado);
+  }
+
+  .titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.005em;
+  }
+
+  .titulo em { font-style: italic; color: var(--dourado-claro); }
+  .claro .titulo em, .branco .titulo em { color: var(--dourado); }
+
+  .rodape {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 20px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--dourado);
+  }
+
+  .rodape .pag { letter-spacing: 0.15em; opacity: 0.8; }
+
+  /* 1 — CAPA */
+  .capa-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tag-alerta {
+    background: var(--alerta);
+    color: var(--off-white);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 14px 26px 13px;
+  }
+
+  .data {
+    font-size: 24px;
+    letter-spacing: 0.2em;
+    color: var(--cinza-claro);
+  }
+
+  .capa .eyebrow { margin-top: 64px; }
+
+  .capa .titulo {
+    font-size: 110px;
+    margin-top: 22px;
+  }
+
+  .capa .sub {
+    font-size: 34px;
+    line-height: 1.5;
+    color: var(--cinza-claro);
+    margin-top: 28px;
+    max-width: 820px;
+  }
+
+  .lista-marcas {
+    margin-top: 44px;
+    border-top: 1px solid rgba(212, 175, 120, 0.35);
+  }
+
+  .lista-marcas li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(212, 175, 120, 0.35);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 46px;
+    font-weight: 400;
+  }
+
+  .x {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--alerta);
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .x::before, .x::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 18px; height: 2px;
+    background: #E07B63;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .x::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+  .arraste {
+    margin-top: 36px;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--dourado-claro);
+  }
+
+  .capa .rodape { margin-top: auto; padding-top: 24px; }
+
+  /* 2 — O QUE ACONTECEU */
+  .contexto .titulo { font-size: 92px; margin-top: 30px; }
+
+  .contexto .texto {
+    font-size: 34px;
+    line-height: 1.55;
+    color: var(--marrom-medio);
+    margin-top: 40px;
+  }
+
+  .contexto .texto strong { font-weight: 500; color: var(--marrom); }
+
+  .proibidos-label {
+    margin-top: 48px;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--alerta);
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .chips span {
+    border: 1px solid var(--marrom);
+    padding: 12px 24px 11px;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .destaque {
+    margin-top: 52px;
+    background: var(--marrom);
+    color: var(--off-white);
+    padding: 40px 44px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    line-height: 1.25;
+  }
+
+  .destaque em { font-style: italic; color: var(--dourado-claro); }
+
+  /* 3 a 5 — MARCAS */
+  .marca-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .carimbo {
+    border: 3px solid var(--alerta);
+    color: var(--alerta);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    padding: 10px 22px 9px;
+    transform: rotate(-3deg);
+  }
+
+  .foto {
+    position: relative;
+    flex: none;
+    margin-top: 40px;
+    height: 600px;
+    background: var(--areia);
+    border: 1px solid var(--areia-escura);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 28px;
+    background: var(--areia);
+    z-index: 1;
+  }
+
+  .placeholder {
+    text-align: center;
+    color: var(--marrom-medio);
+    border: 2px dashed var(--cinza-claro);
+    position: absolute;
+    inset: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .placeholder svg { width: 84px; height: 84px; stroke: var(--dourado); }
+
+  .placeholder p {
+    font-size: 26px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .marca-nome { margin-top: 44px; }
+
+  .marca-nome .linha {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--marrom-medio);
+  }
+
+  .marca-nome .titulo { font-size: 96px; margin-top: 10px; line-height: 1; }
+  .marca-nome .titulo.longo { font-size: 80px; }
+
+  .fatos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 40px;
+  }
+
+  .fatos div { border-top: 1px solid var(--dourado); padding-top: 16px; }
+
+  .fatos small {
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--dourado);
+  }
+
+  .fatos b {
+    display: block;
+    font-weight: 400;
+    font-size: 30px;
+    margin-top: 6px;
+  }
+
+  /* 6 e 7 — LISTAS */
+  .passos .titulo, .dicas .titulo { font-size: 92px; margin-top: 30px; }
+
+  .itens { margin-top: 64px; display: flex; flex-direction: column; gap: 46px; }
+
+  .item { display: flex; gap: 34px; align-items: flex-start; }
+
+  .num {
+    flex: none;
+    width: 74px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 64px;
+    line-height: 0.9;
+    color: var(--dourado-claro);
+  }
+
+  .item h3 {
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.25;
+  }
+
+  .item p {
+    font-size: 30px;
+    line-height: 1.45;
+    margin-top: 6px;
+    color: var(--cinza-claro);
+  }
+
+  .dicas .item p { color: var(--marrom-medio); }
+  .dicas .num { color: var(--dourado); }
+
+  .check {
+    flex: none;
+    width: 56px;
+    height: 56px;
+    border: 2px solid var(--dourado);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .check svg { width: 26px; height: 26px; stroke: var(--dourado); }
+
+  .url {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 500;
+    color: var(--marrom);
+    border-bottom: 2px solid var(--dourado);
+  }
+
+  /* 8 — CTA */
+  .cta { justify-content: flex-start; }
+  .cta .titulo { font-size: 116px; margin-top: 150px; }
+
+  .cta .sub {
+    font-size: 36px;
+    line-height: 1.5;
+    color: var(--cinza-claro);
+    margin-top: 40px;
+    max-width: 780px;
+  }
+
+  .acoes { display: flex; gap: 56px; margin-top: 70px; }
+
+  .acao { display: flex; align-items: center; gap: 20px; }
+
+  .acao span {
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--dourado-claro);
+  }
+
+  .acao svg { width: 54px; height: 54px; stroke: var(--dourado-claro); }
+
+  .fonte {
+    margin-top: auto;
+    padding-top: 30px;
+    border-top: 1px solid rgba(212, 175, 120, 0.35);
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--cinza-claro);
+    letter-spacing: 0.02em;
+  }
+
+  .cta .rodape { margin-top: 36px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · CAPA -->
+<section class="slide escuro capa" id="s1">
+  <div class="capa-topo">
+    <span class="tag-alerta">Alerta Anvisa</span>
+    <span class="data">13.10.2026</span>
+  </div>
+  <div class="eyebrow">Para mães e cuidadores</div>
+  <h1 class="titulo">Anvisa proíbe <em>3 marcas</em> de lenços umedecidos</h1>
+  <p class="sub">Todos os lotes devem ser apreendidos. Confira se algum deles está na sua casa ou na bolsa do bebê.</p>
+  <ul class="lista-marcas">
+    <li><span class="x"></span>Gugu Dadá</li>
+    <li><span class="x"></span>Castelo Rá-Tim-Bum</li>
+    <li><span class="x"></span>Quintal da Cultura Premium</li>
+  </ul>
+  <div class="arraste">Arraste para ver as embalagens &rarr;</div>
+  <div class="rodape"><span>A Rotina Ideal</span><span class="pag">1/8</span></div>
+</section>
+
+<!-- 2 · O QUE ACONTECEU -->
+<section class="slide claro contexto" id="s2">
+  <div class="eyebrow">O que aconteceu</div>
+  <h2 class="titulo">A Anvisa determinou a <em>apreensão de todos os lotes</em></h2>
+  <p class="texto">A decisão foi publicada no Diário Oficial da União em 13 de outubro de 2026. Segundo a Anvisa, as três toalhas umedecidas <strong>não têm registro</strong> e o <strong>fabricante é desconhecido</strong>.</p>
+  <div class="proibidos-label">Ficam proibidos</div>
+  <div class="chips">
+    <span>Fabricação</span><span>Distribuição</span><span>Venda</span><span>Propaganda</span><span>Uso</span>
+  </div>
+  <div class="destaque">Sem registro, ninguém avaliou a fórmula nem como o lenço foi fabricado. E ele vai <em>direto na pele do bebê</em>, várias vezes ao dia.</div>
+  <div class="rodape"><span>A Rotina Ideal</span><span class="pag">2/8</span></div>
+</section>
+
+<!-- 3 · MARCA 1 -->
+<section class="slide branco marca" id="s3">
+  <div class="marca-topo">
+    <span class="eyebrow">Marca 01 de 03</span>
+    <span class="carimbo">Proibido</span>
+  </div>
+  <div class="foto" data-foto="gugu-dada">
+    <div class="placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.6l1.4-2h7l1.4 2h2.6A1.5 1.5 0 0 1 21 8.5v10a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/><circle cx="12" cy="13" r="3.6"/></svg>
+      <p>Foto da embalagem</p>
+    </div>
+    <img src="fotos/gugu-dada.jpg" alt="" onerror="this.remove()">
+  </div>
+  <div class="marca-nome">
+    <div class="linha">Toalhas Umedecidas</div>
+    <h2 class="titulo">Gugu Dadá</h2>
+  </div>
+  <div class="fatos">
+    <div><small>Lotes</small><b>Todos</b></div>
+    <div><small>Registro</small><b>Não tem</b></div>
+    <div><small>Fabricante</small><b>Desconhecido</b></div>
+  </div>
+  <div class="rodape"><span>A Rotina Ideal</span><span class="pag">3/8</span></div>
+</section>
+
+<!-- 4 · MARCA 2 -->
+<section class="slide branco marca" id="s4">
+  <div class="marca-topo">
+    <span class="eyebrow">Marca 02 de 03</span>
+    <span class="carimbo">Proibido</span>
+  </div>
+  <div class="foto" data-foto="castelo-ra-tim-bum">
+    <div class="placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.6l1.4-2h7l1.4 2h2.6A1.5 1.5 0 0 1 21 8.5v10a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/><circle cx="12" cy="13" r="3.6"/></svg>
+      <p>Foto da embalagem</p>
+    </div>
+    <img src="fotos/castelo-ra-tim-bum.jpg" alt="" onerror="this.remove()">
+  </div>
+  <div class="marca-nome">
+    <div class="linha">Toalhas Umedecidas</div>
+    <h2 class="titulo">Castelo Rá-Tim-Bum</h2>
+  </div>
+  <div class="fatos">
+    <div><small>Lotes</small><b>Todos</b></div>
+    <div><small>Registro</small><b>Não tem</b></div>
+    <div><small>Fabricante</small><b>Desconhecido</b></div>
+  </div>
+  <div class="rodape"><span>A Rotina Ideal</span><span class="pag">4/8</span></div>
+</section>
+
+<!-- 5 · MARCA 3 -->
+<section class="slide branco marca" id="s5">
+  <div class="marca-topo">
+    <span class="eyebrow">Marca 03 de 03</span>
+    <span class="carimbo">Proibido</span>
+  </div>
+  <div class="foto" data-foto="quintal-da-cultura">
+    <div class="placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.6l1.4-2h7l1.4 2h2.6A1.5 1.5 0 0 1 21 8.5v10a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/><circle cx="12" cy="13" r="3.6"/></svg>
+      <p>Foto da embalagem</p>
+    </div>
+    <img src="fotos/quintal-da-cultura.jpg" alt="" onerror="this.remove()">
+  </div>
+  <div class="marca-nome">
+    <div class="linha">Toalhas Umedecidas</div>
+    <h2 class="titulo longo">Quintal da Cultura <em>Premium</em></h2>
+  </div>
+  <div class="fatos">
+    <div><small>Lotes</small><b>Todos</b></div>
+    <div><small>Registro</small><b>Não tem</b></div>
+    <div><small>Fabricante</small><b>Desconhecido</b></div>
+  </div>
+  <div class="rodape"><span>A Rotina Ideal</span><span class="pag">5/8</span></div>
+</section>
+
+<!-- 6 · TEM EM CASA? -->
+<section class="slide escuro passos" id="s6">
+  <div class="eyebrow">Tem em casa?</div>
+  <h2 class="titulo">Veja o que <em>fazer agora</em></h2>
+  <div class="itens">
+    <div class="item"><span class="num">01</span><div><h3>Pare de usar imediatamente</h3><p>Mesmo que o pacote esteja pela metade.</p></div></div>
+    <div class="item"><span class="num">02</span><div><h3>Não doe nem repasse</h3><p>O uso também está proibido pela Anvisa.</p></div></div>
+    <div class="item"><span class="num">03</span><div><h3>Fale com a loja onde comprou</h3><p>Peça a troca ou o reembolso.</p></div></div>
+    <div class="item"><span class="num">04</span><div><h3>Observe a pele do bebê</h3><p>Notou vermelhidão, assadura ou irritação? Converse com o pediatra.</p></div></div>
+    <div class="item"><span class="num">05</span><div><h3>Viu à venda? Denuncie</h3><p>À Vigilância Sanitária da sua cidade ou à Anvisa.</p></div></div>
+  </div>
+  <div class="rodape"><span>A Rotina Ideal</span><span class="pag">6/8</span></div>
+</section>
+
+<!-- 7 · COMO ESCOLHER -->
+<section class="slide claro dicas" id="s7">
+  <div class="eyebrow">Na próxima compra</div>
+  <h2 class="titulo">Como escolher um lenço <em>com segurança</em></h2>
+  <div class="itens">
+    <div class="item"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><h3>Leia a embalagem</h3><p>Ela precisa trazer nome, CNPJ e SAC do fabricante.</p></div></div>
+    <div class="item"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><h3>Consulte a Anvisa</h3><p>Veja se o produto está regularizado em<br><span class="url">consultas.anvisa.gov.br</span></p></div></div>
+    <div class="item"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><h3>Desconfie do muito barato</h3><p>Preço bem abaixo do normal e vendedor sem procedência são sinais de alerta.</p></div></div>
+    <div class="item"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><h3>Compre de quem você confia</h3><p>Farmácias e lojas conhecidas, inclusive nas compras online.</p></div></div>
+  </div>
+  <div class="rodape"><span>A Rotina Ideal</span><span class="pag">7/8</span></div>
+</section>
+
+<!-- 8 · CTA -->
+<section class="slide escuro cta" id="s8">
+  <div class="eyebrow">Compartilhe</div>
+  <h2 class="titulo">Informação boa é a que <em>chega a tempo</em>.</h2>
+  <p class="sub">Salve este post e envie para uma mãe que você ama. Ela pode ter um desses pacotes em casa agora.</p>
+  <div class="acoes">
+    <div class="acao"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M6 3.5h12v17l-6-4.2-6 4.2z"/></svg><span>Salvar</span></div>
+    <div class="acao"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M21 3.5L10.2 13.8M21 3.5l-6.8 17-4-6.7-6.7-4z"/></svg><span>Enviar</span></div>
+  </div>
+  <p class="fonte">Fonte: Anvisa, Diário Oficial da União de 13/10/2026, via Veja. Conteúdo informativo; em caso de dúvida sobre a saúde do seu bebê, procure o pediatra.</p>
+  <div class="rodape"><span>A Rotina Ideal · Pâmela Pissutti</span><span class="pag">8/8</span></div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,502 @@
+<title>Carrossel Lenços Anvisa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+  /* Layout: cabeçalho curto, grade de slides 4:5 com controles abaixo de cada um, legenda no fim. Paleta e fontes do site A Rotina Ideal. */
+  :root {
+    --bg: #F2EDE6;
+    --surface: #FAF8F5;
+    --ink: #3D2B1F;
+    --ink-soft: #6B4C38;
+    --gold: #B8965A;
+    --line: #E8DFD3;
+    --alert: #A8432F;
+    --on-accent: #FAF8F5;
+    --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-body: 'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #2A1E16; --surface: #3D2B1F; --ink: #FAF8F5; --ink-soft: #C9BFB5;
+      --gold: #D4AF78; --line: #5A4334; --alert: #E07B63; --on-accent: #2A1E16;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #2A1E16; --surface: #3D2B1F; --ink: #FAF8F5; --ink-soft: #C9BFB5;
+    --gold: #D4AF78; --line: #5A4334; --alert: #E07B63; --on-accent: #2A1E16;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-inline: 20px;
+    padding-block: 40px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  header { display: flex; flex-direction: column; gap: 10px; max-width: 680px; }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(34px, 6vw, 52px);
+    line-height: 1.08;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h1 em { font-style: italic; color: var(--gold); }
+
+  header p { margin: 0; color: var(--ink-soft); }
+
+  .barra {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+    padding-block: 16px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .status {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid var(--alert);
+    color: var(--alert);
+  }
+
+  .status.ok { border-color: var(--gold); color: var(--gold); }
+
+  .barra .dica { color: var(--ink-soft); font-size: 14px; flex: 1 1 240px; min-width: 0; }
+
+  button, .btn {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 11px 18px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  button:hover, .btn:hover { background: var(--line); }
+  button:focus-visible, .btn:focus-within, .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  button.primario { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  button.primario:hover { background: var(--ink-soft); border-color: var(--ink-soft); }
+  button:disabled { opacity: 0.5; cursor: default; }
+
+  .grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 28px 20px;
+  }
+
+  .card { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+
+  .previa {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    max-width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+
+  .previa img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+  .card.recebe .previa { outline: 2px dashed var(--gold); outline-offset: 3px; }
+
+  .card-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+
+  .card-topo strong {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1.2;
+    min-width: 0;
+  }
+
+  .card-topo span { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); flex: none; }
+
+  .controles { display: flex; flex-wrap: wrap; gap: 8px; }
+  .controles > * { flex: 1 1 auto; }
+
+  .btn input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+  .ajuste { display: flex; border: 1px solid var(--line); flex: 1 1 100%; }
+  .ajuste button { flex: 1; border: 0; padding: 9px 8px; font-size: 11px; color: var(--ink-soft); }
+  .ajuste button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+
+  .falta { font-size: 13px; color: var(--alert); margin: 0; }
+
+  .legenda { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+
+  .legenda h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 34px;
+    margin: 0;
+  }
+
+  .legenda pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 20px;
+    max-height: 420px;
+    overflow: auto;
+  }
+
+  .legenda .linha { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .legenda .linha small { color: var(--ink-soft); font-size: 13px; }
+
+  .aviso { font-size: 13px; color: var(--ink-soft); margin: 0; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    button, .btn { transition: background 0.15s; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">A Rotina Ideal · Instagram</div>
+    <h1>Lenços umedecidos <em>proibidos pela Anvisa</em></h1>
+    <p>Coloque a foto de cada embalagem nos slides 3, 4 e 5. Depois baixe os 8 slides (1080 × 1350) e copie a legenda.</p>
+  </header>
+
+  <div class="barra">
+    <span class="status" id="status">Faltam 3 fotos</span>
+    <span class="dica" id="dica">Toque em “Escolher foto” ou arraste a imagem para cima do slide.</span>
+    <button class="primario" id="baixar-todos" type="button">Baixar os 8 slides (.zip)</button>
+  </div>
+
+  <div class="grade" id="grade"></div>
+
+  <section class="legenda">
+    <div class="eyebrow">Para colar no post</div>
+    <h2>Legenda</h2>
+    <pre id="legenda-texto">🚨 ALERTA PARA MÃES: a Anvisa proibiu 3 marcas de lenços umedecidos
+
+Na terça-feira (13/10), a Anvisa publicou no Diário Oficial da União a apreensão de TODOS os lotes destes produtos:
+
+❌ Toalhas Umedecidas Gugu Dadá
+❌ Toalhas Umedecidas Castelo Rá-Tim-Bum
+❌ Toalhas Umedecidas Quintal da Cultura Premium
+
+Segundo a Anvisa, nenhum deles tem registro e o fabricante é desconhecido. Ou seja: ninguém avaliou a fórmula nem como esses lenços foram fabricados. Além da venda, também ficam proibidos a fabricação, a distribuição, a propaganda e o uso.
+
+Tem algum em casa ou na bolsa do bebê?
+✔️ Pare de usar agora, mesmo que o pacote esteja pela metade
+✔️ Não doe nem repasse
+✔️ Procure a loja onde comprou e peça troca ou reembolso
+✔️ Notou vermelhidão, assadura ou irritação? Converse com o pediatra
+
+O lenço umedecido é um dos produtos que mais tocam a pele do bebê ao longo do dia. Antes de comprar, confira na embalagem o nome, o CNPJ e o SAC do fabricante, e veja no site da Anvisa se o produto está regularizado.
+
+📌 Salve este post e envie para uma mãe que precisa saber disso.
+
+Fonte: Anvisa / Diário Oficial da União (13/10/2026), via Veja.
+
+#lencoumedecido #toalhaumedecida #anvisa #alertaanvisa #maternidade #maedeprimeiraviagem #bebe #cuidadoscomobebe #peledobebe #saudeinfantil #arotinaideal</pre>
+    <div class="linha">
+      <button type="button" id="copiar">Copiar legenda</button>
+      <small id="copiado" aria-live="polite"></small>
+    </div>
+    <p class="aviso">Use fotos da embalagem que você tenha certeza de que é a do produto proibido, de preferência da própria matéria ou de quem comprou. Uma foto errada pode confundir as mães.</p>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+(() => {
+  // Moldura da foto nos slides de marca (medida por render.mjs em png/molduras.json)
+  const MOLDURA = { x: 104, y: 210, w: 872, h: 600 };
+  const RESPIRO = 28;
+  const FUNDO_MOLDURA = '#F2EDE6';
+
+  const SLIDES = [
+    { n: 1, nome: 'Capa' },
+    { n: 2, nome: 'O que aconteceu' },
+    { n: 3, nome: 'Gugu Dadá', foto: 'gugu-dada' },
+    { n: 4, nome: 'Castelo Rá-Tim-Bum', foto: 'castelo-ra-tim-bum' },
+    { n: 5, nome: 'Quintal da Cultura Premium', foto: 'quintal-da-cultura' },
+    { n: 6, nome: 'Tem em casa?' },
+    { n: 7, nome: 'Como escolher' },
+    { n: 8, nome: 'Compartilhe' },
+  ];
+
+  const pad = (n) => String(n).padStart(2, '0');
+  const fotos = {};      // slug -> { img, modo }
+  const bases = {};      // n -> HTMLImageElement
+  const blobs = {};      // n -> PNG Blob atual
+  const urls = {};       // n -> object URL da prévia
+
+  let downloads = null;
+  const semViewer = !window.claude || typeof window.claude.use !== 'function';
+  if (!semViewer) {
+    window.claude.use('downloads').then((d) => { downloads = d; atualizarBarra(); }).catch(() => {});
+  }
+
+  const grade = document.getElementById('grade');
+
+  function carregar(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+
+  function montarCards() {
+    for (const s of SLIDES) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.dataset.n = s.n;
+      card.innerHTML = `
+        <div class="card-topo"><strong></strong><span>Slide ${s.n}/8</span></div>
+        <div class="previa"><img alt=""></div>
+        <div class="controles"></div>`;
+      card.querySelector('strong').textContent = s.nome;
+      card.querySelector('img').alt = `Slide ${s.n}: ${s.nome}`;
+      const ctrl = card.querySelector('.controles');
+
+      if (s.foto) {
+        fotos[s.foto] = { img: null, modo: 'inteira' };
+        const id = `foto-${s.foto}`;
+        ctrl.innerHTML = `
+          <label class="btn" for="${id}">Escolher foto<input type="file" id="${id}" accept="image/*"></label>
+          <button type="button" data-acao="remover" hidden>Remover</button>
+          <div class="ajuste" role="group" aria-label="Ajuste da foto">
+            <button type="button" data-modo="inteira" aria-pressed="true">Embalagem inteira</button>
+            <button type="button" data-modo="preencher" aria-pressed="false">Preencher moldura</button>
+          </div>
+          <p class="falta">Sem foto ainda</p>`;
+        ctrl.querySelector('input').addEventListener('change', (e) => {
+          const f = e.target.files && e.target.files[0];
+          if (f) usarArquivo(s, f);
+          e.target.value = '';
+        });
+        ctrl.querySelector('[data-acao="remover"]').addEventListener('click', () => {
+          fotos[s.foto].img = null;
+          renderizar(s);
+        });
+        ctrl.querySelectorAll('[data-modo]').forEach((b) => b.addEventListener('click', () => {
+          fotos[s.foto].modo = b.dataset.modo;
+          ctrl.querySelectorAll('[data-modo]').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+          renderizar(s);
+        }));
+
+        const alvo = card.querySelector('.previa');
+        alvo.addEventListener('dragover', (e) => { e.preventDefault(); card.classList.add('recebe'); });
+        alvo.addEventListener('dragleave', () => card.classList.remove('recebe'));
+        alvo.addEventListener('drop', (e) => {
+          e.preventDefault();
+          card.classList.remove('recebe');
+          const f = [...(e.dataTransfer?.files || [])].find((x) => x.type.startsWith('image/'));
+          if (f) usarArquivo(s, f);
+        });
+      }
+
+      const baixar = document.createElement('button');
+      baixar.type = 'button';
+      baixar.dataset.acao = 'baixar';
+      baixar.textContent = 'Baixar PNG';
+      baixar.addEventListener('click', () => baixarUm(s));
+      ctrl.appendChild(baixar);
+
+      grade.appendChild(card);
+    }
+  }
+
+  async function usarArquivo(s, arquivo) {
+    const url = URL.createObjectURL(arquivo);
+    try {
+      fotos[s.foto].img = await carregar(url);
+      renderizar(s);
+    } catch {
+      avisar('Não consegui abrir essa imagem. Tente uma foto em JPG ou PNG.');
+    }
+  }
+
+  function desenharFoto(ctx, img, modo) {
+    const { x, y, w, h } = MOLDURA;
+    ctx.fillStyle = FUNDO_MOLDURA;
+    ctx.fillRect(x + 1, y + 1, w - 2, h - 2);
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    ctx.save();
+    if (modo === 'preencher') {
+      ctx.beginPath();
+      ctx.rect(x + 1, y + 1, w - 2, h - 2);
+      ctx.clip();
+      const k = Math.max((w - 2) / iw, (h - 2) / ih);
+      const dw = iw * k, dh = ih * k;
+      ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+    } else {
+      const bw = w - RESPIRO * 2, bh = h - RESPIRO * 2;
+      const k = Math.min(bw / iw, bh / ih);
+      const dw = iw * k, dh = ih * k;
+      ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+    }
+    ctx.restore();
+  }
+
+  function renderizar(s) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1080;
+    canvas.height = 1350;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(bases[s.n], 0, 0, 1080, 1350);
+    const f = s.foto && fotos[s.foto];
+    if (f && f.img) desenharFoto(ctx, f.img, f.modo);
+
+    return new Promise((resolve) => canvas.toBlob((blob) => {
+      blobs[s.n] = blob;
+      if (urls[s.n]) URL.revokeObjectURL(urls[s.n]);
+      urls[s.n] = URL.createObjectURL(blob);
+      const card = grade.querySelector(`[data-n="${s.n}"]`);
+      card.querySelector('.previa img').src = urls[s.n];
+      if (s.foto) {
+        const tem = !!(f && f.img);
+        card.querySelector('[data-acao="remover"]').hidden = !tem;
+        card.querySelector('.falta').hidden = tem;
+        card.querySelector('label.btn').firstChild.textContent = tem ? 'Trocar foto' : 'Escolher foto';
+      }
+      atualizarBarra();
+      resolve(blob);
+    }, 'image/png'));
+  }
+
+  function faltando() {
+    return SLIDES.filter((s) => s.foto && !fotos[s.foto].img).length;
+  }
+
+  function atualizarBarra() {
+    const n = faltando();
+    const st = document.getElementById('status');
+    st.textContent = n === 0 ? 'Fotos completas' : n === 1 ? 'Falta 1 foto' : `Faltam ${n} fotos`;
+    st.classList.toggle('ok', n === 0);
+    const podeBaixar = semViewer || !!downloads;
+    document.getElementById('baixar-todos').hidden = !podeBaixar;
+    grade.querySelectorAll('[data-acao="baixar"]').forEach((b) => { b.hidden = !podeBaixar; });
+    if (!podeBaixar) {
+      document.getElementById('dica').textContent = 'Para salvar, toque e segure em cada slide e escolha “Salvar imagem”.';
+    }
+  }
+
+  function avisar(texto) {
+    document.getElementById('dica').textContent = texto;
+  }
+
+  async function salvar(filename, data) {
+    if (semViewer) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(data);
+      a.download = filename;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      return;
+    }
+    if (!downloads) return;
+    try {
+      await downloads.save({ filename, data });
+    } catch (err) {
+      const code = err && err.code;
+      if (code === 'declined') return;
+      if (code === 'rate_limited') avisar('Já tem um download aguardando confirmação. Confirme ou cancele e tente de novo.');
+      else avisar('Não deu para baixar aqui. Toque e segure em cada slide e escolha “Salvar imagem”.');
+    }
+  }
+
+  function baixarUm(s) {
+    if (blobs[s.n]) salvar(`lencos-anvisa-${pad(s.n)}.png`, blobs[s.n]);
+  }
+
+  document.getElementById('baixar-todos').addEventListener('click', async (e) => {
+    const n = faltando();
+    if (n > 0) avisar(n === 1 ? 'Atenção: ainda falta 1 foto de embalagem. O zip sai com a moldura vazia.' : `Atenção: ainda faltam ${n} fotos de embalagem. O zip sai com as molduras vazias.`);
+    if (typeof JSZip === 'undefined') {
+      avisar('Não consegui preparar o zip. Use “Baixar PNG” em cada slide.');
+      return;
+    }
+    const btn = e.currentTarget;
+    btn.disabled = true;
+    try {
+      const zip = new JSZip();
+      for (const s of SLIDES) zip.file(`lencos-anvisa-${pad(s.n)}.png`, blobs[s.n]);
+      const arquivo = await zip.generateAsync({ type: 'blob' });
+      await salvar('carrossel-lencos-anvisa.zip', arquivo);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  document.getElementById('copiar').addEventListener('click', async () => {
+    const pre = document.getElementById('legenda-texto');
+    const msg = document.getElementById('copiado');
+    try {
+      await navigator.clipboard.writeText(pre.textContent);
+      msg.textContent = 'Legenda copiada.';
+    } catch {
+      const r = document.createRange();
+      r.selectNodeContents(pre);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+      msg.textContent = 'Texto selecionado. Use Copiar do seu aparelho.';
+    }
+  });
+
+  async function iniciar() {
+    montarCards();
+    atualizarBarra();
+    await Promise.all(SLIDES.map(async (s) => {
+      try {
+        bases[s.n] = await carregar(`png/slide-${pad(s.n)}.png`);
+        await renderizar(s);
+      } catch {
+        avisar('Não consegui carregar um dos slides. Recarregue a página.');
+      }
+    }));
+  }
+
+  iniciar();
+})();
+</script>
