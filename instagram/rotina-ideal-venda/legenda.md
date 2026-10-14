@@ -8,16 +8,21 @@ Bebê que dorme mal não tá fazendo manha, e você não tá fazendo nada de err
 
 E não, você não precisa deixar seu bebê chorando pra isso mudar.
 
-Foi por isso que eu criei A Rotina Ideal: uma mentoria particular comigo, em que eu olho o caso do SEU bebê e monto a rotina dele com você. Nada de modelo pronto da internet, nada de promessa milagrosa. São 28 dias com métodos gentis, sem choro e sem trauma.
+Foi por isso que eu criei A Rotina Ideal: uma mentoria particular comigo, em que eu olho o caso do SEU bebê e desenho a rotina dele com você, numa videochamada. Nada de modelo pronto da internet, nada de promessa milagrosa. Métodos gentis, sem choro e sem trauma.
 
-✔️ Você me conta tudo sobre o seu bebê
-✔️ Eu analiso o caso dele
-✔️ Você recebe a rotina personalizada, com as orientações
-✔️ E coloca em prática comigo durante os 28 dias
+Dá pra começar de dois jeitos:
 
-Consultoria de sono tradicional passa de R$ 1.000. A Rotina Ideal sai por R$ 797, menos de R$ 29 por dia de mentoria. E quem já é do Clube de Mães paga menos ainda 💛
+🌙 Plano avulso · R$ 297 (ou 6x de R$ 49,50)
+Pra um ajuste pontual ou pra conhecer o método: formulário, videochamada de 1h, rotina no mesmo dia pelo WhatsApp e e-book personalizado.
 
-💬 Comenta SONO que eu te mando no direct como funciona e o link pra entrar (me segue antes, pra mensagem não cair nas solicitações).
+🌙 Mentoria completa · 28 dias · R$ 797 (ou 6x de R$ 132,83)
+Tudo do avulso + acompanhamento no WhatsApp 3x por semana durante 28 dias + e-book final com as orientações pro mês seguinte.
+
+As duas em até 6x sem juros no cartão.
+
+E se você se arrepender? Em até 7 dias depois da compra, se a videochamada ainda não aconteceu, o reembolso é integral. E se começar pelo avulso e quiser continuar em até 7 dias depois da videochamada, os R$ 297 viram desconto na mentoria completa 💛
+
+💬 Comenta SONO que eu te mando no direct os detalhes e os links das duas opções (me segue antes, pra mensagem não cair nas solicitações).
 
 #sonodobebe #rotinaideal #mentoriadosono #sonorespeitoso #bebenaodorme #bebeacordamuito #janelasdesono #maternidadereal #maedeprimeiraviagem #pamelapissutti
 
@@ -25,10 +30,12 @@ Consultoria de sono tradicional passa de R$ 1.000. A Rotina Ideal sai por R$ 797
 
 ## Antes de postar, confira
 
-- **Valores (slide 8 e legenda):** R$ 797 pelos 28 dias de mentoria (797 ÷ 28 = R$ 28,46 por dia). A frase "quem já é do Clube de Mães paga menos ainda" vem do seu site: confirme se o desconto para quem é do Clube continua valendo.
-- **Slide 7:** sem foto, ele sai com o cartão "oi, eu sou a Pâmela". Uma foto sua com bebê ou sorrindo para a câmera costuma converter mais; dá para colocar na página de montagem.
+- **De onde vieram os valores e a garantia:** dos termos de contratação dos planos "A Rotina Ideal · Plano Avulso" (R$ 297) e "A Rotina Ideal" (R$ 797) no seu site. Os dois dizem "em até 6 vezes sem juros no cartão". A garantia é o direito de arrependimento: reembolso integral em até 7 dias após a compra, se a videochamada ainda não tiver acontecido. O desconto de R$ 297 vale para quem passa do avulso para a completa em até 7 dias depois da videochamada.
+- **Parcelas:** 297 ÷ 6 = R$ 49,50 e 797 ÷ 6 = R$ 132,83. Confira se o checkout mostra os mesmos valores.
+- **Clube de Mães:** tirei o "quem é do Clube paga menos", porque os termos atuais não falam de desconto para o Clube. Se existir, me avise que eu coloco de volta.
+- **Slide 7:** sem foto, ele sai com o cartão "oi, eu sou a Pâmela". Uma foto sua costuma converter mais; dá para colocar na página de montagem.
 - **Prova social:** não coloquei número de mães atendidas porque o site traz números diferentes em páginas diferentes (+250, +300, +1.000). Se quiser, me diga o número certo que eu incluo no slide 7.
-- **Depoimentos:** um print real de mensagem de mãe aumenta muito a conversão. Se você tiver um com autorização, dá para virar um slide 8,5.
+- **Depoimentos:** um print real de mensagem de mãe aumenta muito a conversão. Se você tiver um com autorização, dá para virar mais um slide.
 
 ## Primeira mensagem no direct (para quem comentar SONO)
 
@@ -42,8 +49,9 @@ Deixe o link para depois da resposta dela: primeiro escute, depois mostre como A
 2. "Me diz se você já: ninou por 40 minutos e ele acordou no berço, decorou o teto às 4h, tomou café pra sobreviver, pesquisou bebê que não dorme de madrugada."
 3. "Não é manha, e não é culpa sua. Muitas vezes é a rotina pedindo ajuste: janela de sono, sonecas, cansaço acumulado, associações pra dormir."
 4. "Mas eu não quero deixar meu bebê chorando. Nem eu. Na Rotina Ideal os métodos são gentis, sem choro e sem trauma."
-5. "Foi por isso que eu criei A Rotina Ideal: mentoria particular, rotina feita pro seu bebê, 28 dias de mentoria, sem promessa milagrosa."
-6. "Como funciona: você conta sobre o bebê, eu analiso o caso, você recebe a rotina personalizada e coloca em prática comigo por 28 dias."
+5. "Foi por isso que eu criei A Rotina Ideal: mentoria particular, rotina feita pro seu bebê, videochamada comigo, sem promessa milagrosa."
+6. "Como funciona: formulário sobre o bebê, videochamada de 1 hora, rotina no mesmo dia pelo WhatsApp e, na mentoria completa, acompanhamento 3x por semana por 28 dias."
 7. "Prazer, Pâmela Pissutti: mentora de mães, mãe também, pós-graduanda em neurociência do sono infantil."
-8. "Fazendo as contas: consultoria de sono tradicional custa mais de R$ 1.000; A Rotina Ideal custa R$ 797, menos de R$ 29 por dia de mentoria."
-9. "Comenta SONO que eu te mando no direct como funciona e o link pra entrar."
+8. "Dá pra começar de dois jeitos: plano avulso por R$ 297 ou 6x de R$ 49,50; mentoria completa de 28 dias por R$ 797 ou 6x de R$ 132,83. As duas em até 6x sem juros."
+9. "7 dias de garantia: reembolso integral em até 7 dias depois da compra, se a videochamada ainda não aconteceu. Quem começa pelo avulso e continua em até 7 dias tem os R$ 297 de desconto na mentoria completa."
+10. "Comenta SONO que eu te mando no direct os detalhes e os links das duas opções."

@@ -188,13 +188,13 @@
   <header>
     <span class="mao">@pamelapissutti · carrossel de venda</span>
     <h1>A Rotina <span>Ideal</span></h1>
-    <p>Se quiser, coloque uma foto sua no slide 7: ela entra dentro da polaroid. Sem foto, o slide sai com o cartão “oi, eu sou a Pâmela” e o carrossel já está pronto para postar. Depois é só baixar os 9 slides (1080 × 1350) e copiar a legenda.</p>
+    <p>Se quiser, coloque uma foto sua no slide 7: ela entra dentro da polaroid. Sem foto, o slide sai com o cartão “oi, eu sou a Pâmela” e o carrossel já está pronto para postar. Depois é só baixar os 10 slides (1080 × 1350) e copiar a legenda.</p>
   </header>
 
   <div class="barra">
     <span class="status" id="status">Sem foto</span>
     <span class="dica" id="dica">Toque em “Pôr foto” ou arraste a imagem para cima do slide.</span>
-    <button class="primario" id="baixar-todos" type="button">Baixar os 9 slides (.zip)</button>
+    <button class="primario" id="baixar-todos" type="button">Baixar os 10 slides (.zip)</button>
   </div>
 
   <div class="grade" id="grade"></div>
@@ -210,23 +210,28 @@ Bebê que dorme mal não tá fazendo manha, e você não tá fazendo nada de err
 
 E não, você não precisa deixar seu bebê chorando pra isso mudar.
 
-Foi por isso que eu criei A Rotina Ideal: uma mentoria particular comigo, em que eu olho o caso do SEU bebê e monto a rotina dele com você. Nada de modelo pronto da internet, nada de promessa milagrosa. São 28 dias com métodos gentis, sem choro e sem trauma.
+Foi por isso que eu criei A Rotina Ideal: uma mentoria particular comigo, em que eu olho o caso do SEU bebê e desenho a rotina dele com você, numa videochamada. Nada de modelo pronto da internet, nada de promessa milagrosa. Métodos gentis, sem choro e sem trauma.
 
-✔️ Você me conta tudo sobre o seu bebê
-✔️ Eu analiso o caso dele
-✔️ Você recebe a rotina personalizada, com as orientações
-✔️ E coloca em prática comigo durante os 28 dias
+Dá pra começar de dois jeitos:
 
-Consultoria de sono tradicional passa de R$ 1.000. A Rotina Ideal sai por R$ 797, menos de R$ 29 por dia de mentoria. E quem já é do Clube de Mães paga menos ainda 💛
+🌙 Plano avulso · R$ 297 (ou 6x de R$ 49,50)
+Pra um ajuste pontual ou pra conhecer o método: formulário, videochamada de 1h, rotina no mesmo dia pelo WhatsApp e e-book personalizado.
 
-💬 Comenta SONO que eu te mando no direct como funciona e o link pra entrar (me segue antes, pra mensagem não cair nas solicitações).
+🌙 Mentoria completa · 28 dias · R$ 797 (ou 6x de R$ 132,83)
+Tudo do avulso + acompanhamento no WhatsApp 3x por semana durante 28 dias + e-book final com as orientações pro mês seguinte.
+
+As duas em até 6x sem juros no cartão.
+
+E se você se arrepender? Em até 7 dias depois da compra, se a videochamada ainda não aconteceu, o reembolso é integral. E se começar pelo avulso e quiser continuar em até 7 dias depois da videochamada, os R$ 297 viram desconto na mentoria completa 💛
+
+💬 Comenta SONO que eu te mando no direct os detalhes e os links das duas opções (me segue antes, pra mensagem não cair nas solicitações).
 
 #sonodobebe #rotinaideal #mentoriadosono #sonorespeitoso #bebenaodorme #bebeacordamuito #janelasdesono #maternidadereal #maedeprimeiraviagem #pamelapissutti</pre>
     <div class="linha">
       <button type="button" id="copiar">Copiar legenda</button>
       <small id="copiado" aria-live="polite"></small>
     </div>
-    <p class="aviso">Confira os valores do slide 8 antes de postar: a comparação usa os preços do seu site.</p>
+    <p class="aviso">Os valores e a garantia dos slides 8 e 9 vêm dos termos de contratação do seu site. Se mudar algum deles, me avise antes de postar.</p>
   </section>
 </div>
 
@@ -244,8 +249,9 @@ Consultoria de sono tradicional passa de R$ 1.000. A Rotina Ideal sai por R$ 797
     { n: 5, nome: 'A Rotina Ideal' },
     { n: 6, nome: 'Como funciona' },
     { n: 7, nome: 'Prazer, Pâmela', foto: 'pamela' },
-    { n: 8, nome: 'Fazendo as contas' },
-    { n: 9, nome: 'Comenta SONO' },
+    { n: 8, nome: 'Duas opções' },
+    { n: 9, nome: 'Garantia' },
+    { n: 10, nome: 'Comenta SONO' },
   ];
 
   const pad = (n) => String(n).padStart(2, '0');
@@ -278,7 +284,7 @@ Consultoria de sono tradicional passa de R$ 1.000. A Rotina Ideal sai por R$ 797
       card.className = 'card';
       card.dataset.n = s.n;
       card.innerHTML = `
-        <div class="card-topo"><strong></strong><span>${s.n}/9</span></div>
+        <div class="card-topo"><strong></strong><span>${s.n}/10</span></div>
         <div class="previa"><img alt=""></div>
         <div class="controles"></div>`;
       card.querySelector('strong').textContent = s.nome;

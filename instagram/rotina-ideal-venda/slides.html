@@ -459,26 +459,57 @@
   .quem .foto svg { width: 120px; height: 110px; }
   .quem .fatos span { font-size: 27px; }
 
-  /* ---------- 8 · FAZENDO AS CONTAS ---------- */
-  .contas .titulo { font-size: 92px; line-height: 60px; color: var(--caneta); padding-top: 28px; }
-  .contas .linha-conta { margin-top: 90px; }
-  .contas .linha-conta + .linha-conta { margin-top: 70px; }
-  .contas .rotulo { font-size: 46px; line-height: 60px; font-weight: 600; }
-  .contas .valor { font-size: 150px; margin-top: 14px; position: relative; display: inline-block; }
-  .contas .riscado { color: #8A8698; }
-  .contas .valor.destaque { color: var(--tinta); }
-  .contas .por-dia { font-size: 58px; color: var(--caneta); margin-top: 22px; }
-  .contas .postit {
-    position: absolute;
-    right: 70px;
-    bottom: 150px;
-    width: 500px;
-    background: var(--rosa);
-    transform: rotate(3deg);
-    font-size: 50px;
-    z-index: 4;
+  /* ---------- 8 · DUAS OPÇÕES ---------- */
+  .opcoes .abre { font-size: 72px; color: var(--caneta); }
+  .plano {
+    position: relative;
+    margin-top: 46px;
+    padding: 40px 42px 38px;
+    box-shadow: 0 20px 34px -22px rgba(27, 24, 48, .6);
   }
-  .contas .postit .fita { top: -24px; left: 160px; transform: rotate(3deg); }
+  .plano .fita { top: -24px; left: 50%; margin-left: -95px; transform: rotate(-3deg); }
+  .p-avulso { background: var(--papel); transform: rotate(-1.2deg); }
+  .p-completa { background: var(--amarelo); transform: rotate(1deg); margin-top: 52px; }
+  .plano-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+  .plano .etiqueta { display: inline-block; background: var(--tinta); color: var(--amarelo); transform: rotate(-2deg); font-size: 32px; }
+  .plano .pra-quem { font-size: 46px; color: var(--caneta); margin-top: 18px; max-width: 470px; }
+  .plano .preco { display: flex; flex-direction: column; align-items: flex-end; flex: none; text-align: right; }
+  .plano .preco .grito { font-size: 132px; }
+  .plano .preco .mao { font-size: 44px; color: var(--vermelho); margin-top: 6px; }
+  .plano .inclui { margin-top: 24px; font-size: 32px; line-height: 1.3; font-weight: 600; }
+  .opcoes .juros { margin-top: 56px; font-size: 44px; font-weight: 700; text-align: center; }
+
+  /* ---------- 9 · GARANTIA ---------- */
+  .garantia .abre { font-size: 64px; color: var(--amarelo); }
+  .garantia .grito { font-size: 180px; margin-top: 26px; color: var(--papel); }
+  .garantia .grito span { display: inline-block; background: var(--amarelo); color: var(--tinta); padding: 14px 28px 0; margin-top: 16px; transform: rotate(-2deg); }
+  .garantia .selo { right: 70px; top: 240px; transform: rotate(10deg); }
+  .garantia .selo b { font-size: 84px; }
+  .garantia .selo span { font-size: 28px; }
+  .garantia .nota {
+    position: relative;
+    margin-top: 60px;
+    background: var(--papel);
+    color: var(--tinta);
+    padding: 38px 42px;
+    transform: rotate(-1deg);
+    box-shadow: 0 20px 34px -22px rgba(0, 0, 0, .7);
+  }
+  .garantia .nota .fita { top: -24px; left: 80px; transform: rotate(-4deg); }
+  .garantia .nota p { font-size: 38px; line-height: 1.3; font-weight: 500; }
+  .garantia .nota b { font-weight: 800; }
+  .garantia .cashback {
+    margin-top: 44px;
+    align-self: flex-end;
+    width: 760px;
+    background: var(--rosa);
+    color: var(--tinta);
+    transform: rotate(1.8deg);
+  }
+  .garantia .cashback .fita { top: -24px; right: 90px; transform: rotate(4deg); }
+  .garantia .cashback .mao { font-size: 48px; color: var(--caneta); }
+  .garantia .cashback p + p { font-size: 32px; line-height: 1.3; font-weight: 500; margin-top: 10px; }
+  .garantia .cashback b { font-weight: 800; }
 
   /* ---------- 9 · CTA ---------- */
   .cta .abre { font-size: 64px; color: var(--caneta); max-width: 860px; }
@@ -525,7 +556,7 @@
     e você jurando que hoje ele ia dormir melhor...
   </div>
   <div class="mao arrasta">se leu isso bocejando, arrasta <svg width="150" height="70" viewBox="0 0 150 70" style="overflow:visible;flex:none"><path d="M4 44 C 40 14, 90 12, 136 34" fill="none" stroke="#FFD93B" stroke-width="6" stroke-linecap="round"/><path d="M112 14 L138 35 L110 52" fill="none" stroke="#FFD93B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">1/9</span></div>
+  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">1/10</span></div>
 </section>
 
 <!-- 2 · ME DIZ SE VOCÊ JÁ -->
@@ -541,7 +572,7 @@
     <span class="fita"></span>
     marcou pelo menos um? fica comigo até o final.
   </div>
-  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">2/9</span></div>
+  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">2/10</span></div>
 </section>
 
 <!-- 3 · NÃO É MANHA -->
@@ -554,7 +585,7 @@
     <div class="tags"><span>janela de sono</span><span>sonecas</span><span>cansaço acumulado</span><span>associações pra dormir</span></div>
   </div>
   <p class="mao fecho">e isso dá pra ajustar.<svg class="doodle" style="left:-6px;right:-6px;bottom:-26px;width:calc(100% + 12px);height:34px" viewBox="0 0 600 34" preserveAspectRatio="none"><path d="M6 20 C 90 4, 170 30, 260 16 S 420 6, 594 18" stroke="#E33B2B" stroke-width="8"/></svg></p>
-  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">3/9</span></div>
+  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">3/10</span></div>
 </section>
 
 <!-- 4 · NEM EU -->
@@ -563,7 +594,7 @@
   <h2 class="grito">Nem eu.<svg class="doodle" style="left:-40px;top:-30px;width:calc(100% + 80px);height:calc(100% + 40px)" viewBox="0 0 700 320" preserveAspectRatio="none"><path d="M120 40 C 300 0, 660 10, 680 150 C 696 280, 260 316, 60 260 C -20 230, 10 90, 200 40" stroke="#E33B2B" stroke-width="9"/></svg></h2>
   <p class="texto">Na Rotina Ideal, os métodos são gentis: <mark><b>sem choro e sem trauma.</b></mark> O sono melhora no tempo do seu bebê, com você do lado dele.</p>
   <div class="faixa">sem choro ✱ sem trauma ✱ sem culpa ✱ sem choro ✱ sem trauma ✱ sem culpa ✱ sem choro</div>
-  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">4/9</span></div>
+  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">4/10</span></div>
 </section>
 
 <!-- 5 · A ROTINA IDEAL -->
@@ -573,10 +604,10 @@
   <div class="quadro">
     <div class="postit q1"><h3>Mentoria particular</h3><p>comigo, olhando o seu caso</p></div>
     <div class="postit q2"><h3>Rotina feita pro SEU bebê</h3><p>nada de modelo pronto da internet</p></div>
-    <div class="postit q3"><h3>28 dias de mentoria</h3><p>com métodos gentis</p></div>
+    <div class="postit q3"><h3>Videochamada comigo</h3><p>1 hora desenhando a rotina com você</p></div>
     <div class="postit q4"><h3>Sem promessa milagrosa</h3><p>só o que faz sentido pra sua família</p></div>
   </div>
-  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">5/9</span></div>
+  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">5/10</span></div>
 </section>
 
 <!-- 6 · COMO FUNCIONA -->
@@ -584,12 +615,12 @@
   <h2 class="grito">Como<br>funciona</h2>
   <div class="ficha">
     <span class="fita"></span>
-    <div class="passo"><span class="n">1</span><div><h3>Você me conta tudo sobre o seu bebê.</h3><p>num formulário, com calma</p></div></div>
-    <div class="passo"><span class="n">2</span><div><h3>Eu analiso o caso dele.</h3><p>olho o bebê por inteiro e, se precisar, te oriento a procurar o profissional certo</p></div></div>
-    <div class="passo"><span class="n">3</span><div><h3>Você recebe a rotina personalizada.</h3><p>um plano com a rotina e as orientações</p></div></div>
-    <div class="passo"><span class="n">4</span><div><h3>E coloca em prática comigo.</h3><p>durante os 28 dias de mentoria</p></div></div>
+    <div class="passo"><span class="n">1</span><div><h3>Você me conta sobre o seu bebê.</h3><p>num formulário, antes do nosso encontro</p></div></div>
+    <div class="passo"><span class="n">2</span><div><h3>A gente conversa por vídeo.</h3><p>1 hora, desenhando a rotina juntas</p></div></div>
+    <div class="passo"><span class="n">3</span><div><h3>A rotina chega no mesmo dia.</h3><p>pelo WhatsApp, e depois o e-book personalizado</p></div></div>
+    <div class="passo"><span class="n">4</span><div><h3>E eu fico do seu lado.</h3><p>na mentoria completa: WhatsApp 3x por semana, por 28 dias</p></div></div>
   </div>
-  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">6/9</span></div>
+  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">6/10</span></div>
 </section>
 
 <!-- 7 · PRAZER, PÂMELA -->
@@ -605,42 +636,63 @@
     <div class="legenda-polaroid">Pâmela Pissutti</div>
   </div>
   <div class="fatos"><span>mentora de mães</span><span>mãe também</span><span>pós-graduanda em neurociência do sono infantil</span></div>
-  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">7/9</span></div>
+  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">7/10</span></div>
 </section>
 
-<!-- 8 · FAZENDO AS CONTAS -->
-<section class="slide caderno contas" id="s8">
-  <p class="mao titulo">Fazendo as contas:</p>
-  <div class="linha-conta">
-    <p class="rotulo">Consultoria de sono tradicional</p>
-    <span class="grito valor riscado">+ de R$ 1.000<svg class="doodle" style="left:-14px;top:30%;width:calc(100% + 28px);height:60px" viewBox="0 0 600 60" preserveAspectRatio="none"><path d="M6 40 C 150 20, 300 36, 594 14" stroke="#E33B2B" stroke-width="10"/><path d="M20 22 C 200 44, 400 18, 580 40" stroke="#E33B2B" stroke-width="7"/></svg></span>
-  </div>
-  <div class="linha-conta">
-    <p class="rotulo">A Rotina Ideal</p>
-    <span class="grito valor destaque"><mark>R$ 797</mark></span>
-    <p class="mao por-dia">menos de R$ 29 por dia de mentoria</p>
-  </div>
-  <div class="postit mao">
+<!-- 8 · DUAS OPÇÕES -->
+<section class="slide quadriculado opcoes" id="s8">
+  <p class="mao abre">dá pra começar de dois jeitos:</p>
+  <div class="plano p-avulso">
     <span class="fita"></span>
-    e se você já é do Clube de Mães, paga menos ainda.
+    <div class="plano-topo">
+      <div><span class="etiqueta">Plano avulso</span><p class="mao pra-quem">pra um ajuste pontual ou pra conhecer o método</p></div>
+      <div class="preco"><span class="grito">R$ 297</span><span class="mao">ou 6x de R$ 49,50</span></div>
+    </div>
+    <p class="inclui">Formulário + videochamada de 1h + rotina no mesmo dia pelo WhatsApp + e-book personalizado</p>
   </div>
-  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">8/9</span></div>
+  <div class="plano p-completa">
+    <span class="fita"></span>
+    <div class="plano-topo">
+      <div><span class="etiqueta">Mentoria completa · 28 dias</span><p class="mao pra-quem">pra construir a rotina e ter alguém do lado na adaptação</p></div>
+      <div class="preco"><span class="grito">R$ 797</span><span class="mao">ou 6x de R$ 132,83</span></div>
+    </div>
+    <p class="inclui">Tudo do avulso + acompanhamento no WhatsApp 3x por semana por 28 dias + e-book final pro mês seguinte</p>
+  </div>
+  <p class="juros">as duas em até <mark>6x sem juros</mark> no cartão</p>
+  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">8/10</span></div>
 </section>
 
-<!-- 9 · CTA -->
-<section class="slide amarelo cta" id="s9">
+<!-- 9 · GARANTIA -->
+<section class="slide tinta garantia" id="s9">
+  <p class="mao abre">“e se eu me arrepender?”</p>
+  <h2 class="grito">7 dias de<br><span>garantia</span></h2>
+  <div class="selo"><b>100%</b><span>de volta<br>antes da<br>videochamada</span></div>
+  <div class="nota">
+    <span class="fita"></span>
+    <p>Comprou e mudou de ideia? Em até <b>7 dias depois da compra</b>, se a videochamada ainda não aconteceu, você recebe o <b>reembolso integral</b>.</p>
+  </div>
+  <div class="postit cashback">
+    <span class="fita"></span>
+    <p class="mao">começou pelo avulso e quer continuar?</p>
+    <p>Em até 7 dias depois da videochamada, os <b>R$&nbsp;297 viram desconto</b> na mentoria completa. Você completa com R$&nbsp;500.</p>
+  </div>
+  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">9/10</span></div>
+</section>
+
+<!-- 10 · CTA -->
+<section class="slide amarelo cta" id="s10">
   <p class="mao abre">Quer saber se A Rotina Ideal é pro seu bebê?</p>
   <h2 class="grito">Comenta<br><span class="palavra">Sono</span></h2>
   <div class="mao convite">
     <svg width="120" height="110" viewBox="0 0 120 110" style="overflow:visible;flex:none"><path d="M10 8 C 6 60, 40 92, 104 88" fill="none" stroke="#E33B2B" stroke-width="7" stroke-linecap="round"/><path d="M82 66 L106 88 L80 104" fill="none" stroke="#E33B2B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span>que eu te mando no direct <b>como funciona e o link pra entrar</b></span>
+    <span>que eu te mando no direct <b>os detalhes e os links das duas opções</b></span>
   </div>
   <div class="comenta">
     <span class="fita"></span>
     me segue antes, pra mensagem não cair nas solicitações
   </div>
   <div class="faixa">A Rotina Ideal ✱ sono com leveza ✱ A Rotina Ideal ✱ sono com leveza ✱ A Rotina Ideal</div>
-  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">9/9</span></div>
+  <div class="rodape"><span class="arroba">@pamelapissutti</span><span class="pag">10/10</span></div>
 </section>
 
 </body>
