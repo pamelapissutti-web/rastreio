@@ -20,7 +20,9 @@ Tudo do avulso + acompanhamento no WhatsApp 3x por semana durante 28 dias + e-bo
 
 As duas em até 6x sem juros no cartão.
 
-E se você se arrepender? Em até 7 dias depois da compra, se a videochamada ainda não aconteceu, o reembolso é integral. E se começar pelo avulso e quiser continuar em até 7 dias depois da videochamada, os R$ 297 viram desconto na mentoria completa 💛
+E se não funcionar pro seu bebê? A mentoria completa tem garantia condicional de devolução: se você seguir a rotina e, no fim dos 28 dias, o sono do seu bebê não tiver nenhuma melhora, você recebe 100% do valor de volta. Pra garantia valer, o bebê precisa ter mais de 4 meses no início, você preenche o checklist da rotina 2x por semana e responde aos meus pedidos em até 2 dias úteis (as condições completas estão no termo de garantia).
+
+E se preferir começar pelo avulso e decidir continuar em até 7 dias depois da videochamada, os R$ 297 viram desconto na mentoria completa 💛
 
 💬 Comenta SONO que eu te mando no direct os detalhes e os links das duas opções (me segue antes, pra mensagem não cair nas solicitações).
 
@@ -30,7 +32,8 @@ E se você se arrepender? Em até 7 dias depois da compra, se a videochamada ain
 
 ## Antes de postar, confira
 
-- **De onde vieram os valores e a garantia:** dos termos de contratação dos planos "A Rotina Ideal · Plano Avulso" (R$ 297) e "A Rotina Ideal" (R$ 797) no seu site. Os dois dizem "em até 6 vezes sem juros no cartão". A garantia é o direito de arrependimento: reembolso integral em até 7 dias após a compra, se a videochamada ainda não tiver acontecido. O desconto de R$ 297 vale para quem passa do avulso para a completa em até 7 dias depois da videochamada.
+- **De onde vieram os valores e a garantia:** os preços e o "6x sem juros" vêm dos termos dos planos "A Rotina Ideal · Plano Avulso" (R$ 297) e "A Rotina Ideal" (R$ 797). A garantia vem do "Termo de Garantia Condicional de Devolução" do checkout: só vale para a mentoria completa, é integral (qualquer melhora relatada cancela a devolução), exige checklist 2x por semana da 2ª à 4ª semana, no máximo 3 atrasos de resposta (prazo de 2 dias úteis), não vale para bebês de 0 a 4 meses no início e tem que ser pedida por escrito em até 7 dias depois do fim. No slide entraram as três condições que a mãe precisa saber antes de comprar; o resto fica no termo.
+- **Atenção no termo do checkout:** a última linha do texto é "Quando quiser seguir para a versão resumida do site, é só me chamar.", que parece ter sobrado de quando o texto foi escrito. Vale apagar essa frase no painel da Wix (Configurações de checkout > Política de devolução).
 - **Parcelas:** 297 ÷ 6 = R$ 49,50 e 797 ÷ 6 = R$ 132,83. Confira se o checkout mostra os mesmos valores.
 - **Clube de Mães:** tirei o "quem é do Clube paga menos", porque os termos atuais não falam de desconto para o Clube. Se existir, me avise que eu coloco de volta.
 - **Slide 7:** sem foto, ele sai com o cartão "oi, eu sou a Pâmela". Uma foto sua costuma converter mais; dá para colocar na página de montagem.
@@ -52,6 +55,6 @@ Deixe o link para depois da resposta dela: primeiro escute, depois mostre como A
 5. "Foi por isso que eu criei A Rotina Ideal: mentoria particular, rotina feita pro seu bebê, videochamada comigo, sem promessa milagrosa."
 6. "Como funciona: formulário sobre o bebê, videochamada de 1 hora, rotina no mesmo dia pelo WhatsApp e, na mentoria completa, acompanhamento 3x por semana por 28 dias."
 7. "Prazer, Pâmela Pissutti: mentora de mães, mãe também, pós-graduanda em neurociência do sono infantil."
-8. "Dá pra começar de dois jeitos: plano avulso por R$ 297 ou 6x de R$ 49,50; mentoria completa de 28 dias por R$ 797 ou 6x de R$ 132,83. As duas em até 6x sem juros."
-9. "7 dias de garantia: reembolso integral em até 7 dias depois da compra, se a videochamada ainda não aconteceu. Quem começa pelo avulso e continua em até 7 dias tem os R$ 297 de desconto na mentoria completa."
+8. "Dá pra começar de dois jeitos: plano avulso por R$ 297 ou 6x de R$ 49,50, com os R$ 297 virando desconto se continuar em até 7 dias; mentoria completa de 28 dias por R$ 797 ou 6x de R$ 132,83, com garantia de devolução. As duas em até 6x sem juros."
+9. "E se não funcionar pro meu bebê? Se nada melhorar, eu devolvo: na mentoria completa, se a rotina foi seguida e o sono do bebê não teve nenhuma melhora em 28 dias, 100% do valor volta. Pra valer: bebê com mais de 4 meses, checklist 2x por semana e respostas em até 2 dias úteis."
 10. "Comenta SONO que eu te mando no direct os detalhes e os links das duas opções."
