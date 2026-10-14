@@ -1,0 +1,508 @@
+<title>Carrossel Rotina Ideal</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Caveat:wght@600;700&display=swap">
+<style>
+  /* Layout: cabeçalho curto, grade de slides 4:5 com controles abaixo de cada um, legenda no fim. Mesmo visual de recado do carrossel. */
+  :root {
+    --bg: #FFFDF6;
+    --surface: #FFFFFF;
+    --ink: #1B1830;
+    --ink-soft: #4A4664;
+    --accent: #FFD93B;
+    --pen: #2340A8;
+    --alert: #E33B2B;
+    --line: #E4E1D6;
+    --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+    --font-hand: 'Caveat', 'Comic Sans MS', cursive;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1B1830; --surface: #25223D; --ink: #FFFDF6; --ink-soft: #C9C5DD;
+      --accent: #FFD93B; --pen: #9DB2FF; --alert: #FF6B5C; --line: #3A3656;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1B1830; --surface: #25223D; --ink: #FFFDF6; --ink-soft: #C9C5DD;
+    --accent: #FFD93B; --pen: #9DB2FF; --alert: #FF6B5C; --line: #3A3656;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-inline: 20px;
+    padding-block: 36px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  header { display: flex; flex-direction: column; gap: 6px; max-width: 700px; }
+
+  .mao { font-family: var(--font-hand); font-weight: 700; color: var(--pen); font-size: 28px; line-height: 1.1; }
+
+  h1 {
+    font-family: var(--font-display);
+    font-stretch: condensed;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: clamp(40px, 7vw, 68px);
+    line-height: .9;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h1 span { background: var(--accent); color: #1B1830; padding: 0 8px; }
+
+  header p { margin: 8px 0 0; color: var(--ink-soft); font-size: 17px; }
+
+  .barra {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 2px solid var(--ink);
+  }
+
+  .status {
+    font-weight: 800;
+    font-stretch: condensed;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    background: var(--alert);
+    color: #FFFDF6;
+  }
+
+  .status.ok { background: var(--accent); color: #1B1830; }
+
+  .barra .dica { color: var(--ink-soft); font-size: 15px; flex: 1 1 240px; min-width: 0; }
+
+  button, .btn {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 16px;
+    border: 2px solid var(--ink);
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 999px;
+  }
+
+  button:hover, .btn:hover { background: var(--accent); color: #1B1830; }
+  button:focus-visible, .btn:focus-within { outline: 3px solid var(--pen); outline-offset: 2px; }
+  button.primario { background: var(--ink); color: var(--bg); }
+  button.primario:hover { background: var(--accent); color: #1B1830; }
+  button:disabled { opacity: 0.5; cursor: default; }
+
+  .grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 28px 20px;
+  }
+
+  .card { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+
+  .previa {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    max-width: 100%;
+    background: var(--surface);
+    box-shadow: 0 10px 24px -14px rgba(27, 24, 48, .55);
+  }
+
+  .previa img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+  .card.recebe .previa { outline: 3px dashed var(--alert); outline-offset: 4px; }
+
+  .card-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .card-topo strong { font-weight: 800; font-size: 17px; line-height: 1.2; min-width: 0; }
+  .card-topo span { font-family: var(--font-hand); font-weight: 700; font-size: 22px; color: var(--pen); flex: none; }
+
+  .controles { display: flex; flex-wrap: wrap; gap: 8px; }
+  .controles > * { flex: 1 1 auto; }
+
+  .btn input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+  .ajuste { display: flex; border: 2px solid var(--ink); border-radius: 999px; overflow: hidden; flex: 1 1 100%; }
+  .ajuste button { flex: 1; border: 0; border-radius: 0; padding: 8px; font-size: 13px; background: var(--surface); }
+  .ajuste button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+  .falta { font-family: var(--font-hand); font-weight: 700; font-size: 22px; color: var(--alert); margin: 0; flex-basis: 100%; }
+
+  .legenda { display: flex; flex-direction: column; gap: 12px; max-width: 760px; }
+
+  .legenda h2 {
+    font-stretch: condensed;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 40px;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .legenda pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: var(--font-display);
+    font-size: 15px;
+    line-height: 1.6;
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    padding: 20px;
+    max-height: 440px;
+    overflow: auto;
+  }
+
+  .legenda .linha { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .legenda .linha small { color: var(--ink-soft); font-size: 14px; }
+
+  .aviso { font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    button, .btn { transition: background 0.15s, color 0.15s; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="mao">@pamelapissutti · carrossel de venda</span>
+    <h1>A Rotina <span>Ideal</span></h1>
+    <p>Se quiser, coloque uma foto sua no slide 7: ela entra dentro da polaroid. Sem foto, o slide sai com o cartão “oi, eu sou a Pâmela” e o carrossel já está pronto para postar. Depois é só baixar os 9 slides (1080 × 1350) e copiar a legenda.</p>
+  </header>
+
+  <div class="barra">
+    <span class="status" id="status">Sem foto</span>
+    <span class="dica" id="dica">Toque em “Pôr foto” ou arraste a imagem para cima do slide.</span>
+    <button class="primario" id="baixar-todos" type="button">Baixar os 9 slides (.zip)</button>
+  </div>
+
+  <div class="grade" id="grade"></div>
+
+  <section class="legenda">
+    <span class="mao">pra colar no post</span>
+    <h2>Legenda</h2>
+    <pre id="legenda-texto">3 da manhã. De novo. 😮‍💨
+
+Se você leu isso bocejando, esse post é pra você.
+
+Bebê que dorme mal não tá fazendo manha, e você não tá fazendo nada de errado. Muitas vezes é a rotina pedindo ajuste: janela de sono, sonecas, cansaço acumulado, associações pra dormir...
+
+E não, você não precisa deixar seu bebê chorando pra isso mudar.
+
+Foi por isso que eu criei A Rotina Ideal: uma mentoria particular comigo, em que eu olho o caso do SEU bebê e monto a rotina dele com você. Nada de modelo pronto da internet, nada de promessa milagrosa. São 28 dias com métodos gentis, sem choro e sem trauma.
+
+✔️ Você me conta tudo sobre o seu bebê
+✔️ Eu analiso o caso dele
+✔️ Você recebe a rotina personalizada, com as orientações
+✔️ E coloca em prática comigo durante os 28 dias
+
+Consultoria de sono tradicional passa de R$ 1.000. A Rotina Ideal custa menos da metade. E quem já é do Clube de Mães paga menos ainda 💛
+
+💬 Comenta SONO que eu te mando no direct como funciona e o valor (me segue antes, pra mensagem não cair nas solicitações).
+
+#sonodobebe #rotinaideal #mentoriadosono #sonorespeitoso #bebenaodorme #bebeacordamuito #janelasdesono #maternidadereal #maedeprimeiraviagem #pamelapissutti</pre>
+    <div class="linha">
+      <button type="button" id="copiar">Copiar legenda</button>
+      <small id="copiado" aria-live="polite"></small>
+    </div>
+    <p class="aviso">Confira os valores do slide 8 antes de postar: a comparação usa os preços do seu site.</p>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+(() => {
+  const FUNDO_FOTO = '#FFFDF6';
+  const RESPIRO = 20;
+
+  const SLIDES = [
+    { n: 1, nome: '3 da manhã' },
+    { n: 2, nome: 'Me diz se você já' },
+    { n: 3, nome: 'Não é manha' },
+    { n: 4, nome: 'Nem eu' },
+    { n: 5, nome: 'A Rotina Ideal' },
+    { n: 6, nome: 'Como funciona' },
+    { n: 7, nome: 'Prazer, Pâmela', foto: 'pamela' },
+    { n: 8, nome: 'Fazendo as contas' },
+    { n: 9, nome: 'Comenta SONO' },
+  ];
+
+  const pad = (n) => String(n).padStart(2, '0');
+  const fotos = {};      // slug -> { img, modo }
+  const imgs = {};       // n -> { cheio, base, sobre }
+  const blobs = {};      // n -> PNG atual
+  const urls = {};       // n -> object URL da prévia
+  let molduras = {};     // slug -> retângulo da foto + rotação da polaroid
+
+  let downloads = null;
+  const semViewer = !window.claude || typeof window.claude.use !== 'function';
+  if (!semViewer) {
+    window.claude.use('downloads').then((d) => { downloads = d; atualizarBarra(); }).catch(() => {});
+  }
+
+  const grade = document.getElementById('grade');
+
+  function carregar(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+
+  function montarCards() {
+    for (const s of SLIDES) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.dataset.n = s.n;
+      card.innerHTML = `
+        <div class="card-topo"><strong></strong><span>${s.n}/9</span></div>
+        <div class="previa"><img alt=""></div>
+        <div class="controles"></div>`;
+      card.querySelector('strong').textContent = s.nome;
+      card.querySelector('img').alt = `Slide ${s.n}: ${s.nome}`;
+      const ctrl = card.querySelector('.controles');
+
+      if (s.foto) {
+        fotos[s.foto] = { img: null, modo: 'preencher' };
+        const id = `foto-${s.foto}`;
+        ctrl.innerHTML = `
+          <label class="btn" for="${id}">Pôr foto<input type="file" id="${id}" accept="image/*"></label>
+          <button type="button" data-acao="remover" hidden>Tirar foto</button>
+          <div class="ajuste" role="group" aria-label="Ajuste da foto" hidden>
+            <button type="button" data-modo="preencher" aria-pressed="true">Preencher</button>
+            <button type="button" data-modo="inteira" aria-pressed="false">Embalagem inteira</button>
+          </div>
+          <p class="falta">sem foto: sai com o cartão “oi, eu sou a Pâmela”</p>`;
+        ctrl.querySelector('input').addEventListener('change', (e) => {
+          const f = e.target.files && e.target.files[0];
+          if (f) usarArquivo(s, f);
+          e.target.value = '';
+        });
+        ctrl.querySelector('[data-acao="remover"]').addEventListener('click', () => {
+          fotos[s.foto].img = null;
+          renderizar(s);
+        });
+        ctrl.querySelectorAll('[data-modo]').forEach((b) => b.addEventListener('click', () => {
+          fotos[s.foto].modo = b.dataset.modo;
+          ctrl.querySelectorAll('[data-modo]').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+          renderizar(s);
+        }));
+
+        const alvo = card.querySelector('.previa');
+        alvo.addEventListener('dragover', (e) => { e.preventDefault(); card.classList.add('recebe'); });
+        alvo.addEventListener('dragleave', () => card.classList.remove('recebe'));
+        alvo.addEventListener('drop', (e) => {
+          e.preventDefault();
+          card.classList.remove('recebe');
+          const f = [...(e.dataTransfer?.files || [])].find((x) => x.type.startsWith('image/'));
+          if (f) usarArquivo(s, f);
+        });
+      }
+
+      const baixar = document.createElement('button');
+      baixar.type = 'button';
+      baixar.dataset.acao = 'baixar';
+      baixar.textContent = 'Baixar PNG';
+      baixar.addEventListener('click', () => baixarUm(s));
+      ctrl.appendChild(baixar);
+
+      grade.appendChild(card);
+    }
+  }
+
+  async function usarArquivo(s, arquivo) {
+    if (!imgs[s.n] || !imgs[s.n].base || !molduras[s.foto]) {
+      avisar('Ainda carregando os slides. Tente de novo em instantes.');
+      return;
+    }
+    const url = URL.createObjectURL(arquivo);
+    try {
+      fotos[s.foto].img = await carregar(url);
+      renderizar(s);
+    } catch {
+      avisar('Não consegui abrir essa imagem. Tente uma foto em JPG ou PNG.');
+    }
+  }
+
+  // Desenha a foto dentro da polaroid, girada junto com ela
+  function desenharFoto(ctx, img, modo, m) {
+    ctx.save();
+    ctx.translate(m.cx, m.cy);
+    ctx.rotate((m.graus * Math.PI) / 180);
+    ctx.translate(-m.cx, -m.cy);
+    ctx.beginPath();
+    ctx.rect(m.x, m.y, m.w, m.h);
+    ctx.clip();
+    ctx.fillStyle = FUNDO_FOTO;
+    ctx.fillRect(m.x, m.y, m.w, m.h);
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    const bw = modo === 'inteira' ? m.w - RESPIRO * 2 : m.w;
+    const bh = modo === 'inteira' ? m.h - RESPIRO * 2 : m.h;
+    const k = modo === 'inteira' ? Math.min(bw / iw, bh / ih) : Math.max(bw / iw, bh / ih);
+    const dw = iw * k, dh = ih * k;
+    ctx.drawImage(img, m.x + (m.w - dw) / 2, m.y + (m.h - dh) / 2, dw, dh);
+    ctx.restore();
+  }
+
+  function renderizar(s) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1080;
+    canvas.height = 1350;
+    const ctx = canvas.getContext('2d');
+    const f = s.foto && fotos[s.foto];
+    const camadas = imgs[s.n];
+    if (f && f.img) {
+      ctx.drawImage(camadas.base, 0, 0, 1080, 1350);
+      desenharFoto(ctx, f.img, f.modo, molduras[s.foto]);
+      ctx.drawImage(camadas.sobre, 0, 0, 1080, 1350);
+    } else {
+      ctx.drawImage(camadas.cheio, 0, 0, 1080, 1350);
+    }
+
+    return new Promise((resolve) => canvas.toBlob((blob) => {
+      blobs[s.n] = blob;
+      if (urls[s.n]) URL.revokeObjectURL(urls[s.n]);
+      urls[s.n] = URL.createObjectURL(blob);
+      const card = grade.querySelector(`[data-n="${s.n}"]`);
+      card.querySelector('.previa img').src = urls[s.n];
+      if (s.foto) {
+        const tem = !!(f && f.img);
+        card.querySelector('[data-acao="remover"]').hidden = !tem;
+        card.querySelector('.ajuste').hidden = !tem;
+        card.querySelector('.falta').hidden = tem;
+        card.querySelector('label.btn').firstChild.textContent = tem ? 'Trocar foto' : 'Pôr foto';
+      }
+      atualizarBarra();
+      resolve(blob);
+    }, 'image/png'));
+  }
+
+  function comFoto() {
+    return SLIDES.filter((s) => s.foto && fotos[s.foto].img).length;
+  }
+
+  function atualizarBarra() {
+    const n = comFoto();
+    const st = document.getElementById('status');
+    st.textContent = n === 0 ? 'Sem foto' : 'Com foto';
+    st.classList.toggle('ok', n > 0);
+    const podeBaixar = semViewer || !!downloads;
+    document.getElementById('baixar-todos').hidden = !podeBaixar;
+    grade.querySelectorAll('[data-acao="baixar"]').forEach((b) => { b.hidden = !podeBaixar; });
+    if (!podeBaixar) {
+      document.getElementById('dica').textContent = 'Para salvar, toque e segure em cada slide e escolha “Salvar imagem”.';
+    }
+  }
+
+  function avisar(texto) {
+    document.getElementById('dica').textContent = texto;
+  }
+
+  async function salvar(filename, data) {
+    if (semViewer) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(data);
+      a.download = filename;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      return;
+    }
+    if (!downloads) return;
+    try {
+      await downloads.save({ filename, data });
+    } catch (err) {
+      const code = err && err.code;
+      if (code === 'declined') return;
+      if (code === 'rate_limited') avisar('Já tem um download esperando confirmação. Confirme ou cancele e tente de novo.');
+      else avisar('Não deu para baixar aqui. Toque e segure em cada slide e escolha “Salvar imagem”.');
+    }
+  }
+
+  function baixarUm(s) {
+    if (blobs[s.n]) salvar(`rotina-ideal-${pad(s.n)}.png`, blobs[s.n]);
+  }
+
+  document.getElementById('baixar-todos').addEventListener('click', async (e) => {
+    if (typeof JSZip === 'undefined') {
+      avisar('Não consegui preparar o zip. Use “Baixar PNG” em cada slide.');
+      return;
+    }
+    const btn = e.currentTarget;
+    btn.disabled = true;
+    try {
+      const zip = new JSZip();
+      for (const s of SLIDES) zip.file(`rotina-ideal-${pad(s.n)}.png`, blobs[s.n]);
+      const arquivo = await zip.generateAsync({ type: 'blob' });
+      await salvar('carrossel-rotina-ideal.zip', arquivo);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  document.getElementById('copiar').addEventListener('click', async () => {
+    const pre = document.getElementById('legenda-texto');
+    const msg = document.getElementById('copiado');
+    try {
+      await navigator.clipboard.writeText(pre.textContent);
+      msg.textContent = 'Legenda copiada.';
+    } catch {
+      const r = document.createRange();
+      r.selectNodeContents(pre);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+      msg.textContent = 'Texto selecionado. Use Copiar do seu aparelho.';
+    }
+  });
+
+  async function iniciar() {
+    montarCards();
+    atualizarBarra();
+    try {
+      const lista = await (await fetch('png/molduras.json')).json();
+      molduras = Object.fromEntries(lista.map((m) => [m.foto, m]));
+    } catch {
+      avisar('Não consegui carregar as molduras das fotos. Recarregue a página.');
+    }
+    await Promise.all(SLIDES.map(async (s) => {
+      try {
+        const nome = `slide-${pad(s.n)}`;
+        const [cheio, base, sobre] = await Promise.all([
+          carregar(`png/${nome}.png`),
+          s.foto ? carregar(`png/camadas/${nome}-base.png`) : null,
+          s.foto ? carregar(`png/camadas/${nome}-sobre.png`) : null,
+        ]);
+        imgs[s.n] = { cheio, base, sobre };
+        await renderizar(s);
+      } catch {
+        avisar('Não consegui carregar um dos slides. Recarregue a página.');
+      }
+    }));
+  }
+
+  iniciar();
+})();
+</script>
