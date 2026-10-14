@@ -15,9 +15,9 @@ Foi por isso que eu criei A Rotina Ideal: uma mentoria particular comigo, em que
 ✔️ Você recebe a rotina personalizada, com as orientações
 ✔️ E coloca em prática comigo durante os 28 dias
 
-Consultoria de sono tradicional passa de R$ 1.000. A Rotina Ideal custa menos da metade. E quem já é do Clube de Mães paga menos ainda 💛
+Consultoria de sono tradicional passa de R$ 1.000. A Rotina Ideal sai por R$ 797, menos de R$ 29 por dia de mentoria. E quem já é do Clube de Mães paga menos ainda 💛
 
-💬 Comenta SONO que eu te mando no direct como funciona e o valor (me segue antes, pra mensagem não cair nas solicitações).
+💬 Comenta SONO que eu te mando no direct como funciona e o link pra entrar (me segue antes, pra mensagem não cair nas solicitações).
 
 #sonodobebe #rotinaideal #mentoriadosono #sonorespeitoso #bebenaodorme #bebeacordamuito #janelasdesono #maternidadereal #maedeprimeiraviagem #pamelapissutti
 
@@ -25,7 +25,7 @@ Consultoria de sono tradicional passa de R$ 1.000. A Rotina Ideal custa menos da
 
 ## Antes de postar, confira
 
-- **Valores (slide 8 e legenda):** usei o que está no seu site: consultoria tradicional acima de R$ 1.000, A Rotina Ideal a R$ 447 e R$ 417 para quem é do Clube. Se o preço mudou e passou de R$ 500, troque "menos da metade" por outra comparação.
+- **Valores (slide 8 e legenda):** R$ 797 pelos 28 dias de mentoria (797 ÷ 28 = R$ 28,46 por dia). A frase "quem já é do Clube de Mães paga menos ainda" vem do seu site: confirme se o desconto para quem é do Clube continua valendo.
 - **Slide 7:** sem foto, ele sai com o cartão "oi, eu sou a Pâmela". Uma foto sua com bebê ou sorrindo para a câmera costuma converter mais; dá para colocar na página de montagem.
 - **Prova social:** não coloquei número de mães atendidas porque o site traz números diferentes em páginas diferentes (+250, +300, +1.000). Se quiser, me diga o número certo que eu incluo no slide 7.
 - **Depoimentos:** um print real de mensagem de mãe aumenta muito a conversão. Se você tiver um com autorização, dá para virar um slide 8,5.
@@ -34,7 +34,7 @@ Consultoria de sono tradicional passa de R$ 1.000. A Rotina Ideal custa menos da
 
 > Oi, [nome]! Aqui é a Pâmela 💛 Vi que você comentou SONO. Me conta: quantos meses tem o seu bebê e o que mais tá pegando nas noites aí?
 
-Deixe o valor e o link para depois da resposta dela: primeiro escute, depois mostre como A Rotina Ideal resolve aquele caso específico.
+Deixe o link para depois da resposta dela: primeiro escute, depois mostre como A Rotina Ideal resolve aquele caso específico.
 
 ## Texto alternativo das imagens
 
@@ -45,5 +45,5 @@ Deixe o valor e o link para depois da resposta dela: primeiro escute, depois mos
 5. "Foi por isso que eu criei A Rotina Ideal: mentoria particular, rotina feita pro seu bebê, 28 dias de mentoria, sem promessa milagrosa."
 6. "Como funciona: você conta sobre o bebê, eu analiso o caso, você recebe a rotina personalizada e coloca em prática comigo por 28 dias."
 7. "Prazer, Pâmela Pissutti: mentora de mães, mãe também, pós-graduanda em neurociência do sono infantil."
-8. "Fazendo as contas: consultoria de sono tradicional custa mais de R$ 1.000; A Rotina Ideal custa menos da metade."
-9. "Comenta SONO que eu te mando no direct como funciona e o valor."
+8. "Fazendo as contas: consultoria de sono tradicional custa mais de R$ 1.000; A Rotina Ideal custa R$ 797, menos de R$ 29 por dia de mentoria."
+9. "Comenta SONO que eu te mando no direct como funciona e o link pra entrar."
