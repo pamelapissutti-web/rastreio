@@ -1,4 +1,6 @@
-# Legenda — Mensagem do GovBR sobre a Pneumo 20
+# Legendas — Mensagem do GovBR sobre a Pneumo 20
+
+## Legenda do carrossel
 
 Mãe, recebeu uma mensagem do GovBR dizendo que seu filho "ainda não completou o esquema vacinal"? Calma, respira 💛
 
@@ -17,10 +19,33 @@ O que fazer:
 E lembra: vacina no SUS é gratuita. Desconfie de qualquer mensagem que peça pagamento, senha ou código.
 
 📲 Manda pro grupo das mães: tem muita mãe preocupada à toa hoje.
+🎥 Gravei um vídeo explicando tudo isso também, tá aqui no perfil.
 
 Fontes: Programa Nacional de Imunizações / Ministério da Saúde, Secretaria de Estado da Saúde de SP e Secretarias Municipais de Saúde de Cuiabá e Ubatuba (outubro/2026).
 
 #vacinacao #pneumo20 #cadernetadevacinacao #calendariovacinal #maternidade #maedeprimeiraviagem #saudeinfantil #sus #pamelapissutti
+
+
+## Legenda do vídeo (Reels)
+
+Recebeu do GovBR a mensagem dizendo que seu filho "ainda não completou o esquema vacinal"? Calma, respira 💛
+
+A mensagem sobre a Pneumo 20 foi enviada em massa e chegou também pra muita família com a caderneta em dia. Sozinha, ela não confirma atraso nem dose a mais.
+
+Resumão:
+✔️ Completou o esquema com a Pneumo 10 (2 doses + reforço)? Tá em dia, não precisa de dose extra.
+✔️ Confere a caderneta, de papel ou no app Meu SUS Digital.
+✔️ Tá tudo certo? Pode desconsiderar a mensagem.
+✔️ Na dúvida, leva a caderneta e um documento da criança na UBS.
+
+E não é golpe: veio do canal oficial do GovBR. Mas vacina no SUS é gratuita, então desconfia de quem pedir pagamento, senha ou código.
+
+📲 Manda pro grupo das mães e me segue pra receber esses avisos explicados, sem pânico.
+📌 O passo a passo com o calendário da Pneumo 20 tá no carrossel aqui do perfil.
+
+Fontes: Programa Nacional de Imunizações / Ministério da Saúde, Secretaria de Estado da Saúde de SP e Secretarias Municipais de Saúde (outubro/2026).
+
+#vacinacao #pneumo20 #cadernetadevacinacao #maternidade #maedeprimeiraviagem #saudeinfantil #sus #reels #pamelapissutti
 
 ---
 

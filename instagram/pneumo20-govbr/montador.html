@@ -188,7 +188,7 @@
   <header>
     <span class="mao">@pamelapissutti · carrossel informativo</span>
     <h1>Mensagem do GovBR <span>sobre a Pneumo 20</span></h1>
-    <p>Carrossel sobre a mensagem do GovBR que avisou sobre a Pneumo 20 até para quem está com a caderneta em dia. O print da capa já está sem os nomes. Baixe os 7 slides (1080 × 1350) e copie a legenda.</p>
+    <p>Carrossel sobre a mensagem do GovBR que avisou sobre a Pneumo 20 até para quem está com a caderneta em dia. O print da capa já está sem os nomes. Baixe os 7 slides (1080 × 1350) e copie as legendas do carrossel e do vídeo.</p>
   </header>
 
   <div class="barra">
@@ -201,7 +201,7 @@
 
   <section class="legenda">
     <span class="mao">pra colar no post</span>
-    <h2>Legenda</h2>
+    <h2>Legenda do carrossel</h2>
     <pre id="legenda-texto">Mãe, recebeu uma mensagem do GovBR dizendo que seu filho "ainda não completou o esquema vacinal"? Calma, respira 💛
 
 Eu também recebi (o print tá aqui no post, com os nomes tampados).
@@ -219,13 +219,37 @@ O que fazer:
 E lembra: vacina no SUS é gratuita. Desconfie de qualquer mensagem que peça pagamento, senha ou código.
 
 📲 Manda pro grupo das mães: tem muita mãe preocupada à toa hoje.
+🎥 Gravei um vídeo explicando tudo isso também, tá aqui no perfil.
 
 Fontes: Programa Nacional de Imunizações / Ministério da Saúde, Secretaria de Estado da Saúde de SP e Secretarias Municipais de Saúde de Cuiabá e Ubatuba (outubro/2026).
 
 #vacinacao #pneumo20 #cadernetadevacinacao #calendariovacinal #maternidade #maedeprimeiraviagem #saudeinfantil #sus #pamelapissutti</pre>
     <div class="linha">
-      <button type="button" id="copiar">Copiar legenda</button>
-      <small id="copiado" aria-live="polite"></small>
+      <button type="button" data-copiar="legenda-texto">Copiar legenda do carrossel</button>
+      <small aria-live="polite"></small>
+    </div>
+    <h2>Legenda do vídeo</h2>
+    <pre id="legenda-video">Recebeu do GovBR a mensagem dizendo que seu filho "ainda não completou o esquema vacinal"? Calma, respira 💛
+
+A mensagem sobre a Pneumo 20 foi enviada em massa e chegou também pra muita família com a caderneta em dia. Sozinha, ela não confirma atraso nem dose a mais.
+
+Resumão:
+✔️ Completou o esquema com a Pneumo 10 (2 doses + reforço)? Tá em dia, não precisa de dose extra.
+✔️ Confere a caderneta, de papel ou no app Meu SUS Digital.
+✔️ Tá tudo certo? Pode desconsiderar a mensagem.
+✔️ Na dúvida, leva a caderneta e um documento da criança na UBS.
+
+E não é golpe: veio do canal oficial do GovBR. Mas vacina no SUS é gratuita, então desconfia de quem pedir pagamento, senha ou código.
+
+📲 Manda pro grupo das mães e me segue pra receber esses avisos explicados, sem pânico.
+📌 O passo a passo com o calendário da Pneumo 20 tá no carrossel aqui do perfil.
+
+Fontes: Programa Nacional de Imunizações / Ministério da Saúde, Secretaria de Estado da Saúde de SP e Secretarias Municipais de Saúde (outubro/2026).
+
+#vacinacao #pneumo20 #cadernetadevacinacao #maternidade #maedeprimeiraviagem #saudeinfantil #sus #reels #pamelapissutti</pre>
+    <div class="linha">
+      <button type="button" data-copiar="legenda-video">Copiar legenda do vídeo</button>
+      <small aria-live="polite"></small>
     </div>
     <p class="aviso">As informações vêm do Programa Nacional de Imunizações, da Secretaria de Estado da Saúde de SP e de secretarias municipais (outubro de 2026). Vale conferir o gov.br/saude antes de postar, caso tenha saído algo novo.</p>
   </section>
@@ -460,9 +484,9 @@ Fontes: Programa Nacional de Imunizações / Ministério da Saúde, Secretaria d
     }
   });
 
-  document.getElementById('copiar').addEventListener('click', async () => {
-    const pre = document.getElementById('legenda-texto');
-    const msg = document.getElementById('copiado');
+  document.querySelectorAll('[data-copiar]').forEach((btn) => btn.addEventListener('click', async () => {
+    const pre = document.getElementById(btn.dataset.copiar);
+    const msg = btn.nextElementSibling;
     try {
       await navigator.clipboard.writeText(pre.textContent);
       msg.textContent = 'Legenda copiada.';
@@ -474,7 +498,7 @@ Fontes: Programa Nacional de Imunizações / Ministério da Saúde, Secretaria d
       sel.addRange(r);
       msg.textContent = 'Texto selecionado. Use Copiar do seu aparelho.';
     }
-  });
+  }));
 
   async function iniciar() {
     montarCards();
