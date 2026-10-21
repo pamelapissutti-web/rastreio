@@ -32,7 +32,7 @@ css = r'''
   .print .fita { z-index: 9; }
 
   /* ---------- 1 · CAPA ---------- */
-  .capa .abre { font-size: 64px; color: var(--amarelo); }
+  .capa .abre { font-size: 64px; color: var(--caneta); }
   .capa .print { width: 560px; margin-top: 34px; align-self: center; transform: rotate(-2.5deg); }
   .capa .print .fita { top: -26px; left: 50%; margin-left: -95px; transform: rotate(3deg); }
   .capa .print .alerta {
@@ -56,9 +56,9 @@ css = r'''
     box-shadow: 0 14px 24px -14px rgba(0,0,0,.7);
     z-index: 9;
   }
-  .capa .grito { margin-top: 56px; font-size: 128px; color: var(--papel); }
-  .capa .grito span { display: inline-block; background: var(--amarelo); color: var(--tinta); padding: 12px 24px 0; margin-top: 10px; transform: rotate(-1.5deg); }
-  .capa .arrasta { margin-top: 34px; font-size: 54px; color: var(--amarelo); display: flex; align-items: center; gap: 18px; }
+  .capa .grito { margin-top: 56px; font-size: 128px; color: var(--tinta); }
+  .capa .grito span { display: inline-block; background: var(--tinta); color: var(--amarelo); padding: 12px 24px 0; margin-top: 10px; transform: rotate(-1.5deg); }
+  .capa .arrasta { margin-top: 34px; font-size: 54px; color: var(--tinta); display: flex; align-items: center; gap: 18px; }
 
   /* ---------- 2 · O QUE ACONTECEU ---------- */
   .resumo .titulo { font-size: 84px; line-height: 60px; color: var(--caneta); padding-top: 28px; }
@@ -181,7 +181,7 @@ def rod(n):
 
 body = f'''
 <!-- 1 · CAPA -->
-<section class="slide tinta capa" id="s1">
+<section class="slide amarelo capa" id="s1">
   <p class="mao abre">mãe, recebeu essa mensagem do GovBR?</p>
   <div class="print">
     <span class="fita"></span>
@@ -189,7 +189,7 @@ body = f'''
     <div class="alerta">calma,<br>respira</div>
   </div>
   <h1 class="grito">Não quer dizer que<br><span>a vacina tá atrasada.</span></h1>
-  <div class="mao arrasta">arrasta que eu te explico {seta('#FFD93B')}</div>
+  <div class="mao arrasta">arrasta que eu te explico {seta('#1B1830')}</div>
   {rod(1)}
 </section>
 
